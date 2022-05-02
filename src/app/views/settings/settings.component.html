@@ -1,0 +1,341 @@
+<app-navbar></app-navbar>
+
+<div class="container" style="border: 0px solid blue;">
+  <div class="row" style="border: 0px solid black;">
+    <div class="col-12 col-lg-12" style="border: 0px solid red;">
+      <h1>
+        Definições
+      </h1>
+          <div class="card-body">
+            <mat-tab-group dynamicHeight>
+  
+              <!----------------------------Serviços---------------------------->
+  
+              <mat-tab label="Serviços">
+                <div class="top-table">
+                  <input [(ngModel)]="searchName" class="form-control mt-2 mb-2 shadow-none" type="text" placeholder="Pesquisar..." /> 
+                  <button class="btn mt-2 mb-2 btn-primary">Adicionar</button>
+                </div>
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Nome do serviço</th>
+                      <th scope="col">Balcão</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let data of allServiceData | searchBar: searchName">
+                      <td style="width: 35%;">{{ data.name }}</td>
+                      <td style="width: 40%;">Otto</td>
+                      <td style="width: 15%;">
+                        <div class="form-check form-switch">
+                          <input [(ngModel)]="isChecked" class="form-check-input" type="checkbox" (click)="sWitch()" 
+                            id="flexSwitchCheckDefault">
+                          <label class="form-check-label" for="flexSwitchCheckDefault">
+                            <p *ngIf="isChecked">Ativo {{ data.status }}</p>
+                            <p *ngIf="!isChecked">Inativo{{ data.status }}</p>
+                          </label>
+                        </div>
+                      </td>
+                      <td style="width: 10%;">
+                        <img src="../../../assets/icons/edit.svg">
+                        <img style="margin-left: 25%;" src="../../../assets/icons/trash.svg">
+                      </td>
+                    </tr>
+                    <tr class="mat-row" *matNoDataRow>
+                      <td class="mat-cell" [attr.colspan]="allServiceData.length">
+                        Sem informação a apresentar
+                      </td>
+                    </tr>
+                    <div *ngIf="(allServiceData | searchBar: searchName).length === 0">
+                      <td style="width: 100%; font-size: 16px; ">
+                        Não existem dados correspondentes
+                      </td>
+                    </div>
+                  </tbody>
+                </table>
+                <mat-paginator [length]="100" [pageSizeOptions]="[5, 10, 15]" [pageSize]="5" showFirstLastButtons=""></mat-paginator>
+              </mat-tab>
+  
+              <!----------------------------Agendamentos---------------------------->
+  
+              <mat-tab label="Agendamentos">
+                <div class="top-table">
+                  <input class="form-control mt-2 mb-2 shadow-none" type="text" placeholder="Pesquisar..." /> 
+                  <button class="btn mt-2 mb-2 btn-primary">Adicionar</button>
+                </div>
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Horário</th> 
+                      <th scope="col">Serviço</th>
+                      <th scope="col">Local</th>
+                      <th scope="col">Notas</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let data of allBookingData">
+                      <td style="width: 10%;"> {{ data.name }} </td>
+                      <td style="width: 15%;"> {{ data.email }} </td>
+                      <td style="width: 15%;"> {{ data.start_time | date:'dd MMM yyyy - HH:mm aa' }} </td>
+                      <td style="width: 10%;"> {{ data.service.name }} </td>
+                      <td style="width: 10%;"> {{ data.location.address }} </td>
+
+                      <td style="width: 10%;"> {{ data.notes }} </td>
+                      <td style="width: 10%;">
+                        <div class="form-check form-switch">
+                          <input [(ngModel)]="isChecked" class="form-check-input" type="checkbox" (click)="sWitch()" 
+                            id="flexSwitchCheckDefault">
+                          <label class="form-check-label" for="flexSwitchCheckDefault">
+                            {{ data.status }}
+                            <p *ngIf="isChecked">Ativo</p>
+                            <p *ngIf="!isChecked">Inativo</p>
+                          </label>
+                        </div>
+                      </td>
+                      <td style="width: 10%;">
+                        <img src="../../../assets/icons/edit.svg">
+                        <img style="margin-left: 25%;" src="../../../assets/icons/trash.svg">
+                      </td>
+                    </tr>
+                    <!--<tr>
+                      <td>asas</td>
+                      <td>Otto</td>
+                      <td>
+                        <div class="form-check form-switch">
+                          <input [(ngModel)]="isChecked" class="form-check-input" type="checkbox" (click)="sWitch()" 
+                            id="flexSwitchCheckDefault">
+                          <label class="form-check-label" for="flexSwitchCheckDefault">
+                            <p *ngIf="isChecked">Ativo</p>
+                            <p *ngIf="!isChecked">Inativo</p>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <img src="../../../assets/icons/edit.svg">
+                        <img style="margin-left: 25%;" src="../../../assets/icons/trash.svg">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>
+                        <div class="form-check form-switch">
+                          <input [(ngModel)]="isChecked" class="form-check-input" type="checkbox" (click)="sWitch()" 
+                            id="flexSwitchCheckDefault">
+                          <label class="form-check-label" for="flexSwitchCheckDefault">
+                            <p *ngIf="isChecked">Ativo</p>
+                            <p *ngIf="!isChecked">Inativo</p>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <img src="../../../assets/icons/edit.svg">
+                        <img style="margin-left: 25%;" src="../../../assets/icons/trash.svg">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>
+                        <div class="form-check form-switch">
+                          <input [(ngModel)]="isChecked" class="form-check-input" type="checkbox" (click)="sWitch()" 
+                            id="flexSwitchCheckDefault">
+                          <label class="form-check-label" for="flexSwitchCheckDefault">
+                            <p *ngIf="isChecked">Ativo</p>
+                            <p *ngIf="!isChecked">Inativo</p>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <img src="../../../assets/icons/edit.svg">
+                        <img style="margin-left: 25%;" src="../../../assets/icons/trash.svg">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>
+                        <div class="form-check form-switch">
+                          <input [(ngModel)]="isChecked" class="form-check-input" type="checkbox" (click)="sWitch()" 
+                            id="flexSwitchCheckDefault">
+                          <label class="form-check-label" for="flexSwitchCheckDefault">
+                            <p *ngIf="isChecked">Ativo</p>
+                            <p *ngIf="!isChecked">Inativo</p>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <img src="../../../assets/icons/edit.svg">
+                        <img style="margin-left: 25%;" src="../../../assets/icons/trash.svg">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>
+                        <div class="form-check form-switch">
+                          <input [(ngModel)]="isChecked" class="form-check-input" type="checkbox" (click)="sWitch()" 
+                            id="flexSwitchCheckDefault">
+                          <label class="form-check-label" for="flexSwitchCheckDefault">
+                            <p *ngIf="isChecked">Ativo</p>
+                            <p *ngIf="!isChecked">Inativo</p>
+                          </label>
+                        </div>
+                      </td>
+                      <td>
+                        <img src="../../../assets/icons/edit.svg">
+                        <img style="margin-left: 25%;" src="../../../assets/icons/trash.svg">
+                      </td>
+                    </tr>-->
+                  </tbody>
+                </table>
+              </mat-tab>
+
+              <!----------------------------Localizações---------------------------->
+              
+              <mat-tab label="Localizações">
+                <div class="top-table">
+                  <input class="form-control mt-2 mb-2 shadow-none" type="text" placeholder="Pesquisar..." /> 
+                  <button class="btn mt-2 mb-2 btn-primary">Adicionar</button>
+                </div>
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Morada</th>
+                      <th scope="col">Notas</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let data of allLocationData | slice: (page-1) * pageSize : page * pageSize">
+                      <td style="width: 25%;">{{ data.address }}</td>
+                      <td style="width: 40%;">{{ data.notes }}</td>
+                      <td style="width: 25%;">
+                        <div class="form-check form-switch">
+                          <input [(ngModel)]="isChecked" class="form-check-input" type="checkbox" (click)="sWitch()" 
+                            id="flexSwitchCheckDefault">
+                          <label class="form-check-label" for="flexSwitchCheckDefault">
+                            {{ data.status }}
+                            <p *ngIf="isChecked">Ativo</p>
+                            <p *ngIf="!isChecked">Inativo</p>
+                          </label>
+                        </div>
+                      </td>
+                      <td style="width: 10%;">
+                        <img src="../../../assets/icons/edit.svg">
+                        <img style="margin-left: 25%;" src="../../../assets/icons/trash.svg">
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div class="bottom-table">
+                  <select class="form-select shadow-none" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshTable()">
+                    <option [ngValue]="5">Mostrar 5</option>
+                    <option [ngValue]="10">Mostrar 10</option>
+                    <option [ngValue]="15">Mostrar 15</option>
+                  </select>
+                  <ngb-pagination class="d-flex justify-content-right"
+                    [(page)]="page" 
+                    [pageSize]="pageSize" 
+                    [collectionSize]="allLocationData.length"
+                    (pageChange)="refreshTable()">
+                  <ng-template ngbPaginationPrevious>Anterior</ng-template>
+                  <ng-template ngbPaginationNext>Seguinte</ng-template> 
+                  </ngb-pagination>
+                </div>
+              </mat-tab>
+
+              <!----------------------------Utilizadores---------------------------->
+
+              <mat-tab label="Utilizadores">
+                <div class="top-table">
+                  <input class="form-control mt-2 mb-2 shadow-none" type="text" placeholder="Pesquisar..." /> 
+                  <button class="btn mt-2 mb-2 btn-primary">Adicionar</button>
+                </div>
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Nome</th>
+                      <th scope="col">Email</th>
+                      <th scope="col">Contacto</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let data of allUserData">
+                      <td style="width: 15%;">{{ data.name }}</td>
+                      <td style="width: 20%;">{{ data.email }}</td>
+                      <td style="width: 10%;">{{ data.phone }}</td>
+                      <td style="width: 25%;">
+                        <div class="form-check form-switch">
+                          <input [(ngModel)]="isChecked" class="form-check-input" type="checkbox" (click)="sWitch()" 
+                            id="flexSwitchCheckDefault">
+                          <label class="form-check-label" for="flexSwitchCheckDefault">
+                            <p *ngIf="isChecked">Ativo</p>
+                            <p *ngIf="!isChecked">Inativo</p>
+                          </label>
+                        </div>
+                      </td>
+                      <td style="width: 10%;">
+                        <img src="../../../assets/icons/edit.svg">
+                        <img style="margin-left: 25%;" src="../../../assets/icons/trash.svg">
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>         
+              </mat-tab>
+
+              <!----------------------------Senhas---------------------------->
+
+              <mat-tab label="Senhas">
+                <div class="top-table">
+                  <input class="form-control mt-2 mb-2 shadow-none" type="text" placeholder="Pesquisar..." /> 
+                  <button class="btn mt-2 mb-2 btn-primary">Adicionar</button>
+                </div>
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Nº</th>
+                      <th scope="col">Duração</th>
+                      <th scope="col">Notas</th>
+                      <th scope="col">Estado</th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let data of allTicketData">
+                      <td style="width: 25%;">{{ data.number }}</td>
+                      <td style="width: 25%;">{{ data.status }}</td>
+                      <td style="width: 25%;">{{ data.duration | date:'HH:mm'  }}</td>
+                      <td style="width: 40%;">{{ data.waiting_list.name }}</td>
+                      <td style="width: 25%;">
+                        <div class="form-check form-switch">
+                          <input [(ngModel)]="isChecked" class="form-check-input" type="checkbox" (click)="sWitch()" 
+                            id="flexSwitchCheckDefault">
+                          <label class="form-check-label" for="flexSwitchCheckDefault">
+                            <p *ngIf="isChecked">Ativo</p>
+                            <p *ngIf="!isChecked">Inativo</p>
+                          </label>
+                        </div>
+                      </td>
+                      <td style="width: 10%;">
+                        <img src="../../../assets/icons/edit.svg">
+                        <img style="margin-left: 25%;" src="../../../assets/icons/trash.svg">
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </mat-tab>
+            </mat-tab-group>
+          </div>
+      </div>
+    </div>
+  </div>

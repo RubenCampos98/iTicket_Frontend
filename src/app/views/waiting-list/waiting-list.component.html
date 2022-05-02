@@ -1,0 +1,32 @@
+<app-navbar></app-navbar>
+
+<div class="container" style="border: 0px solid red; margin-top: 5%;">
+  <div class="row">
+    <div class="col col-lg 10">
+      <table class="table table-hover table-bordered" style="width: 100%;">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Start Time</th>
+            <th scope="col">End Time</th>
+            <th scope="col">Service</th>
+            <th scope="col">User</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of allWaitingListData">
+            <th scope="row">{{ data.id }}</th>
+            <td>{{ data.name}} - {{ data.service.name }}</td>
+            <td>{{ data.status }}</td>
+            <td>{{ data.start_time | date:'dd MMM yyyy - HH:mm aa' }}</td>
+            <td>{{ data.end_time | date:'dd MMM yyyy - HH:mm aa'  }}</td>
+            <td>{{ data.service.name }}</td>
+            <td>{{ data.user.name }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

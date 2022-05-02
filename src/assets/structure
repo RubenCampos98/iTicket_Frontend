@@ -1,0 +1,36 @@
+src
+|
+|___ app
+|   |___ partials
+|   |   |___ header
+|   |   |___ footer
+|   |   |___ sidebar
+|   |
+|   |___ models/modules
+|   |   |___ *user.module.ts*
+|   |
+|   |___ services
+|   |   |___ *user.service.ts*
+|   |
+|   |___ views
+|   |   |___ about  
+|   |   |___ home  
+|   |
+|   |___ *app.component.ts*
+|   |
+|   |___ *app.module.ts*
+|   |
+|   |___ *app.routing.ts*
+|
+|___ assets
+|   |___ images
+|   |___ scss / vendor - ("plugins")  
+|   |___ overrides
+|
+|___ environments
+|
+|___ *index.html*
+|
+|___ *main.ts*
+|
+|___ *styles.scss*

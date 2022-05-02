@@ -1,0 +1,188 @@
+h1{
+  color: #004B92;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 45px;
+  position: relative;
+  margin-left: 1%;
+}
+
+.container{
+  max-width: 1700px;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 50%;
+}
+
+.mat-tab-group{
+  border: 0px solid red;
+  font-family: 'Poppins';
+  font-weight: 400;
+  font-size: 18px;
+  height: 100%;
+}
+
+  ::ng-deep .mat-ink-bar {
+    background-color:#1193F2 !important;
+  }
+
+  ::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label {
+    color: #004B92;
+    background-color: #EAF3FA;
+    font-family: 'Poppins';
+    width: 100%;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 27px;
+    align-items: center;
+    //margin: 0 10px;
+  }
+
+  ::ng-deep .mat-tab-label-container{
+    border: 0px solid red;
+    margin-bottom: 3%;
+  }
+
+  .mat-tab-header {
+    border-bottom: none;
+}
+
+/*.top-table{
+  border: 1px solid red;
+  width: 100%;
+  height: 25%;
+  position: relative;
+}*/
+
+.card-body{
+  border: 0px solid red;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.top-table .btn{
+  border: 1px solid #1193F2;
+  border-radius: 40px;
+  position: absolute;
+  background: #1193F2;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  width: 13%;
+  height: 50px;
+  left: 87%;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  text-transform: uppercase;
+  line-height: 27px;
+}
+
+.top-table input{
+  border: 3px solid #D7E6F2;
+  width: 35%;
+  position: absolute;
+}
+
+  ::placeholder{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;
+    color: #A0BDD2;
+  }
+
+.table{
+  border: 3px solid #D7E6F2;
+  border-radius: 15px;
+  margin-top: 5%;
+  border-collapse: initial;
+  padding: 1%;
+}
+
+  tr{
+    border-bottom: 3px solid #D7E6F2;
+  }
+
+  th{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+    color: #004B92;
+  }
+
+  td{
+    border: 0px solid red;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #004B92;
+  }
+
+  td img{
+    border: 0px solid red; 
+    margin-left: 20%; 
+    background-color: #EAF3FA; 
+    padding: 5%; 
+    border-radius: 3px;
+  }
+
+.form-check-input:checked {
+    background-color: #3DB612;
+    border-color: #3DB612;
+}
+
+label p{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #004B92;
+}
+
+.bottom-table{
+  border: 0px solid red;
+  width: 100%;
+  height: 50px;
+  position: relative;
+}
+
+  .bottom-table .form-select{
+    border: 1px solid white;
+    position: absolute;
+    font-family: 'Poppins';
+    color: #004B92;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  .bottom-table ngb-pagination{
+    border: 0px solid red;
+    position: absolute;
+    margin-left: 80%; 
+    font-family: 'Poppins';
+    color: #004B92;
+  }
+
+  ngb-pagination ::ng-deep ul > li:not(.active) > a {
+    background-color: white !important;
+    box-shadow: none;
+  }
+
+  ngb-pagination ::ng-deep ul > li.active > a {
+    border: 1px solid #1193F2;
+    background-color: #1193F2 !important;
+    box-shadow: none;
+  }

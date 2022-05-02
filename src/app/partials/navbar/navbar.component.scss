@@ -1,0 +1,121 @@
+.container-fluid{
+  max-width: 1700px;
+}
+
+.navbar-nav{
+  align-items: center;
+  width: 100%;
+}
+
+.navbar .navbar-nav{
+  font-size: 1.1em;
+  padding: .5em 1em;
+  //border: 1px solid orange;
+  //text-align: center;
+}
+
+@media screen and (min-width: 992px) {
+  .navbar-brand img{
+    border: 0px solid red;
+  }
+
+  .navbar-brand{
+    text-align: center;
+    margin-right: 0;
+    padding: 0 1em;
+    border: 0px solid blue;
+  }
+}
+
+.nav-item{
+  border: 0px solid blue;
+  position: relative;
+  display: inline-block ;
+  width: auto;
+  left: 0%;
+}
+
+/*.navbar-items{
+  border: 1px solid black; 
+  color: rgba(43, 117, 255, 0.788);
+  width: 20%;
+  display:inline-block;
+  padding: auto;
+  margin-left: 100%;
+}*/
+
+  .nav-item .nav-items{
+    border: 0px solid red;
+    width: 120%;
+  }    
+  
+    .nav-item .nav-items .d-inline-block{
+      border: 0px solid red;
+      text-align: end;
+      width: 100%;
+    }
+
+    .nav-item .nav-items .d-inline-block a{
+      border: 0px solid red;
+      margin: 20px;
+    }
+
+      .d-inline-block a{
+        color: #004B92;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 30px;
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .d-inline-block a img{
+          border: 0px solid red;
+          height: 30px;
+        }
+
+/*
+.imageNav{
+  border: 0px solid black; 
+  margin: auto;
+  position: relative;
+  display: inline-block;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.imageNav1{
+  border: 1px solid orange;
+  text-align: center;
+}
+
+.navContainer1{
+  margin-top: 7%;
+  border: 1px solid black; 
+  height: 40%;
+  width: 100%;
+  padding: 5px;
+  display:flex;
+  justify-content: space-around;
+  position: relative;
+  text-align: center;
+}
+
+.navContainer2{
+  border: 1px solid black; 
+  margin-top: 7%;
+  height: 30%;
+  width: 100%;
+  padding: 5px;
+  display:flex;
+  justify-content: space-around;
+  margin-right: 5%;
+  position: relative;
+  cursor: pointer;
+  align-self:center;
+}
+
+
+*/
