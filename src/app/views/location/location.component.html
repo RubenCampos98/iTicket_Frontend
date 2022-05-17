@@ -1,5 +1,5 @@
 <app-navbar></app-navbar>
-<!--
+
 <div class="container" style="border: 0px solid red; margin-top: 5%;">
   <div class="row">
     <div class="col col-lg 10">
@@ -25,9 +25,9 @@
             <td>{{ data.notes }}</td>
             <td style="border: 0px solid black;">
               <button style="margin-left: 5%;" class="btn btn-warning" data-bs-target="#editLocation" 
-              data-bs-toggle="modal" (click)="onEditLocation(data)">Edit</button>&nbsp;
+              data-bs-toggle="modal" (click)="getLocationById(data)">Edit</button>&nbsp;
               <button style="margin-left: 5%;" class="btn btn-danger" data-bs-target="#deleteLocation" 
-              data-bs-toggle="modal" class="btn btn-danger" (click)="deleteLocation(data)">Delete</button>
+              data-bs-toggle="modal" class="btn btn-danger">Delete</button>
             </td>
           </tr>
         </tbody>
@@ -105,13 +105,13 @@
 
           <div class="mb-3">
             <div class="form-check">
-              <input formControlName="status" ngModel="allLocationData.status" type="radio" name="status" value="0" >
+              <input formControlName="status"type="radio" name="status" value="0" >
               <label class="form-check-label" for="flexRadioDefault1">
                 Active
               </label>
             </div>
             <div class="form-check">
-              <input formControlName="status" ngModel="allLocationData.status" type="radio" name="status" value="1" >
+              <input formControlName="status" type="radio" name="status" value="1" >
               <label class="form-check-label" for="flexRadioDefault2">
                 Inactive
               </label>
@@ -120,7 +120,7 @@
 
           <div class="mb-3">
             <label for="message-text" class="col-form-label">Notes:</label>
-            <input formControlName="notes" class="form-control" id="notes"/>
+            <input formControlName="notes" class="form-control" id="notes">
           </div>
         </form>
       </div>

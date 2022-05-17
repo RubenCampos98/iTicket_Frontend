@@ -41,10 +41,10 @@ export class ApiLocationService {
     }))
   }
 
-  getLocationById(id: number){
-    return this.getLocation().subscribe(location => {
-      return location.id === id;
-    })
+  getLocationById(id: number, data: any,){
+    return this.http.get<any>(`${environment.api}/locations` + id, { withCredentials: true }).pipe(map((res:any) =>{
+      return res;
+    }))
   }
 
 }

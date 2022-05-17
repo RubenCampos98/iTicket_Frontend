@@ -21,26 +21,17 @@ export class ApiServiceService {
     }))
   }
 
-  getServicos(
-    serviceId: number, filter = '', sortOrder = 'asc',
-    pageNumber = 0, pageSize = 3): Observable<any>{
+  //Update Service
+  updateService(data: any, id: number){
+    return this.http.put<any>(`${environment.api}/services/` + id, data, { withCredentials: true }).pipe(map((res:any) =>{
+      return res;
+    }))
+  }
 
-      return this.http.get<any>(`${environment.api}/services`, {
-        params: new HttpParams()
-          .set('serviceId', serviceId.toString())
-          .set('filter', filter)
-          .set('sortOrder', sortOrder)
-          .set('pageNumber', pageNumber.toString())
-          .set('pageSize', pageSize.toString())
-      }).pipe(
-        map(res => res['payload'])
-      )
-    }
-
-  getServiceById(id: number){
-    return this.getService().subscribe(service => {
-      return service.id === id;
-    })
+  getServiceById(id){
+    return this.http.get<any>(`${environment.api}/services/` + id, { withCredentials: true }).pipe(map((res:any) =>{
+      return res;
+    }))
   }
 
 }

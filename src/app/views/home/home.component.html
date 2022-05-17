@@ -8,36 +8,45 @@
         <!----------------------------Queues---------------------------->
 
         <div class="queuesBody">
-          <div *ngFor="let data of allWaitingListData | slice: 0:1" class="card-header" routerLink="/waiting_lists">
-            Filas({{ totalRows }})
+          <div *ngFor="let data of allWaitingListData | slice: 0:1" class="card-header" href="calling">
+            Filas({{ NumberOfQueues }})
           </div>
 
-          <div *ngFor="let data of allTicketData" class="card-body text-primary">
+          <div *ngFor="let data of allTicketQueueData | slice: 0:3 " class="card-body text-primary">
             <div class="ticket">
-              <i class="bi bi-ticket fa-8x"></i>
+              <img src="../../../assets/icons/senha_2.svg">
               <div class="ticketNum">
-                <p>{{ data.waiting_list.name | homePipes }} {{ data.number | number: '3.0' }}</p>
+                <p>{{ data['waiting_list'].name | homePipes }} {{ data['number'] | number: '3.0' }}</p>
               </div>
             </div>
             <div class="ticketInfo">
               <div class="infoServico">
-                {{ data.waiting_list.name }}
+                {{ data['waiting_list'].name }}
               </div>
-              <div class="infoNome">
-                {{ data.waiting_list.name }}
+              <div class="infoTipoAtendimento" *ngIf="data['priority'] == false">
+                Atendimento Normal
               </div>
-              <div class="infoCount">
-                {{ data.number }}
+              <div class="infoTipoAtendimento" *ngIf="data['priority'] == true">
+                Atendimento Prioritário
               </div>
-              <button onclick="calling()" class="rounded-pill btn btn-primary btn-lg">
+              <div class="numTickets">
+                <img src="../../../assets/icons/waiting_users.svg">
+                {{ data['number'] }}
+              </div>
+              <div class="numBookings">
+                <img src="../../../assets/icons/bookings.svg">
+                {{ data['number'] }}
+              </div>
+              <button class="rounded-pill btn btn-primary btn-lg" (click)="getTicketById(data['id']); CallingScreen()">
                 Chamar
               </button>
             </div>
             <hr>
           </div>
         </div>
-      <!----------------------------Calling Screen---------------------------->
-        <div class="callingBody">
+      <!----------------------------Calling Screen-------------------- ngClass="{'appears': changeToCalling==true}"-------->
+        <div class="callingBody" [ngStyle]="{'transform': (changeToCalling == true)? '' : 'translateX(0)'}">
+
           <div class="card-header">
             Chamou
           </div>
@@ -45,36 +54,47 @@
             <div class="ticketInfo">
               <div class="ticket"> 
                 <div class="ticketNum">
-                  A 001
+                  {{ allTicketByIdData?.number }}
                 </div>
               </div>
               <div class="infoServico">
-                um
+                {{ allTicketByIdData?.['waiting_list'].name }}
               </div>
-              <div class="infoNome">
-                dois
+              <div class="infoTipoAtendimento" *ngIf="allTicketByIdData?.['priority'] == false">
+                Atendimento Normal
               </div>
-              <div class="infoCount">
-                tres
+              <div class="infoTipoAtendimento" *ngIf="allTicketByIdData?.['priority'] == true">
+                Atendimento Prioritário
+              </div>
+              <div class="numTickets">
+                <img src="../../../assets/icons/waiting_users.svg">
+
+              </div>
+              <div class="numBookings">
+                <img src="../../../assets/icons/bookings.svg">
+
               </div>
             </div>
             <div class="start">
-              <button class="rounded-pill btn btn-primary">
+              <button class="rounded-pill btn btn-primary" 
+                (click)="start(); AttendingScreen(); EditTicket(allTicketByIdData)">
+                <img src="../../../assets/icons/start.svg">
                 Iniciar Atendimento
               </button>
             </div>
             <div class="callAgain">
+              <img src="../../../assets/icons/call.svg">
               Chamar novamente
             </div>
-            <div class="cancel">
+            <div class="cancel" (click)="CallingScreen()">
+              <img src="../../../assets/icons/cancel.svg">
               Cancelar
             </div>
           </div>
         </div>
-
       <!----------------------------In Attendance---------------------------->
 
-        <div class="attendanceBody">
+        <div class="attendanceBody" [ngStyle]="{'transform': (changeToAttending == true)? '' : 'translateX(110%)'}">
           <div class="card-header">
             Em atendimento
           </div>
@@ -82,36 +102,36 @@
             <div class="ticketInfo">
               <div class="ticket">
                 <div class="ticketNum">
-                  A 001
+                  {{allTicketByIdData?.number}}
                 </div>
               </div>
               <div class="infoServico">
-                Nome do serviço
+                {{ allTicketByIdData?.['waiting_list'].name }}
               </div>
               <div class="infoNome">
                 Tipo Atendimento
               </div>
               <div class="timer">
-                <i class="bi bi-stopwatch"></i>
-                <span> {{hour}}:</span>
-                <span>{{min}}:</span>
-                <span>{{sec}}</span>
+                <img src="../../../assets/icons/timer.svg">
+                <span>{{hour}}:{{min}}:{{sec}}</span>
               </div>
-              <button (click)="stop()" class="rounded-pill btn btn-primary" type="submit">
+              <button (click)="stop(); FinishAttending(); updateTicket()" routerLink="/home" 
+              class="rounded-pill btn btn-primary" type="submit">
+                <img class="imgButton" src="../../../assets/icons/finish_3.svg">
                 Concluir
               </button>
-              <button (click)="start()" class="rounded-pill btn btn-primary btn-lg" style="margin-top: 25%;">
-                Começar
-              </button>
             </div>
-            <div class="nome">
-              <label for="name" class="form-label">Nome</label>
-              <input name="name" type="text" class="form-control" id="name" required> 
-            </div>
-            <div class="notas">
-              <label for="exampleFormControlTextarea1" class="form-label">Notas</label>
-              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-            </div>
+            <form [formGroup]="ticketForm">
+              <div class="nome">
+                <label class="form-label">Nome</label>
+                <input class="form-control" id="name" type="text"> 
+              </div>
+              <div class="notas">
+                <label class="form-label">Notas</label>
+                <textarea formControlName="notes" class="form-control" id="notes" rows="5"></textarea>
+                <input class="form-control" type="text" formControlName="status" style="display: none;">
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -134,24 +154,25 @@
                 
                 <div class="accordion" id="accordionExample">
 
-                  <div *ngFor="let data of allBookingData" class="accordion-item">
+                  <div *ngFor="let data of allTicketData" class="accordion-item">
+                    <div *ngIf="data.status === 'finished'">
                     <h2 class="accordion-header" id="headingOne + i">
                       <button (click)="data.isHidden = !data.isHidden" class="accordion-button" type="button"
                         data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-controls="collapseOne">
                         <div class="accordionInfo">
                           <div class="ticket">
                             <div class="ticketInfo">
-                              A 001          
+                              {{ data.waiting_list.name | homePipes }} {{ data.number | number: '3.0' }}       
                             </div>
                           </div>
                           <div class="infoServico">
-                            {{ data.name }}
+                            {{ data.waiting_list.name }}
                           </div>
                           <div class="infoNome">
-                            {{ data.service.name }}
+                            {{ data.waiting_list.name }}
                           </div>
                           <div class="infoCount">
-                            {{ data.start_time | date:'dd MMM yyyy - HH:mm aa' }}
+                            {{ data.created_at | date:'dd MMM yyyy - HH:mm aa' }}
                           </div>
                         </div>
                       </button>
@@ -165,7 +186,7 @@
                       </div>
                     </div>
                   </div>
-                </div>
+                </div></div>
               </div>
             </mat-tab>
 
@@ -187,10 +208,13 @@
                             </div>
                           </div>
                           <div class="infoServico">
-                            {{ data.name }}
-                          </div>
-                          <div class="infoNome">
                             {{ data.service.name }}
+                          </div>
+                          <div class="infoNome" *ngIf="data.priority == false">
+                            Atendimento Normal
+                          </div>
+                          <div class="infoNome" *ngIf="data.priority == true">
+                            Atendimento Prioritário
                           </div>
                           <div class="infoCount">
                             {{ data.start_time | date:'dd MMM yyyy - HH:mm aa' }}

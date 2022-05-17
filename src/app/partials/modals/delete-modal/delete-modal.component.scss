@@ -1,0 +1,57 @@
+::ng-deep .modal-content{
+  border-radius: 27px;
+  font-family: 'Poppins';
+}
+
+.modal-header{
+  background: #EAF3FA;
+  border-radius: 27px 27px 0px 0px;
+  color: #004B92;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10px;
+  line-height: 27px;
+  height: 85px;
+  padding: 5%;
+}
+
+.modal-header .btn-close{
+  color: #ADCAE1;
+  opacity: 0.2;
+  box-shadow: none;
+}
+
+.modal-body{
+  padding: 5%;
+}
+
+.modal-body label{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #004B92;
+}
+
+.modal-footer{
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.modal-footer button{
+  border-radius: 40px;
+  background: #f41414;
+  border: 1px solid #f41414;
+  color: white;
+  width: 23%;
+  height: 40px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  text-transform: uppercase;
+  line-height: 27px;
+  padding: 3px;
+}

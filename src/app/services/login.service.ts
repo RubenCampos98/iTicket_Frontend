@@ -8,8 +8,6 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginService {
 
-  sessionData
-
   constructor(
     private http: HttpClient
   ) { }

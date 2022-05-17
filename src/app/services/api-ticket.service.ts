@@ -17,4 +17,23 @@ export class ApiTicketService {
       return res;
     }))
   }
+
+  getTicketById(id){
+    return this.http.get<any>(`${environment.api}/tickets/` + id, { withCredentials: true }).pipe(map((res:any) =>{
+      return res;
+    }))
+  }
+
+  getTicket_Queues(){
+    return this.http.get<any>(`${environment.api}/tickets/1/ticket_queues`, { withCredentials: true }).pipe(map((res:any) =>{
+      return res;
+    }))
+  }
+
+  //Update Location
+  updateTicket(data: any, id: number){
+    return this.http.put<any>(`${environment.api}/tickets/` + id, data, { withCredentials: true }).pipe(map((res:any) =>{
+      return res;
+    }))
+  }
 }

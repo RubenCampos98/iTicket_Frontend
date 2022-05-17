@@ -10,6 +10,7 @@ import { TicketComponent } from './views/ticket/ticket.component';
 import { SettingsComponent } from './views/settings/settings.component';
 import { RecoverPasswordComponent } from './views/recover-password/recover-password.component';
 import { AuthGuard } from './views/login/shared/auth.guard';
+import { ProfileComponent } from './views/profile/profile.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'ticket', component: TicketComponent},
   {path: 'settings', component: SettingsComponent},
   {path: 'recover_password', component: RecoverPasswordComponent},
+  {path: 'profile', component: ProfileComponent},
   {path: '', component: LoginComponent,
     children: [
       {path: '', redirectTo: 'login', pathMatch: 'full'},

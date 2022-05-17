@@ -1,0 +1,100 @@
+.card{
+  background: #FFFFFF;
+  border: 3px solid #D7E6F2;
+  border-radius: 27px;
+  color: #10497E;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  width: 898px;
+}
+
+.alert{
+  margin-left: 45%;
+  margin-top: -4%;
+  position: absolute;
+  width: 400px;
+  background: #4CAF50;
+  color: #FFFFFF;
+}
+
+.alert .alert-danger{
+  background: #F44336;
+}
+
+.alert .alert-danger img{
+  height: 15px;
+  margin-right: 10px;
+  color: #FFFFFF;
+}
+
+.alert .btn-close{
+  height: 1px;
+  opacity: 1;
+  text-shadow: none;
+  box-shadow: none;
+}
+
+img{
+  height: 15px;
+  margin-right: 10px;
+}
+
+  .card-header{
+    border-radius: 27px 27px 0 0;
+    padding-left: 4%;
+    padding-top: 2%;
+    background: #EAF3FA;
+  }
+
+    .card-title{
+      color: #004B92;
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 30px;
+      line-height: 45px;
+    }
+
+  .card-body{
+    margin-left: 20%;
+  }
+
+    .card-body input{
+      width: 75%;
+      background: #FFFFFF;
+      border: 3px solid #D7E6F2;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: none;
+    }
+
+    .card-body .form-text{
+      font-size: 10px;
+      color: #1193F2;
+      margin-top: 6%;
+    }
+
+    .card-body label{
+      margin-top: 2%;
+    }
+
+  .card-footer{
+    background: #FFFFFF;
+    text-align: end;
+    padding: 2% 7% 2% 7%;
+    border-radius: 0 0 27px 27px;
+  }
+
+  .card-footer button{
+    background: #1193F2;
+    border: 1px solid #1193F2;
+    box-shadow: 0px 4px 4px #0000001a;
+    border-radius: 40px;
+    width: 231px;
+    height: 59px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+  }

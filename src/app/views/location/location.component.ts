@@ -19,6 +19,7 @@ export class LocationComponent implements OnInit {
   formValue !:FormGroup
   locationModelObj :LocationModule = new LocationModule
   allLocationData
+  allLocationBYData
 
   constructor(
     private formBuilder: FormBuilder,
@@ -55,16 +56,16 @@ export class LocationComponent implements OnInit {
     })
   } 
 
+  getLocationById(data:any){
+    this.locationModelObj.id = data.id
+    this.formValue.controls['address'].setValue(data.address);
+    this.formValue.controls['notes'].setValue(data.notes);
+  }
+
   deleteLocation(data:any){
     this.api_location.deleteLocation(data.id).subscribe(res => {
       this.getLocationsData()
     })
-  }
-
-  onEditLocation(data:any){
-    this.locationModelObj.id = data.id
-    this.formValue.controls['address'].setValue(data.address);
-    this.formValue.controls['notes'].setValue(data.notes);
   }
 
   updateLocation(){

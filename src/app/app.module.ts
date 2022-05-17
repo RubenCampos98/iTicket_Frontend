@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,7 +26,16 @@ import { TicketComponent } from './views/ticket/ticket.component';
 import { HomePipesPipe } from './views/home/pipes/home-pipes.pipe';
 import { SettingsComponent } from './views/settings/settings.component';
 import { RecoverPasswordComponent } from './views/recover-password/recover-password.component';
-import { SearchBarPipe } from './views/settings/pipes/search-bar.pipe';
+import { ProfileComponent } from './views/profile/profile.component';
+
+import { SearchBarPipe } from './views/settings/pipes/Service_search-bar.pipe';
+
+import { DeleteModalComponent } from './partials/modals/delete-modal/delete-modal.component';
+import { EditServiceModalComponent } from './partials/modals/edit-service-modal/edit-service-modal.component';
+import { EditBookingModalComponent } from './partials/modals/edit-booking-modal/edit-booking-modal.component';
+import { EditLocationModalComponent } from './partials/modals/edit-location-modal/edit-location-modal.component';
+import { EditUserModalComponent } from './partials/modals/edit-user-modal/edit-user-modal.component';
+import { EditTicketModalComponent } from './partials/modals/edit-ticket-modal/edit-ticket-modal.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +51,14 @@ import { SearchBarPipe } from './views/settings/pipes/search-bar.pipe';
     HomePipesPipe,
     SettingsComponent,
     RecoverPasswordComponent,
-    SearchBarPipe
+    SearchBarPipe,
+    DeleteModalComponent,
+    EditServiceModalComponent,
+    ProfileComponent,
+    EditBookingModalComponent,
+    EditLocationModalComponent,
+    EditUserModalComponent,
+    EditTicketModalComponent
   ],
   imports: [
     CommonModule,
@@ -56,9 +73,22 @@ import { SearchBarPipe } from './views/settings/pipes/search-bar.pipe';
     FormsModule,
     HttpClientModule,
     FontAwesomeModule,
-    NgbModule
+    NgbModule,
+    NgxPaginationModule
   ],
-  providers: [CookieService],
-  bootstrap: [AppComponent]
+  providers: [
+    CookieService
+  ],
+  entryComponents: [
+    DeleteModalComponent,
+    EditServiceModalComponent,
+    EditBookingModalComponent,
+    EditLocationModalComponent,
+    EditUserModalComponent,
+    EditTicketModalComponent
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

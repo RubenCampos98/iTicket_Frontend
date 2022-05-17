@@ -1,0 +1,54 @@
+<app-navbar></app-navbar>
+
+<div class="container"  style="border: 0px solid green;">
+  <div class="row" style="border: 0px solid red;">
+    <div class="col-lg-8 offset-md-2" style="border: 0px solid blue;">    
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <img src="../../../assets/icons/finish_3.svg">
+        Perfil atualizado com sucesso!
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <img src="../../../assets/icons/close_alert.svg">
+        Não foi possível atualizar o perfil!<br>
+        Por favor verifique se todos os campos estão corretamente preenchidos e tente novamente.
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <h5 class="card-title">
+            Perfil
+          </h5>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Nome</label>
+              <input type="text" class="form-control" id="name" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <div id="email" class="form-text">Preencher este campo apenas caso pretenda atualizar a palavra-passe</div>
+              <label style="margin-top: 1px;" for="exampleInputPassword1" class="form-label">Palavra-passe atual</label>
+              <input type="password" class="form-control" id="password">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Nova palavra-passe</label>
+              <input type="password" class="form-control" id="new-password">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Confirmar nova palavra-passe</label>
+              <input type="password" class="form-control" id="new-password1">
+            </div>
+          </form>
+        </div>
+        <div class="card-footer">  
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div> 
+      </div>
+    </div>
+  </div>
+</div>

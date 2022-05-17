@@ -12,6 +12,7 @@ export class BookingModule {
   name
   email
   start_time
+  priority
   status
   notes
   service_id

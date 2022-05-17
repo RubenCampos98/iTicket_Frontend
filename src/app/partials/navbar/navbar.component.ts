@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { faUser, faArrowRightFromBracket, faBook, faClock, faAddressCard } from '@fortawesome/free-solid-svg-icons';
 import { LoginService } from 'src/app/services/login.service'; 
 import { Router } from '@angular/router';
@@ -18,6 +18,8 @@ export class NavbarComponent implements OnInit {
   sessionData
   home: boolean = true
 
+  url = window.location.toString()
+
   constructor(
     private api_session: LoginService,
     private router: Router
@@ -30,7 +32,8 @@ export class NavbarComponent implements OnInit {
   getSessionData(){
     this.api_session.getSession().subscribe((res) => {
       this.sessionData = res['data'];
-      console.log('vindo do service', res.name)
+      console.log('vindo do service -> Nome:', res.name)
+      console.log(res)
     })
   }
 
@@ -41,14 +44,5 @@ export class NavbarComponent implements OnInit {
     })
   }
 
-  changeNavItem(){
-    if(this.home == true){
-      this.home = !this.home
-      this.router.navigate(['settings'])  
-    }else{
-      this.home = !this.home
-      this.router.navigate(['home']);
-    }
-  }
 
 }
