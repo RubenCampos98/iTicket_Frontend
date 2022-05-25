@@ -17,4 +17,16 @@ export class ApiUserService {
       return res;
     }))
   }
+
+  updateUser(data: any, id: number){
+    return this.http.put<any>(`${environment.api}/users/` + id, data, { withCredentials: true }).pipe(map((res:any) =>{
+      return res;
+    }))
+  }
+
+  deleteUser(id: number){
+    return this.http.delete<any>(`${environment.api}/users/` + id, { withCredentials: true }).pipe(map((res:any) =>{
+      return res;
+    }))
+  }
 }

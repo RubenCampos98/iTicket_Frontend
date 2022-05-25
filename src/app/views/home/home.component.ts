@@ -5,6 +5,7 @@ import { ApiWaitingListService } from '../../services/api-waiting-list.service';
 import { ApiTicketService } from '../../services/api-ticket.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TicketModule } from '../../modules/ticket.module'
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -42,7 +43,8 @@ export class HomeComponent implements OnInit {
     private formBuilder: FormBuilder,
     private api_booking: ApiBookingService,
     private api_waitingList: ApiWaitingListService,
-    private api_ticket: ApiTicketService
+    private api_ticket: ApiTicketService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -100,12 +102,12 @@ export class HomeComponent implements OnInit {
   }
 
   updateTicket(){
-    //this.ticketModelObj.name = this.ticketForm.value.name;
     console.log(this.hour,':',this.min,':',this.sec)
+    //this.ticketModelObj.name = this.ticketForm.value.name;
     this.ticketModelObj.notes = this.ticketForm.value.notes;
     this.ticketModelObj.duration = this.hour + ':' + this.min + ':' + this.sec;
     this.api_ticket.updateTicket(this.ticketModelObj, this.ticketModelObj.id).subscribe(res => {
-      alert("Concluido!")
+      this.toastr.success("Concluido!")
       let ref = document.getElementById('clear')
       ref?.click()
       this.ticketForm.reset()

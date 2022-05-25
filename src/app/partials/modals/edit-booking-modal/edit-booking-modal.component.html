@@ -11,16 +11,55 @@
         id="name" readonly >
       </div>
       <div class="col-md-6">
-        <label for="recipient-name" class="col-form-label">Estado:</label>
+        <label for="recipient-name" class="col-form-label">Email:</label>
+        <input formControlName="email" type="text" class="form-control form-control-lg notransition shadow-none"
+        id="email" readonly >
+      </div>
+      <div class="col-md-6">
+        <label for="recipient-name" class="col-form-label">Serviço:</label>
+        <input formControlName="service_id" type="text" class="form-control form-control-lg notransition shadow-none"
+        id="service_id" readonly >
+      </div>   
+      <div class="col-md-6">
+        <label for="recipient-name" class="col-form-label">Morada:</label>
+        <input formControlName="location_id" type="text" class="form-control form-control-lg notransition shadow-none"
+        id="location_id" readonly >
+      </div> 
+      <div class="col-md-6">
+        <label for="recipient-name" class="col-form-label">Horário:</label>
+        <input formControlName="{{ this.bookingForm.get('start_time').value }}" 
+        [value]="bookingForm.get('start_time').value | date:'dd MMMM yyyy - HH:mm aa'"
+        type="text" class="form-control form-control-lg notransition shadow-none"
+        id="start_time" readonly >
+      </div>       
+      <div class="col-md-3">
+        <label for="recipient-name" class="col-form-label">Atendimento:</label>
         <div class="form-check form-switch">
-          <input formControlName="status" class="form-check-input" type="checkbox">
+          <input *ngIf="this.bookingForm.get('priority').value == 'priority'" class="form-check-input" type="checkbox"
+          style="border-color:#ffa600; background-color: #ffa600;" checked>
+          <input *ngIf="this.bookingForm.get('priority').value == 'normal'" class="form-check-input" type="checkbox" checked>
           <label class="form-check-label" for="flexSwitchCheckDefault">
+            <p *ngIf="this.bookingForm.get('priority').value == 'priority'" ngDefaultControl>Prioritário</p>
+            <p *ngIf="this.bookingForm.get('priority').value == 'normal'" ngDefaultControl>Normal</p>
           </label>
         </div>
-      </div>        
-      <div class="mb-3">
+      </div>
+      <div class="col-md-3">
+        <label for="recipient-name" class="col-form-label">Estado:</label>
+        <div class="form-check form-switch">
+          <input *ngIf="this.bookingForm.get('status').value == 'confirmed'" class="form-check-input" type="checkbox" checked>
+          <input *ngIf="this.bookingForm.get('status').value == 'pending'" class="form-check-input" type="checkbox">
+          <input *ngIf="this.bookingForm.get('status').value == 'canceled'" class="form-check-input canceled" type="checkbox" checked>
+          <label class="form-check-label" for="flexSwitchCheckDefault">
+            <p *ngIf="this.bookingForm.get('status').value == 'confirmed'" ngDefaultControl>Confirmado</p>
+            <p *ngIf="this.bookingForm.get('status').value == 'pending'" ngDefaultControl>Pendente</p>
+            <p *ngIf="this.bookingForm.get('status').value == 'canceled'" ngDefaultControl>Cancelado</p>
+          </label>
+        </div>
+      </div>       
+      <div class="col-mb-6">
         <label for="message-text" class="col-form-label">Notas:</label>
-        <textarea formControlName="status" class="form-control shadow-none" rows="3" id="status"></textarea>
+        <textarea formControlName="notes" class="form-control shadow-none" rows="3" id="status"></textarea>
       </div>
     </form>
   </div>

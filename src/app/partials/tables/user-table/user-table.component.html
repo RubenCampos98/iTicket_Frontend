@@ -1,0 +1,76 @@
+<div class="top-table">
+  <input [(ngModel)]="userSearchBar" class="form-control mt-2 mb-2 shadow-none" type="text"
+  placeholder="Pesquisar..." ngDefaultControl> 
+  <button class="btn mt-2 mb-2 btn-primary">Adicionar</button>
+</div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">Email</th>
+      <th scope="col">Contacto</th>
+      <th scope="col">Cargo</th>
+      <th scope="col">Estado</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of allUserData | slice: (page-1) * pageSize : page * pageSize">
+      <td style="width: 25%;">{{ data['name'] }}</td>
+      <td style="width: 20%;">{{ data['email'] }}</td>
+      <td style="width: 15%;">{{ data['phone'] }}</td>
+      <td style="width: 15%;">
+        <div *ngIf="data['admin']; else funcionario" class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" checked>
+          <label class="form-check-label" for="flexSwitchCheckDefault">
+            <p>Administrador</p>
+          </label>   
+        </div>
+        <ng-template #funcionario>
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox">
+            <label class="form-check-label" for="flexSwitchCheckDefault">
+              <p>Funcionário</p>      
+            </label>  
+          </div>
+        </ng-template>
+      </td>
+      <td style="width: 15%;">
+        Estado
+      </td>
+      <td style="width: 10%;">
+        <img src="../../../assets/icons/edit.svg"
+        (click)="openUserEditModal(data['id'], data['name'], data['email'], data['phone'], data['admin'])">
+        <img (click)="openDeleteModal(data['id'])" style="margin-left: 25%;" 
+        src="../../../assets/icons/trash.svg">
+      </td>
+    </tr>
+<!--                   <div *ngIf="(allUserData | searchBar: userSearchBar)?.length === 0">
+      <td style="width: 100%; font-size: 16px; ">
+        Não existem dados correspondentes
+      </td>
+    </div> -->
+  </tbody>
+</table>    
+<div class="bottom-table">
+  <select class="form-select shadow-none" style="width: auto" [(ngModel)]="pageSize" 
+  (ngModelChange)="UserTablePagination()" ngDefaultControl>
+    <option [ngValue]="5">Mostrar 5</option>
+    <option [ngValue]="10">Mostrar 10</option>
+    <option [ngValue]="15">Mostrar 15</option>
+  </select>
+  <ngb-pagination class="d-flex justify-content-right"
+    [rotate]="true"
+    [ellipses]="true"
+    [(page)]="page" 
+    [pageSize]="pageSize" 
+    [collectionSize]="allUserData?.length"
+    (pageChange)="UserTablePagination()">
+    <ng-template ngbPaginationPrevious>Anterior</ng-template>
+    <ng-template ngbPaginationNext>Próximo</ng-template>
+    <ng-template ngbPaginationEllipsis>...</ng-template>
+  </ngb-pagination>
+</div>    
+
+<app-edit-user-modal #editUser></app-edit-user-modal>
+<app-delete-modal #deleteModal></app-delete-modal>

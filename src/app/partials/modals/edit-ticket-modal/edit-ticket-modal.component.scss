@@ -61,11 +61,13 @@ select option{
   background-color: #3DB612;
   border-color: #3DB612;
   box-shadow: none;
+  pointer-events: none;
 }
 
 .form-check-input{
   border-color: #A3A3A3;
   box-shadow: none;
+  pointer-events: none;
 }
 
 .modal-footer{

@@ -1,32 +1,14 @@
 <app-navbar></app-navbar>
 
-<div class="container" style="border: 0px solid red; margin-top: 5%;">
+<div class="container">
   <div class="row">
-    <div class="col col-lg 10">
-      <h1>
-        Bookings
-      </h1>
-      <table class="table table-hover" style="width: 100%;">
-        <thead>
-          <tr>
-            <th style="width: 10%;" scope="col">#</th>
-            <th scope="col">Nome</th>
-            <th scope="col">Email</th>
-            <th scope="col">Horarios</th>
-            <th scope="col">Status</th>
-            <th scope="col">Serviço</th>
-            <th scope="col">Local</th>
-            <th scope="col">Notas</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of sessionData">
-            <td>{{ data.name }}</td>
-            <td>{{ data.email }}</td>
-            <td>{{ data.admin }}</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="col-lg-10 offset-md-1" style="border: 1px solid red;">
+      <div class="col-lg-2">
+        <div class="ticket" style="border: 1px solid red;">
+          <img src="../../../assets/icons/senha_2.svg">
+        </div>
+      </div>
+        Olaa      
     </div>
   </div>
 </div>

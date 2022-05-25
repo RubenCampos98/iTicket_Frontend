@@ -15,39 +15,44 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './views/login/login.component';
+import { LoginComponent } from './views/authentication/login/login.component';
 import { HomeComponent } from './views/home/home.component';
-import { LocationComponent } from './views/location/location.component';
-import { BookingComponent } from './views/booking/booking.component';
-import { NavbarComponent } from './partials/navbar/navbar.component';
-import { ServiceComponent } from './views/service/service.component';
-import { WaitingListComponent } from './views/waiting-list/waiting-list.component';
-import { TicketComponent } from './views/ticket/ticket.component';
 import { HomePipesPipe } from './views/home/pipes/home-pipes.pipe';
 import { SettingsComponent } from './views/settings/settings.component';
-import { RecoverPasswordComponent } from './views/recover-password/recover-password.component';
+import { RecoverPasswordComponent } from './views/authentication/recover-password/recover-password.component';
+import { UpdatePasswordComponent } from './views/authentication/update-password/update-password.component';
 import { ProfileComponent } from './views/profile/profile.component';
+import { BookingComponent } from './views/booking/booking.component';
 
 import { SearchBarPipe } from './views/settings/pipes/Service_search-bar.pipe';
 
+import { NavbarComponent } from './partials/navbar/navbar.component';
 import { DeleteModalComponent } from './partials/modals/delete-modal/delete-modal.component';
 import { EditServiceModalComponent } from './partials/modals/edit-service-modal/edit-service-modal.component';
 import { EditBookingModalComponent } from './partials/modals/edit-booking-modal/edit-booking-modal.component';
 import { EditLocationModalComponent } from './partials/modals/edit-location-modal/edit-location-modal.component';
 import { EditUserModalComponent } from './partials/modals/edit-user-modal/edit-user-modal.component';
 import { EditTicketModalComponent } from './partials/modals/edit-ticket-modal/edit-ticket-modal.component';
+import { EditWaitingListComponent } from './partials/modals/edit-waiting-list/edit-waiting-list.component';
+
+import { ServiceTableComponent } from './partials/tables/service-table/service-table.component';
+import { WaitingListTableComponent } from './partials/tables/waiting-list-table/waiting-list-table.component';
+import { BookingTableComponent } from './partials/tables/booking-table/booking-table.component';
+import { LocationTableComponent } from './partials/tables/location-table/location-table.component';
+import { UserTableComponent } from './partials/tables/user-table/user-table.component';
+import { TicketTableComponent } from './partials/tables/ticket-table/ticket-table.component';
+import { ToastrModule } from 'ngx-toastr';
+import { AuthGuard } from './views/authentication/login/shared/auth.guard';
+import { Page404Component } from './views/page404/page404.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    LocationComponent,
-    BookingComponent,
     NavbarComponent,
-    ServiceComponent,
-    WaitingListComponent,
-    TicketComponent,
     HomePipesPipe,
     SettingsComponent,
     RecoverPasswordComponent,
@@ -58,13 +63,24 @@ import { EditTicketModalComponent } from './partials/modals/edit-ticket-modal/ed
     EditBookingModalComponent,
     EditLocationModalComponent,
     EditUserModalComponent,
-    EditTicketModalComponent
+    EditTicketModalComponent,
+    ServiceTableComponent,
+    WaitingListTableComponent,
+    EditWaitingListComponent,
+    BookingTableComponent,
+    LocationTableComponent,
+    UserTableComponent,
+    TicketTableComponent,
+    BookingComponent,
+    UpdatePasswordComponent,
+    Page404Component
   ],
   imports: [
     CommonModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     MatTabsModule,
     MatPaginatorModule,
     MatSortModule,
@@ -77,7 +93,7 @@ import { EditTicketModalComponent } from './partials/modals/edit-ticket-modal/ed
     NgxPaginationModule
   ],
   providers: [
-    CookieService
+    AuthGuard
   ],
   entryComponents: [
     DeleteModalComponent,
@@ -85,7 +101,8 @@ import { EditTicketModalComponent } from './partials/modals/edit-ticket-modal/ed
     EditBookingModalComponent,
     EditLocationModalComponent,
     EditUserModalComponent,
-    EditTicketModalComponent
+    EditTicketModalComponent,
+    EditWaitingListComponent
   ],
   bootstrap: [
     AppComponent

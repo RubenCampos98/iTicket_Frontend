@@ -1,0 +1,85 @@
+<div class="top-table">
+  <input [(ngModel)]="bookingSearchBar" class="form-control mt-2 mb-2 shadow-none" type="text" 
+  placeholder="Pesquisar..." ngDefaultControl> 
+  <button class="btn mt-2 mb-2 btn-primary">Adicionar</button>
+</div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nome</th>
+      <th scope="col">Email</th>
+      <th scope="col">Horário</th> 
+      <th scope="col">Serviço</th>
+      <th scope="col">Local</th>
+      <th scope="col">Atendimento</th>
+      <th scope="col">Estado</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of allBookingData | slice: (page-1) * pageSize : page * pageSize">
+      <td style="width: 15%;"> {{ data['name'] }} </td>
+      <td style="width: 15%;"> {{ data['email'] }} </td>
+      <td style="width: 15%;"> {{ data['start_time'] | date:'dd MMMM yyyy - HH:mm aa' }} </td>
+      <td style="width: 15%;"> {{ data['service'].name }} </td>
+      <td style="width: 10%;"> {{ data['location'].address }} </td>
+      <td *ngIf="data['priority']" style="width: 10%;"> 
+        <div class="form-check form-switch">
+          <input *ngIf="data['priority'] == 'priority'" class="form-check-input" type="checkbox"
+          style="border-color:#ffa600; background-color: #ffa600;" checked>
+          <input *ngIf="data['priority'] == 'normal'" class="form-check-input" type="checkbox" checked>
+          <label class="form-check-label" for="flexSwitchCheckDefault">
+            <p *ngIf="data['priority'] == 'priority'" ngDefaultControl>Prioritário</p>
+            <p *ngIf="data['priority'] == 'normal'" ngDefaultControl>Normal</p>
+          </label>
+        </div>
+      </td>
+      <td *ngIf="data['status']" style="width: 10%;">
+        <div class="form-check form-switch">
+          <input *ngIf="data['status'] == 'confirmed'" class="form-check-input" type="checkbox" checked>
+          <input *ngIf="data['status'] == 'pending'" class="form-check-input" type="checkbox">
+          <input *ngIf="data['status'] == 'canceled'" class="form-check-input canceled" type="checkbox">
+          <label class="form-check-label" for="flexSwitchCheckDefault">
+            <p *ngIf="data['status'] == 'confirmed'" ngDefaultControl>Confirmado</p>
+            <p *ngIf="data['status'] == 'pending'" ngDefaultControl>Pendente</p>
+            <p *ngIf="data['status'] == 'canceled'" ngDefaultControl>Cancelado</p>
+          </label>
+        </div>
+      </td>
+      <td *ngIf="!data['status']" style="width: 10%;"></td>
+      <td style="width: 10%;">
+        <img src="../../../assets/icons/edit.svg"
+          (click)="openBookingEditModal(data['id'], data['name'], data['email'], data['start_time'], 
+          data['priority'], data['status'], data['notes'], data['service'].name, data['location'].address)">
+        <img (click)="openDeleteModal()" style="margin-left: 25%;" 
+        src="../../../assets/icons/trash.svg"/>
+      </td>
+    </tr>
+    <div *ngIf="(allBookingData | searchBar: bookingSearchBar)?.length === 0">
+      <td style="width: 100%; font-size: 16px; ">
+        Não existem dados correspondentes
+      </td>
+    </div>
+  </tbody>
+</table>
+<div class="bottom-table">
+  <select class="form-select shadow-none" style="width: auto" [(ngModel)]="pageSize" 
+  (ngModelChange)="BookingTablePagination()" ngDefaultControl>
+    <option [ngValue]="5">Mostrar 5</option>
+    <option [ngValue]="10">Mostrar 10</option>
+    <option [ngValue]="15">Mostrar 15</option>
+  </select>
+  <ngb-pagination class="d-flex justify-content-right"
+    [rotate]="true"
+    [ellipses]="true"
+    [(page)]="page" 
+    [pageSize]="pageSize" 
+    [collectionSize]="allBookingData?.length"
+    (pageChange)="BookingTablePagination()">
+    <ng-template ngbPaginationPrevious>Anterior</ng-template>
+    <ng-template ngbPaginationNext>Próximo</ng-template>
+    <ng-template ngbPaginationEllipsis>...</ng-template>
+  </ngb-pagination>
+</div>
+
+<app-edit-booking-modal #editBooking></app-edit-booking-modal>

@@ -20,7 +20,7 @@ export class EditServiceModalComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
-    config: NgbModalConfig, 
+    config: NgbModalConfig
   ) { 
     config.backdrop = 'static';
     config.keyboard = false;

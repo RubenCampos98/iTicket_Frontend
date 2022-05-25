@@ -1,5 +1,4 @@
-import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
-import { faUser, faArrowRightFromBracket, faBook, faClock, faAddressCard } from '@fortawesome/free-solid-svg-icons';
+import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service'; 
 import { Router } from '@angular/router';
 
@@ -9,11 +8,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  faUser = faUser
-  faArrowRightFromBracket = faArrowRightFromBracket
-  faBook = faBook
-  faClock = faClock
-  faAddressCard = faAddressCard
+
+  isLoggedOut
 
   sessionData
   home: boolean = true
@@ -21,7 +17,7 @@ export class NavbarComponent implements OnInit {
   url = window.location.toString()
 
   constructor(
-    private api_session: LoginService,
+    public api_session: LoginService,
     private router: Router
   ) { }
 
@@ -31,16 +27,13 @@ export class NavbarComponent implements OnInit {
 
   getSessionData(){
     this.api_session.getSession().subscribe((res) => {
-      this.sessionData = res['data'];
-      console.log('vindo do service -> Nome:', res.name)
-      console.log(res)
+      this.sessionData = res;
     })
   }
 
   Logout(data: any){
     this.api_session.LogoutSession(data.id).subscribe(res => {
-      this.getSessionData()
-      this.router.navigate(['']);
+      this.router.navigate([''])
     })
   }
 

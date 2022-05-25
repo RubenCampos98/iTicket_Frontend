@@ -1,9 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NgbActiveModal, NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
-import { ApiServiceService } from 'src/app/services/api-service.service';
 import { ServiceModule } from 'src/app/modules/service.module';
+import { ApiUserService } from 'src/app/services/api-user.service';
+import { LoginService } from 'src/app/services/login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-delete-modal',
@@ -16,13 +18,16 @@ import { ServiceModule } from 'src/app/modules/service.module';
 })
 export class DeleteModalComponent implements OnInit {
 
-  @Input() getServiceByID:any[]
-
-  serviceModelObj :ServiceModule = new ServiceModule
+  @Input() confirm_function: any;
+  @Input() cancel_function: any;
+  @ViewChild('deleteModal') private deleteModal!: TemplateRef<DeleteModalComponent>
 
   allServiceData
   data: any[]
   name = []
+  deleteForm
+
+  confirmation_msg: string
 
   serviceForm !:FormGroup
 
@@ -30,35 +35,36 @@ export class DeleteModalComponent implements OnInit {
     private activeModal: NgbActiveModal,
     config: NgbModalConfig, 
     private modalService: NgbModal,
-    private api_service: ApiServiceService,
-    private formBuilder: FormBuilder,
+    private api_user: ApiUserService,
+    private router: Router,
+    private login: LoginService
   ) {
     config.backdrop = 'static';
     config.keyboard = false;
    }
 
-  ngOnInit() {
-    this.serviceForm = this.formBuilder.group({
-      name: [''],
-      status: 0
-    })
-  }
+  ngOnInit() { }
 
   closeModal() {
-    this.activeModal.close('Modal Closed');
+    this.modalService.dismissAll()
+  }
+  
+  open(message: string, yesFn: () => void){
+    this.confirm_function = yesFn
+    this.confirmation_msg = message
+    this.modalService.open(this.deleteModal, {centered: true,  size: 'lg' });
   }
 
-  getServiceData(){
-    this.api_service.getService().subscribe(res => {
-      console.log(res)
-      this.allServiceData = res['data'];      
-    })
+  confirm(){
+    console.log(this.confirm_function)
+    this.confirm_function
   }
 
-  onEditService(data: any){
-    this.serviceModelObj.id = data.id;
-    this.serviceForm.controls['name'].setValue(data.name);
-    this.serviceForm.controls['status'].setValue(data.status);
+  redirectTo(url: string): void {
+    // When skipLocationChange true, navigates without pushing a new state into history.
+    this.router.navigateByUrl('/home', {skipLocationChange: true}).then(() => {
+        this.router.navigate([url]);
+    });
   }
 
 }

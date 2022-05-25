@@ -37,6 +37,10 @@ export class EditLocationModalComponent implements OnInit {
     this.modalService.open(this.editLocationModal, {centered: true,  size: 'lg' });
   }
 
+  openDeleteModal(id: number){
+    this.modalService.open(this.editLocationModal, {centered: true,  size: 'lg' });
+  }
+
   closeModal() {
     this.modalService.dismissAll();
   }

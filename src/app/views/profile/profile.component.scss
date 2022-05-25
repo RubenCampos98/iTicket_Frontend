@@ -59,11 +59,20 @@ img{
     margin-left: 20%;
   }
 
-    .card-body input{
+    .card-body .mb-3 .form-control{
       width: 75%;
       background: #FFFFFF;
       border: 3px solid #D7E6F2;
       border-radius: 8px;
+      text-decoration: none;
+      box-shadow: none;
+    }
+
+    .card-body .input-group .form-control{
+      max-width: 70%;
+      background: #FFFFFF;
+      border: 3px solid #D7E6F2;
+      border-radius: 8px 0 0 8px;
       text-decoration: none;
       box-shadow: none;
     }
@@ -97,4 +106,38 @@ img{
     font-weight: 600;
     font-size: 18px;
     line-height: 27px;
+  }
+
+  .bi{
+    cursor: pointer;
+  }
+
+  .card-body a{
+    color: #1193F2;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 15px;
+    padding-top: 5px;
+  }
+
+  .form-check-input:checked {
+    background-color: #3DB612;
+    border-color: #3DB612;
+    pointer-events: none;
+}
+
+  .form-check-input{
+    pointer-events: none;
+    border: 3px solid#A3A3A3;
+  }
+
+  input{
+    color: #004B92;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
   }

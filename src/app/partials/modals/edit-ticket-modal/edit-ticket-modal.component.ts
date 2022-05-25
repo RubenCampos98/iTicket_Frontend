@@ -29,14 +29,14 @@ export class EditTicketModalComponent implements OnInit {
 
   ngOnInit(): void {}  
 
-  open(id: number, number: number, duration: Time, priority: number, status: number, notes: string, waiting_list_id: number){
+  open(id: number, number: number, waiting_list_id: number, duration: Time, priority: number, status: number, notes: string){
     this.ticketForm = this.formBuilder.group({
       number: number,
+      waiting_list_id: waiting_list_id,
       duration: duration,
-      status: status,
       priority: priority,
-      notes: notes,
-      waiting_list_id: waiting_list_id
+      status: status,
+      notes: notes
     })
     this.modalService.open(this.editTicketModal, {centered: true,  size: 'lg' });
   }
