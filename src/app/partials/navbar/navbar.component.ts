@@ -11,6 +11,8 @@ export class NavbarComponent implements OnInit {
 
   isLoggedOut
 
+  skipLocationChange?: boolean
+
   sessionData
   home: boolean = true
 
@@ -37,5 +39,12 @@ export class NavbarComponent implements OnInit {
     })
   }
 
+  WhereToGo(){
+    if(this.url.includes('senhas') || this.url.includes('agendar')){
+      this.router.navigate(['/senhas'])
+    }else{
+      this.router.navigate(['/home'])
+    }
+  }
 
 }

@@ -1,0 +1,36 @@
+<ng-template #createBooking>
+  <div class="modal-header text-center">
+    <h5 class="modal-title w-100" id="exampleModalLabel">Agendar Atendimento</h5>
+  </div>
+  <div class="modal-body">
+    <div class="ticket mb-2">
+      <div class="info1">
+        Tesouraria
+      </div>
+      <div class="info2">
+        Pagamentos
+      </div>
+      <div class="info3">
+        10:00
+      </div>
+    </div>
+
+    <h2>Data</h2>
+
+    <div class="col-lg-8 offset-md-2 formulario">
+      <div class="mb-5 mt-4">
+        <label for="exampleFormControlInput1" class="form-label">Introduza o seu email para receber a senha *</label>
+        <input type="email" class="form-control shadow-none" id="exampleFormControlInput1" placeholder="Email: (exemplo: utilizador@email.com)">
+      </div>
+      <div class="mb-3">
+        <label for="exampleFormControlInput1" class="form-label">Introduza o seu contacto telefónico</label>
+        <input type="number" class="form-control shadow-none" id="exampleFormControlInput1" placeholder="Telefone: (+351 969 606 969)">
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <a (click)="closeModal()" class="Cancel">Cancelar</a>
+    <button class="btn btn-primary btn-lg btnConfirm">Confirmar</button>
+  </div>
+</ng-template>

@@ -1,0 +1,180 @@
+.modal-header{
+  border-bottom: 1px solid white;
+}
+
+.modal-title{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 45px;
+  color: #004B92;
+  margin-top: 2%;
+}
+
+.modal-body{
+  text-align: center;
+}
+
+  .modal-body .ticket{
+    border: 0px solid orange;
+    position: relative;
+    width: 250px;
+    height: 150px;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+    background-image: url(../../../../../assets/images/senha_booking.png) ;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+    .modal-body .ticket .info1{
+      border: 0px solid blue;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 55%;
+      margin: auto;
+      height: 40px;
+      width: 90%;
+
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 36px;
+      color: #1193F2;
+    }
+
+    .modal-body .ticket .info2{
+      border: 0px solid green;
+      position: absolute;
+      margin-top: 40%;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+      height: 40px;
+      width: 80%;
+
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 36px;
+      color: #004B92;
+    }
+
+    .modal-body .ticket .info3{
+      border: 0px solid red;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 60%;
+      bottom: 0;
+      margin: auto;
+      height: 40px;
+      width: 85%;
+
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 36px;
+      color: #1193F2;
+    }
+
+  .modal-body h2{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 38px;
+    color: #004B92;
+  }
+
+  .modal-body .formulario{
+    border: 0px solid black;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 33px;
+    color: #004B92;
+    text-align: left;
+  }
+
+  .modal-footer{
+    border-top: 1px solid white;
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+    .modal-footer .Cancel{
+      cursor: pointer;
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 28px;
+      line-height: 42px;
+      color: #1193F2;
+      text-decoration: none;
+    }
+
+    .modal-footer button{
+      border: 1px solid #1193F2;
+      width: 175px;
+      height: 45px;
+      background: #1193F2;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+      border-radius: 40px;
+      align-items: center;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+      .modal-footer .btnConfirm{
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 42px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        margin-left: 70px;
+      }
+
+  input{
+    border: 3px solid #D7E6F2;
+  }
+
+  .modal-body .errorMessage{
+    color: rgb(244, 20, 20);
+    margin-top: 5px;
+  }
+  
+  .modal-body .mandatoryField{
+    color: rgb(244, 20, 20);
+    text-decoration: none;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

@@ -36,4 +36,10 @@ export class ApiTicketService {
       return res;
     }))
   }
+
+  deleteTicket(id: number){
+    return this.http.delete<any>(`${environment.api}/tickets/` + id, { withCredentials: true }).pipe(map((res:any) =>{
+      return res;
+    }))
+  }
 }

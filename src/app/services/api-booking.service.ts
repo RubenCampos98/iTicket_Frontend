@@ -21,4 +21,16 @@ export class ApiBookingService {
     }))
   }
 
+  updateBooking(data: any, id: number){
+    return this.http.put<any>(`${environment.api}/bookings/` + id, data, { withCredentials: true }).pipe(map((res:any) =>{
+      return res;
+    }))
+  }
+
+  deleteBooking(id: number){
+    return this.http.delete<any>(`${environment.api}/bookings/` + id, { withCredentials: true }).pipe(map((res:any) =>{
+      return res;
+    }))
+  }
+
 }

@@ -9,14 +9,16 @@ import { ProfileComponent } from './views/profile/profile.component';
 import { BookingComponent } from './views/booking/booking.component';
 import { UpdatePasswordComponent } from './views/authentication/update-password/update-password.component';
 import { Page404Component } from './views/page404/page404.component';
+import { BookingPage2Component } from './views/booking-page2/booking-page2.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-  {path: 'settings', component: SettingsComponent, canActivate: [AuthGuard]},
-  {path: 'recover_password', component: RecoverPasswordComponent},
-  {path: 'update_password', component: UpdatePasswordComponent},
-  {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
-  {path: 'booking', component: BookingComponent, canActivate: [AuthGuard]},
+  {path: 'definicoes', component: SettingsComponent, canActivate: [AuthGuard]},
+  {path: 'recuperar_password', component: RecoverPasswordComponent},
+  {path: 'nova_password', component: UpdatePasswordComponent},
+  {path: 'perfil', component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: 'senhas', component: BookingComponent, canActivate: [AuthGuard]},
+  {path: 'agendar', component: BookingPage2Component, canActivate: [AuthGuard]},
   {path: '', component: LoginComponent,
     children: [
       {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -27,7 +29,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

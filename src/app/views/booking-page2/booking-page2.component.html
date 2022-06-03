@@ -1,0 +1,132 @@
+<app-navbar></app-navbar>
+
+<div class="container">
+  <div class="row row-cols-2 row-cols-lg-3">
+    <div class="col-sm-12 col-lg-12 title">
+      <h2>Selecione o dia e hora para fazer o agendamento</h2>
+    </div>
+    <div class="col-10 offset-1 col-md-10 col-lg-12 offset-lg-0 horario mt-4">
+      <h3>{{today | date: 'fullDate'}}</h3>
+      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
+        <div class="ticketTime">
+          <p>9:30</p>
+        </div>
+        <img src="../../../assets/icons/senhaV2.svg">
+      </div>
+      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
+        <div class="ticketTime">
+          <p>9:30</p>
+        </div>
+        <img src="../../../assets/icons/senha_2.svg">
+      </div>
+      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
+        <div class="ticketTime">
+          <p>9:30</p>
+        </div>
+        <img src="../../../assets/icons/senha_2.svg">
+      </div>
+      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
+        <div class="ticketTime">
+          <p>9:30</p>
+        </div>
+        <img src="../../../assets/icons/senha_2.svg">
+      </div>
+      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
+        <div class="ticketTime">
+          <p>9:30</p>
+        </div>
+        <img src="../../../assets/icons/senha_2.svg">
+      </div>
+      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
+        <div class="ticketTime">
+          <p>9:30</p>
+        </div>
+        <img src="../../../assets/icons/senha_2.svg">
+      </div>
+    </div>
+
+    <div class="col-10 offset-1 col-md-10 col-lg-12 offset-lg-0 horario mt-4">
+      <h3>{{day1() | date: 'fullDate'}}</h3>
+      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
+        <div class="ticketTime">
+          <p>9:30</p>
+        </div>
+        <img src="../../../assets/icons/senha_2.svg">
+      </div>
+      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
+        <div class="ticketTime">
+          <p>9:30</p>
+        </div>
+        <img src="../../../assets/icons/senha_2.svg">
+      </div>
+      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
+        <div class="ticketTime">
+          <p>9:30</p>
+        </div>
+        <img src="../../../assets/icons/senha_2.svg">
+      </div>
+      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
+        <div class="ticketTime">
+          <p>9:30</p>
+        </div>
+        <img src="../../../assets/icons/senha_2.svg">
+      </div>
+      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
+        <div class="ticketTime">
+          <p>9:30</p>
+        </div>
+        <img src="../../../assets/icons/senha_2.svg">
+      </div>
+      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
+        <div class="ticketTime">
+          <p>9:30</p>
+        </div>
+        <img src="../../../assets/icons/senha_2.svg">
+      </div>
+    </div>
+
+    <div class="col-10 offset-1 col-md-10 col-lg-12 offset-lg-0 horario mt-4">
+      <h3>{{day2() | date: 'fullDate'}}</h3>
+      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
+        <div class="ticketTime">
+          <p>9:30</p>
+        </div>
+        <img src="../../../assets/icons/senha_2.svg">
+      </div>
+      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
+        <div class="ticketTime">
+          <p>9:30</p>
+        </div>
+        <img src="../../../assets/icons/senha_2.svg">
+      </div>
+      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
+        <div class="ticketTime">
+          <p>9:30</p>
+        </div>
+        <img src="../../../assets/icons/senha_2.svg">
+      </div>
+      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
+        <div class="ticketTime">
+          <p>9:30</p>
+        </div>
+        <img src="../../../assets/icons/senha_2.svg">
+      </div>
+      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
+        <div class="ticketTime">
+          <p>9:30</p>
+        </div>
+        <img src="../../../assets/icons/senha_2.svg">
+      </div>
+      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
+        <div class="ticketTime">
+          <p>9:30</p>
+        </div>
+        <img src="../../../assets/icons/senha_2.svg">
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<app-create-booking #createBooking></app-create-booking>
+

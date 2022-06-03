@@ -1,6 +1,6 @@
 <div class="top-table">
   <input class="form-control mt-2 mb-2 shadow-none" type="text" placeholder="Pesquisar..." ngDefaultControl> 
-  <button class="btn mt-2 mb-2 btn-primary">Adicionar</button>
+  <button (click)="openCreateWaitingListModal()" class="btn mt-2 mb-2 btn-primary">Adicionar</button>
 </div>
 <table class="table table-hover">
   <thead>
@@ -41,7 +41,7 @@
         <img src="../../../assets/icons/edit.svg"
         (click)="openWaitingListEditModal(data['id'], data['name'], data['user_id'].name, data['start_time'], 
         data['end_time'], data['service_id'].name, data['status'])">
-        <img (click)="openDeleteModal()" style="margin-left: 25%;" src="../../../assets/icons/trash.svg">
+        <img (click)="openDeleteModal(data['id'])" style="margin-left: 25%;" src="../../../assets/icons/trash.svg">
       </td>
     </tr>
   </tbody>
@@ -66,4 +66,7 @@
   </ngb-pagination>
 </div>    
 
+<app-create-waiting-list #createWaitingList></app-create-waiting-list>
 <app-edit-waiting-list #editWaitingList></app-edit-waiting-list>
+<app-delete-modal #deleteModal></app-delete-modal>
+<app-warning #warningModal></app-warning>

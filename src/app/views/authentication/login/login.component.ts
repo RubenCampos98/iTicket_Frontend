@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
   userSubject: any
   user: any
-  isLoggedIn = false
+  isLoggedIn
   public email: string = '';
   public password: string = '';
 
@@ -29,11 +29,11 @@ export class LoginComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private toastr: ToastrService,
-    private login: LoginService
+    public login: LoginService
   ) {}
 
   ngOnInit(): void {}
-//data: { email: string, password: string }
+
   onLogin() {
     return new Promise((resolve, reject) => {
       const formData = new FormData();
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
           this.userSubject?.next(this.user);
           resolve(this.user!);
           this.toastr.success("Bem vindo!")
-          console.log('Email: ',this.email, ', Password: ',this.password)
+          console.log('Email: ', this.email, ', Password: ', this.password)
           this.router.navigate(['home']);
         },
         error: err => {
@@ -59,9 +59,6 @@ export class LoginComponent implements OnInit {
       });
     });
   }
-
-  LOgado(){
-    return !!localStorage.getItem('token')
-  }
-
 }
+
+

@@ -21,6 +21,18 @@ export class ApiServiceService {
     }))
   }
 
+  getServiceById(id){
+    return this.http.get<any>(`${environment.api}/services/` + id, { withCredentials: true }).pipe(map((res:any) =>{
+      return res;
+    }))
+  }
+
+  createService(data: any){
+    return this.http.post<any>(`${environment.api}/services`, data, { withCredentials: true }).pipe(map((res: any) =>{
+      return res;
+    }))
+  }
+
   //Update Service
   updateService(data: any, id: number){
     return this.http.put<any>(`${environment.api}/services/` + id, data, { withCredentials: true }).pipe(map((res:any) =>{
@@ -28,8 +40,8 @@ export class ApiServiceService {
     }))
   }
 
-  getServiceById(id){
-    return this.http.get<any>(`${environment.api}/services/` + id, { withCredentials: true }).pipe(map((res:any) =>{
+  deleteService(id: number){
+    return this.http.delete<any>(`${environment.api}/services/` + id, { withCredentials: true }).pipe(map((res:any) =>{
       return res;
     }))
   }

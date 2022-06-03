@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TicketModule } from '../../modules/ticket.module'
+import { ToastrService } from 'ngx-toastr';
+
 import { ApiBookingService } from '../../services/api-booking.service'; 
 import { ApiWaitingListService } from '../../services/api-waiting-list.service';
 import { ApiTicketService } from '../../services/api-ticket.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { TicketModule } from '../../modules/ticket.module'
-import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-home',
@@ -53,6 +54,7 @@ export class HomeComponent implements OnInit {
     this.getTicketData()
     this.getTicket_QueueData()
     this.ticketForm = this.formBuilder.group({
+      name: [],
       status: 0,
       duration: 0,
       notes: ['']
@@ -97,13 +99,14 @@ export class HomeComponent implements OnInit {
   EditTicket(data: any){
     this.ticketModelObj.id = data.id
     //this.ticketModelObj.status = 'started';
+    this.ticketForm.controls['name'].setValue(data.name);
     this.ticketForm.controls['duration'].setValue(data.duration);
     this.ticketForm.controls['notes'].setValue(data.notes);
   }
 
   updateTicket(){
     console.log(this.hour,':',this.min,':',this.sec)
-    //this.ticketModelObj.name = this.ticketForm.value.name;
+    this.ticketModelObj.name = this.ticketForm.value.name;
     this.ticketModelObj.notes = this.ticketForm.value.notes;
     this.ticketModelObj.duration = this.hour + ':' + this.min + ':' + this.sec;
     this.api_ticket.updateTicket(this.ticketModelObj, this.ticketModelObj.id).subscribe(res => {

@@ -12,6 +12,12 @@ export class ApiUserService {
     private http: HttpClient
   ) { }
 
+  createUser(data: any){
+    return this.http.post<any>(`${environment.api}/users`, data, { withCredentials: true }).pipe(map((res: any) =>{
+      return res;
+    }))
+  }
+
   getUser(){
     return this.http.get<any>(`${environment.api}/users`, { withCredentials: true }).pipe(map((res:any) =>{
       return res;

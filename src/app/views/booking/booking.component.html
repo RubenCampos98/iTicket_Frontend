@@ -1,14 +1,39 @@
 <app-navbar></app-navbar>
 
 <div class="container">
-  <div class="row">
-    <div class="col-lg-10 offset-md-1" style="border: 1px solid red;">
-      <div class="col-lg-2">
-        <div class="ticket" style="border: 1px solid red;">
+  <div *ngFor="let queue of allWaitingListBookingData" class="row row-cols-2 row-cols-lg-3 mt-5">
+    <div class="col-lg-3 mb-3 queuesName">
+      <h1>{{ queue.service.name }}</h1>
+    </div>
+    <div class="col-lg-10 offset-md-1 offset-3 senha overflow-auto">
+        
+        <div class="col-12 col-lg-1 ticket mt-2">
           <img src="../../../assets/icons/senha_2.svg">
+        </div>  
+        <div class="col-12 col-lg-3 offset-md-1 mt-3 serviceInfo">
+          <div class="serviceName">
+            {{ queue.name }}
+          </div>
+          <div class="serviceType">
+            {{ queue.name }}
+          </div>
         </div>
-      </div>
-        Olaa      
+        <div class="col-12 col-lg-1 offset-md-5 mt-4 ticketButton">
+          <button class="btn btn-primary btn-lg">Tirar Senha</button>
+        </div> 
+
+    </div>
+    <div class="end_line mt-5"></div> 
+  </div>
+</div>
+
+<div class="footer">
+  <div class="row">
+    <div class="col-12 col-lg-12">
+      <div class="btnFooter">
+        <button (click)="booking_step2()" class="btn btn-primary btn-lg btnBooking">Agendar</button>
+      </div>  
     </div>
   </div>
 </div>
+

@@ -1,3 +1,7 @@
+.container{
+  height: 1200px;
+}
+
 .card{
   background: #FFFFFF;
   border: 3px solid #D7E6F2;
@@ -6,37 +10,7 @@
   font-weight: bold;
   font-family: 'Poppins', sans-serif;
   width: 898px;
-}
-
-.alert{
-  margin-left: 45%;
-  margin-top: -4%;
-  position: absolute;
-  width: 400px;
-  background: #4CAF50;
-  color: #FFFFFF;
-}
-
-.alert .alert-danger{
-  background: #F44336;
-}
-
-.alert .alert-danger img{
-  height: 15px;
-  margin-right: 10px;
-  color: #FFFFFF;
-}
-
-.alert .btn-close{
-  height: 1px;
-  opacity: 1;
-  text-shadow: none;
-  box-shadow: none;
-}
-
-img{
-  height: 15px;
-  margin-right: 10px;
+  margin-top: 4%;
 }
 
   .card-header{
@@ -87,6 +61,27 @@ img{
       margin-top: 2%;
     }
 
+    .card-body a{
+      color: #1193F2;
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 11px;
+      line-height: 15px;
+      padding-top: 5px;
+    }
+  
+    .form-check-input:checked {
+      background-color: #3DB612;
+      border-color: #3DB612;
+      pointer-events: none;
+  }
+  
+    .form-check-input{
+      pointer-events: none;
+      border: 3px solid#A3A3A3;
+    }
+
   .card-footer{
     background: #FFFFFF;
     text-align: end;
@@ -94,43 +89,54 @@ img{
     border-radius: 0 0 27px 27px;
   }
 
-  .card-footer button{
-    background: #1193F2;
-    border: 1px solid #1193F2;
-    box-shadow: 0px 4px 4px #0000001a;
-    border-radius: 40px;
-    width: 231px;
-    height: 59px;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 27px;
-  }
+    .card-footer .btnGuardar{
+      background: #1193F2;
+      border: 1px solid #1193F2;
+      box-shadow: 0px 4px 4px #0000001a;
+      border-radius: 40px;
+      width: 231px;
+      height: 59px;
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 27px;
+    }
+
+    .card-footer .btnEditar{
+      background: white;
+      color: #1193F2;
+      border: 1px solid #1193F2;
+      box-shadow: 0px 4px 4px #0000001a;
+      border-radius: 40px;
+      width: 231px;
+      height: 59px;
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 27px;
+    }
+
+    .card-footer a{
+      margin-right: 60%;
+      width: 97px;
+      height: 27px;
+      font-family: 'Poppins';
+      color: #1193F2;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 27px;
+      cursor: pointer;
+      text-decoration: none;
+      position: absolute;
+      left: 10%;
+      bottom: 4%;
+    }
 
   .bi{
     cursor: pointer;
-  }
-
-  .card-body a{
-    color: #1193F2;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 11px;
-    line-height: 15px;
-    padding-top: 5px;
-  }
-
-  .form-check-input:checked {
-    background-color: #3DB612;
-    border-color: #3DB612;
-    pointer-events: none;
-}
-
-  .form-check-input{
-    pointer-events: none;
-    border: 3px solid#A3A3A3;
   }
 
   input{
@@ -140,4 +146,16 @@ img{
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
+    cursor: default;
   }
+
+  .errorMessage{
+    color: rgb(244, 20, 20);
+    margin-top: 5px;
+  }
+
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

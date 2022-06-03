@@ -10,5 +10,6 @@ import { CommonModule } from '@angular/common';
 export class ServiceModule {
   id
   name
+  notes
   status
  }

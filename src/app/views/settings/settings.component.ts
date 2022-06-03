@@ -37,4 +37,24 @@ export class SettingsComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  private preventNavigation(): void {
+    const location = window.document.location;
+    const originalHashValue = location.hash;
+
+    window.setTimeout(() => {
+      location.hash = 'preventNavigation' + (9999 * Math.random());
+      location.hash = originalHashValue;
+    }, 0);
+  }
+
+  public disableBrowserNavigation(): void {
+    window.addEventListener('beforeunload', this.preventNavigation, false);
+    window.addEventListener('unload', this.preventNavigation, false);
+  }
+
+  public enableBrowserNavigation(): void {
+    window.removeEventListener('beforeunload', this.preventNavigation);
+    window.removeEventListener('unload', this.preventNavigation);
+  }
+
 }

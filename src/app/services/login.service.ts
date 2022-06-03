@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -19,33 +20,6 @@ export class LoginService {
     return this.http.get<any>(`${environment.api}/account`, { withCredentials: true }).pipe(map((res: any) =>{
       return res;
     }))
-  }
-
-  getUser(){
-    console.log('get_session')
-    return this.http.get<any>(`${environment.api}/account`, { withCredentials: true }).pipe(map((res: any) =>{
-      console.log('get_session get')
-      if(res.email){
-        console.log('get_session if')
-        this.isLoggedIn = true
-      }else{
-        console.log('get_session else')
-        return throwError(() => new Error(res))}
-      console.log('vindo da API', res)
-      return res;
-    }))
-  }
-
-  LoggedIn(){
-    if(!this.isLoggedIn){
-      this.http.get<any>(`${environment.api}/account`, { withCredentials: true }).pipe(map((res: any) =>{
-        alert(res.email)
-        if(res.email)
-          this.isLoggedIn = true
-          return this.isLoggedIn
-      }))
-    }
-    return false
   }
 
   Login(data: any){

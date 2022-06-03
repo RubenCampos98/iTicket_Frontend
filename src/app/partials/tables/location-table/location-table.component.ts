@@ -2,9 +2,11 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ApiLocationService } from 'src/app/services/api-location.service';
 import { LoginService } from 'src/app/services/login.service';
-import { DeleteModalComponent } from '../../modals/delete-modal/delete-modal.component';
+import { CreateLocationComponent } from '../../modals/create/create-location/create-location.component';
+import { DeleteModalComponent } from '../../modals/delete/delete.component';
 
-import { EditLocationModalComponent } from '../../modals/edit-location-modal/edit-location-modal.component';
+import { EditLocationModalComponent } from '../../modals/edit/edit-location-modal/edit-location-modal.component';
+import { WarningComponent } from '../../modals/warning/warning.component';
 
 @Component({
   selector: 'app-location-table',
@@ -13,11 +15,14 @@ import { EditLocationModalComponent } from '../../modals/edit-location-modal/edi
 })
 export class LocationTableComponent implements OnInit {
 
+  @ViewChild('createLocation') private createLocation!: CreateLocationComponent
   @ViewChild('editLocation') private editLocation!: EditLocationModalComponent
   @ViewChild('deleteModal') private deleteModal!: DeleteModalComponent
+  @ViewChild('warningModal') private warningModal!: WarningComponent
 
   allLocationData
   locationSearchBar
+  sessionData
 
   page = 1
   pageSize = 5
@@ -25,7 +30,8 @@ export class LocationTableComponent implements OnInit {
 
   constructor(
     private api_location: ApiLocationService,
-    private modalService: NgbModal,
+    private modalLocation: NgbModal,
+    private api_session: LoginService,
     config: NgbModalConfig
   ) { 
     config.backdrop = 'static';
@@ -35,6 +41,7 @@ export class LocationTableComponent implements OnInit {
   ngOnInit(): void {
     this.getLocationData()
     this.LocationTablePagination()
+    this.getSessionData()
   }
 
   getLocationData(){
@@ -56,23 +63,41 @@ export class LocationTableComponent implements OnInit {
     this.locationForm.controls['notes'].setValue(data.notes);
   } */
 
+  openCreateLocationModal(){
+    this.createLocation.open();
+  }
+
   openLocationEditModal(id: number, address: string, status: boolean, notes: string) {
-    console.log(id, address, status, notes)
-    this.editLocation.open(id, address, status, notes);
+    if(this.sessionData?.admin == false){
+      this.warningModal.open()
+    }else{
+      console.log(id, address, status, notes)
+      this.editLocation.open(id, address, status, notes);
+    }
   }
 
   openDeleteModal(id: number){
-    this.deleteModal.open('Tem a certeza de que pretende apagar este registo?', () => {
-      this.api_location.deleteLocation(id).subscribe(res => {
-        window.location.reload()
-      })
-    });
+    if(this.sessionData?.admin == false){
+      this.warningModal.open()
+    }else{
+      this.deleteModal.open('Tem a certeza de que pretende apagar este registo?', () => {
+        this.api_location.deleteLocation(id).subscribe(res => {
+          window.location.reload()
+        })
+      });
+    }
   }
 
   LocationTablePagination(){
     this.locationsPagination = this.allLocationData && this.allLocationData
       .map((location, i) => ({id: i + 1, ...location}))
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize)
+  }
+
+  getSessionData(){
+    this.api_session.getSession().subscribe((res) => {
+      this.sessionData = res;
+    })
   }
 
 }

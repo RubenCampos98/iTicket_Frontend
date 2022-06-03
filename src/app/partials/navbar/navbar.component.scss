@@ -31,6 +31,7 @@
   .navbar-brand img{
     border: 0px solid red;
     margin-top: 6%;
+    cursor: pointer;
   } 
 
   .navbar-collapse{
@@ -69,7 +70,6 @@
       box-shadow: 2px 2px 1px rgba(0, 0, 0, 0.08);
       border-radius: 27px;
       width: 100px;
-      right: 0;
     }
 
     .dropdown-menu li{
@@ -112,3 +112,14 @@
         transition: none;
         background-color: #EAF3FA;
       }
+
+@media screen and (max-width:780px){
+  
+  .navbar-brand img{
+    height: 100px;
+    text-align: center;
+    margin: 0 auto;
+    cursor: pointer;
+  }
+
+}

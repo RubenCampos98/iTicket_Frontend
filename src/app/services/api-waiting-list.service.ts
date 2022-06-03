@@ -12,8 +12,26 @@ export class ApiWaitingListService {
     private http: HttpClient
   ) { }
 
+  createWaitingLists(data: any){
+    return this.http.post<any>(`${environment.api}/waiting_lists`, data, { withCredentials: true }).pipe(map((res: any) =>{
+      return res;
+    }))
+  }
+
   getWaitingLists(){
     return this.http.get<any>(`${environment.api}/waiting_lists`, { withCredentials: true }).pipe(map((res: any) =>{
+      return res;
+    }))
+  }
+
+  getWaitingListsBooking(){
+    return this.http.get<any>(`${environment.api}/waiting_lists/1/wl_orderByService`, { withCredentials: true }).pipe(map((res: any) =>{
+      return res;
+    }))
+  }
+
+  deleteWaitingLists(id: number){
+    return this.http.delete<any>(`${environment.api}/waiting_lists/` + id, { withCredentials: true }).pipe(map((res:any) =>{
       return res;
     }))
   }

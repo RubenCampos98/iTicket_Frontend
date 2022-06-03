@@ -1,0 +1,29 @@
+.modal-header{
+  background-color: #EAF3FA;
+  border-radius: 27px 27px 0px 0px; 
+  border: 3px solid #d00e00;
+  border-bottom: 0px solid #d00e00;
+}
+
+  .modal-header .btn-close{
+    color: #ADCAE1;
+    opacity: 0.2;
+    box-shadow: none;
+  }
+
+.modal-title{
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 27px;
+  display: flex;
+  align-items: center;
+  color: #d00e00;
+}
+
+.modal-body{
+  border-radius: 0px 0px 27px 27px; 
+  border: 3px solid #d00e00;
+  border-top: 0px solid #d00e00;
+}

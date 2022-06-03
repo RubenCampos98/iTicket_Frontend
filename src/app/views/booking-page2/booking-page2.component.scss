@@ -1,0 +1,142 @@
+.container{
+  border: 0px solid orange;
+  font-family: 'Poppins';
+  margin-top: 100px;
+}
+
+.title{
+  margin-bottom: 75px;
+}
+
+h2{
+  position: absolute;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 45px;
+  color: #004B92;
+}
+
+h3{
+  position: relative;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 25px;
+  line-height: 38px;
+  color: #004B92;
+}
+
+.horario{
+  border: 0px solid red;
+  border-bottom: 2px solid #D7E6F2;
+  height: 220px;
+  margin-bottom: 20px;
+}
+
+.ticket{
+  border: 0px solid orange;
+  position: relative;
+  display: table-cell;
+}
+
+  .ticket .ticketTime{
+    border: 0px solid red;
+    width: 85px;
+    height: 50px;
+    position: absolute;
+    left: 0;
+    right: 25%;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+    vertical-align: middle;
+    line-height: 50px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    color: #1193F2;
+  }
+
+  img{
+    position: relative;
+    transition: transform .6s;
+    cursor: pointer;
+  }
+
+    img:hover{
+      transform: scale(1.1);
+      border: 1px solid red;
+    }
+
+.end_line{
+  border: 2px solid #D7E6F2; 
+  width: 100%;
+}
+
+@media screen and (max-width:780px){
+
+  .ticket{
+    border: 0px solid red;
+    position: relative;
+  }
+
+  img{
+    position: relative;
+  }
+
+    .ticket img{
+      width: 100%;
+      height: 100%;
+    }
+
+  .ticket .ticketTime{
+    border: 0px solid red;
+    width: 45px;
+    height: 25px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+    vertical-align: middle;
+    line-height: 25px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    color: #1193F2;
+  }
+
+  .ticket .ticketTime p{
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+  h2{
+    position: absolute;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 45px;
+    color: #004B92;
+  }
+
+  .horario{
+    border: 0px solid red;
+    border-bottom: 2px solid #D7E6F2;
+    height: 140px;
+  }
+
+}

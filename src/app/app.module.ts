@@ -27,13 +27,13 @@ import { BookingComponent } from './views/booking/booking.component';
 import { SearchBarPipe } from './views/settings/pipes/Service_search-bar.pipe';
 
 import { NavbarComponent } from './partials/navbar/navbar.component';
-import { DeleteModalComponent } from './partials/modals/delete-modal/delete-modal.component';
-import { EditServiceModalComponent } from './partials/modals/edit-service-modal/edit-service-modal.component';
-import { EditBookingModalComponent } from './partials/modals/edit-booking-modal/edit-booking-modal.component';
-import { EditLocationModalComponent } from './partials/modals/edit-location-modal/edit-location-modal.component';
-import { EditUserModalComponent } from './partials/modals/edit-user-modal/edit-user-modal.component';
-import { EditTicketModalComponent } from './partials/modals/edit-ticket-modal/edit-ticket-modal.component';
-import { EditWaitingListComponent } from './partials/modals/edit-waiting-list/edit-waiting-list.component';
+import { DeleteModalComponent } from './partials/modals/delete/delete.component';
+import { EditServiceModalComponent } from './partials/modals/edit/edit-service-modal/edit-service-modal.component';
+import { EditBookingModalComponent } from './partials/modals/edit/edit-booking-modal/edit-booking-modal.component';
+import { EditLocationModalComponent } from './partials/modals/edit/edit-location-modal/edit-location-modal.component';
+import { EditUserModalComponent } from './partials/modals/edit/edit-user-modal/edit-user-modal.component';
+import { EditTicketModalComponent } from './partials/modals/edit/edit-ticket-modal/edit-ticket-modal.component';
+import { EditWaitingListComponent } from './partials/modals/edit/edit-waiting-list/edit-waiting-list.component';
 
 import { ServiceTableComponent } from './partials/tables/service-table/service-table.component';
 import { WaitingListTableComponent } from './partials/tables/waiting-list-table/waiting-list-table.component';
@@ -44,6 +44,13 @@ import { TicketTableComponent } from './partials/tables/ticket-table/ticket-tabl
 import { ToastrModule } from 'ngx-toastr';
 import { AuthGuard } from './views/authentication/login/shared/auth.guard';
 import { Page404Component } from './views/page404/page404.component';
+import { CreateServiceComponent } from './partials/modals/create/create-service/create-service.component';
+import { CreateLocationComponent } from './partials/modals/create/create-location/create-location.component';
+import { BookingPage2Component } from './views/booking-page2/booking-page2.component';
+import { CreateBookingComponent } from './partials/modals/create/create-booking-client/create-booking.component';
+import { WarningComponent } from './partials/modals/warning/warning.component';
+import { CreateWaitingListComponent } from './partials/modals/create/create-waiting-list/create-waiting-list.component';
+import { CreateUserComponent } from './partials/modals/create/create-user/create-user.component';
 
 
 
@@ -73,7 +80,14 @@ import { Page404Component } from './views/page404/page404.component';
     TicketTableComponent,
     BookingComponent,
     UpdatePasswordComponent,
-    Page404Component
+    Page404Component,
+    CreateServiceComponent,
+    CreateLocationComponent,
+    BookingPage2Component,
+    CreateBookingComponent,
+    WarningComponent,
+    CreateWaitingListComponent,
+    CreateUserComponent
   ],
   imports: [
     CommonModule,

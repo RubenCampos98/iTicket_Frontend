@@ -1,15 +1,209 @@
-.title{
-  position: absolute;
-  width: 565px;
-  height: 47px;
-  left: 404px;
-  top: 250px;
+.container{
+  border: 0px solid orange;
+  font-family: 'Poppins';
+  margin-top: 100px;
+}
 
+.senha{
+  border: 0px solid purple;
+  margin-bottom: 180px;
+}
+
+.queuesName{
+  border: 0px solid greenyellow;
+  position: relative;
   font-family: 'Poppins';
   font-style: normal;
   font-weight: 600;
   font-size: 35px;
   line-height: 52px;
-
   color: #004B92;
+  margin-left: 110px;
+}
+
+.ticket{
+  border: 0px solid greenyellow;
+  position: absolute;
+}
+
+  .ticket img{
+    height: 100%;
+  }
+
+.serviceInfo{
+  position: absolute;
+}
+
+.serviceName{
+  border: 0px solid blue;
+  position: relative;
+  font-size: 28px;
+  color: #004B92;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  line-height: 42px;
+  text-align: left;
+  margin-left: 50px;
+}
+
+.serviceType{
+  border: 0px solid blue;
+  position: relative;
+  font-size: 24px;
+  color: #1193F2;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  line-height: 42px;
+  text-align: left;
+  margin-left: 50px;
+}
+
+.ticketButton{
+  border: 0px solid black;
+  position: absolute;
+  text-align: center;
+}
+
+  .ticketButton button{
+    border: 1px solid #1193F2;
+    border-radius: 40px;
+    background: #1193F2;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    width: 155px;
+    height: 45px;
+    position: absolute;
+    align-items: center;
+    text-align: center;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+
+  .end_line{
+    border: 2px solid #D7E6F2; 
+    width: 100%;
+  }
+
+  .footer{
+    position: fixed;   
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 75px;
+    border-top: 1px solid #f9fcff;
+    background-color: white;
+    box-shadow: 5px -8px 10px rgba(0, 0, 0, 0.05);
+  }
+
+    .footer .btnFooter button{
+      border-radius: 40px;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+      width: 175px;
+      height: 45px;
+      text-transform: uppercase; 
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      margin: 0 auto;
+      align-items: center;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .footer .btnFooter .btnBooking{
+      border: 1px solid #1193F2;
+      color: #1193F2;
+      background: white;
+      position: relative;
+      margin: 0;
+      position: absolute;
+/*       top: 50%;
+      left: 50%; */
+      top: 50%;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      margin: auto;
+      transition:  0.4s;      
+      -ms-transform: translate(0, -50%);
+      transform: translate(0, -50%);
+    }
+
+    .footer .btnFooter .btnBooking:hover{
+      border: 1px solid white;
+      color: white;      
+      background: #1193F2;
+    }
+
+//-----------------------------------------------------------------------------------------
+@media screen and (max-width:780px){
+
+  .queuesName{
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .ticket{
+    border: 0px solid red;
+    position: relative;
+  }
+
+    .ticket img{
+      width: 100%;
+      height: 100%;
+    }
+
+  .senha{
+    margin-bottom: 70px;
+  }
+
+  .serviceInfo{
+    position: relative;
+  }
+
+  .serviceName{
+    border: 0px solid blue;
+    position: relative;
+    font-size: 15px;
+    color: #004B92;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    line-height: 42px;
+    text-align: center;
+    margin-left: 0px;
+  }
+
+  .serviceType{
+    border: 0px solid blue;
+    position: relative;
+    font-size: 13px;
+    color: #1193F2;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    line-height: 42px;
+    text-align: center;
+    margin-left: 0px;
+  }
+  
+  .ticketButton{
+    border: 0px solid black;
+    position: relative;
+    text-align: center;
+  }
+
+    .ticketButton button{
+      position: relative;
+      height: 40px;
+      width: 130px;
+      font-size: 15px;
+    }
 }

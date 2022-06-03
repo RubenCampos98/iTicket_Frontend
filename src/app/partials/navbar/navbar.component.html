@@ -3,7 +3,7 @@
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
     </div>
       <div class="mx-auto order-0">
-        <a class="navbar-brand" routerLink="/home">
+        <a class="navbar-brand" (click)="WhereToGo()">
           <img src="../assets/images/iTicket_logo.svg">
         </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
@@ -12,21 +12,22 @@
       </div>
       <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item" *ngIf="url.includes('settings') || url.includes('profile')" routerLink="/home">
+          <li class="nav-item" *ngIf="url.includes('definicoes') || url.includes('perfil')" routerLink="/home" style="text-align: center;">
             <img src="../../../assets/icons/ticket_nav.svg">
             <a>Atendimento</a>
           </li>
-          <li class="nav-item" *ngIf="url.includes('home')" routerLink="/settings">
+          <li class="nav-item" *ngIf="url.includes('home')" routerLink="/definicoes" style="text-align: center;">
             <img src="../../../assets/icons/settings.svg">
             <a>Definições</a>
           </li>
-          <li class="nav-item dropdown" *ngIf="!url.includes('booking') && !url.includes('login')">
+          <li class="nav-item dropdown" *ngIf="!url.includes('senhas') && !url.includes('login') && !url.includes('agendar')" 
+          style="text-align: end;">
             <img src="../../../assets/icons/user_avatar.svg"> 
             <a class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               {{ sessionData?.name }}
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li routerLink="/profile">
+            <ul class="dropdown-menu dropdown-menu-lg-end dropdown-menu-end">
+              <li routerLink="/perfil">
                 <img src="../../../assets/icons/profile.svg">
                 <a class="dropdown-item">Perfil</a>
               </li>

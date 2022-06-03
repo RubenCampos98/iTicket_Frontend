@@ -14,7 +14,7 @@ export class ApiLocationService {
 
   //Methods: POST, GET, PUT, DELETE
   //Create Location
-  postLocation(data: any){
+  createLocation(data: any){
     return this.http.post<any>(`${environment.api}/locations`, data, { withCredentials: true }).pipe(map((res: any) =>{
       return res;
     }))
@@ -23,6 +23,12 @@ export class ApiLocationService {
   //Get Location
   getLocation(){
     return this.http.get<any>(`${environment.api}/locations`, { withCredentials: true }).pipe(map((res:any) =>{
+      return res;
+    }))
+  }
+
+  getLocationById(id: number, data: any,){
+    return this.http.get<any>(`${environment.api}/locations` + id, { withCredentials: true }).pipe(map((res:any) =>{
       return res;
     }))
   }
@@ -37,12 +43,6 @@ export class ApiLocationService {
   //Delete Location
   deleteLocation(id: number){
     return this.http.delete<any>(`${environment.api}/locations/` + id, { withCredentials: true }).pipe(map((res:any) =>{
-      return res;
-    }))
-  }
-
-  getLocationById(id: number, data: any,){
-    return this.http.get<any>(`${environment.api}/locations` + id, { withCredentials: true }).pipe(map((res:any) =>{
       return res;
     }))
   }

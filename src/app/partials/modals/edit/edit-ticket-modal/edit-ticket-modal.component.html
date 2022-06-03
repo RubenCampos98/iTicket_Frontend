@@ -1,0 +1,66 @@
+<ng-template #editTicket>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Editar Senha</h5>
+    <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="ticketForm" class="row g-3">
+      <div class="col-md-3">
+        <label for="recipient-name" class="col-form-label">Numero:</label>
+        <input formControlName="number" type="text" class="form-control form-control-lg notransition shadow-none"
+        id="name" readonly>
+      </div>
+      <div class="col-md-3">
+        <label for="recipient-name" class="col-form-label">Fila:</label>
+        <input formControlName="waiting_list_id" type="text" class="form-control form-control-lg notransition shadow-none"
+        id="waiting_list_id" readonly>
+      </div>
+      <div class="col-md-6">
+        <label for="recipient-name" class="col-form-label">Duração:</label>
+        <input formControlName="{{ this.ticketForm.get('duration').value }}" 
+        [value]="ticketForm.get('duration').value | date: 'HH:mm:ss'"
+        type="text" class="form-control form-control-lg notransition shadow-none"
+        id="duration" readonly>
+      </div>
+      <div class="col-md-2">
+        <label for="recipient-name" class="col-form-label">Atendimento:</label>
+        <div *ngIf="this.ticketForm.get('priority').value == 'priority'" class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" style="border-color:#ffa600; background-color: #ffa600;" checked>
+          <label class="form-check-label" for="flexSwitchCheckDefault">
+            <p>Prioritário</p>
+          </label>
+        </div>
+        <div *ngIf="this.ticketForm.get('priority').value == 'normal'" class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" checked>
+          <label class="form-check-label" for="flexSwitchCheckDefault">
+            <p>Normal</p>
+          </label>
+        </div>
+      </div>        
+      <div class="col-md-2 offset-md-1">
+        <label for="recipient-name" class="col-form-label">Estado:</label>
+        <div *ngIf="this.ticketForm.get('status').value == 'finished'" class="form-check form-switch">
+          <input class="form-check-input canceled" style="border-color:#f41414; background-color: #f41414;" 
+          type="checkbox" checked>
+          <label class="form-check-label" for="flexSwitchCheckDefault">
+            <p>Terminado</p>
+          </label>
+        </div>
+        <div *ngIf="this.ticketForm.get('status').value == 'pending'" class="form-check form-switch">
+          <input class="form-check-input" type="checkbox">
+          <label class="form-check-label" for="flexSwitchCheckDefault">
+            <p>Pendente</p>
+          </label>
+        </div>
+      </div>        
+      <div class="mb-3">
+        <label for="message-text" class="col-form-label">Notas:</label>
+        <textarea formControlName="notes" class="form-control shadow-none" rows="3" id="notes"></textarea>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a (click)="closeModal()"> Cancelar </a>
+    <button type="button" class="btn mt-2 mb-2 btn-primary">Editar</button>
+  </div>
+</ng-template>

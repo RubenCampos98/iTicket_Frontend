@@ -1,19 +1,21 @@
 <div class="top-table">
   <input [(ngModel)]="serviceSearchBar" class="form-control mt-2 mb-2 shadow-none" type="text" 
   placeholder="Pesquisar..." ngDefaultControl> 
-  <button class="btn mt-2 mb-2 btn-primary">Adicionar</button>
+  <button class="btn mt-2 mb-2 btn-primary" (click)="openCreateServiceModal()">Adicionar</button>
 </div>
 <table class="table table-hover">
   <thead>
     <tr>
       <th scope="col">Nome do serviço</th>
+      <th scope="col">Notas</th>
       <th scope="col">Estado</th>
       <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let data of allServiceData | slice: (page-1) * pageSize : page * pageSize | searchBar: serviceSearchBar">
-      <td style="width: 65%;">{{ data['name'] }}</td>
+      <td style="width: 25%;">{{ data['name'] }}</td>
+      <td style="width: 40%;">{{ data['notes'] }}</td>
       <td *ngIf="data['status']" style="width: 25%;">
         <div class="form-check form-switch">
           <input *ngIf="data['status'] == 'active'" class="form-check-input" type="checkbox" checked>
@@ -26,9 +28,9 @@
       </td>
       <td *ngIf="!data['status']" style="width: 25%;"></td>
       <td style="width: 10%;">
-        <img (click)="openServiceEditModal(data['id'], data['name'], data['status'] =='active')" 
+        <img (click)="openServiceEditModal(data['id'], data['name'], data['notes'], data['status'] =='active')" 
           src="../../../assets/icons/edit.svg"/>
-        <img (click)="openDeleteModal()" style="margin-left: 25%;" 
+        <img (click)="openDeleteModal(data['id'])" style="margin-left: 25%;" 
         src="../../../assets/icons/trash.svg"/>
       </td>
     </tr>
@@ -64,4 +66,7 @@
   </ngb-pagination>
 </div>
 
+<app-create-service #createService></app-create-service>
 <app-edit-service-modal #editService></app-edit-service-modal>
+<app-delete-modal #deleteModal></app-delete-modal>
+<app-warning #warningModal></app-warning>

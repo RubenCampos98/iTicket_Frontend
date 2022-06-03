@@ -1,6 +1,5 @@
 <div class="top-table">
   <input class="form-control mt-2 mb-2 shadow-none" type="text" placeholder="Pesquisar..." /> 
-  <button class="btn mt-2 mb-2 btn-primary">Adicionar</button>
 </div>
 <table class="table table-hover">
   <thead>
@@ -34,7 +33,7 @@
       <td *ngIf="data['status']" style="width: 15%;">
         <div class="form-check form-switch">
           <input *ngIf="data['status'] == 'pending'" class="form-check-input" type="checkbox">
-          <input *ngIf="data['status'] == 'finished'" class="form-check-input canceled"
+          <input *ngIf="data['status'] == 'finished'" class="form-check-input"
           style="border-color:#f41414; background-color: #f41414;" type="checkbox" checked>
           <label class="form-check-label" for="flexSwitchCheckDefault">
             <p *ngIf="data['status'] == 'pending'" ngDefaultControl>Pendente</p>
@@ -48,7 +47,7 @@
         <img src="../../../assets/icons/edit.svg"
         (click)="openTicketEditModal(data['id'], data['number'], data['waiting_list'].name, data['duration'],
         data['priority'], data['status'], data['notes'])">
-        <img style="margin-left: 25%;" (click)="openDeleteModal()"
+        <img (click)="openDeleteModal(data['id'])" style="margin-left: 25%;"
         src="../../../assets/icons/trash.svg">
       </td>
     </tr>
@@ -75,3 +74,5 @@
 </div>
 
 <app-edit-ticket-modal #editTicket></app-edit-ticket-modal>
+<app-delete-modal #deleteModal></app-delete-modal>
+<app-warning #warningModal></app-warning>

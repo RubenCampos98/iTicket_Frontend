@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 export class TicketModule {
   id
   number
+  name
   status 
   duration
   notes 

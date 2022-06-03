@@ -3,9 +3,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModalConfig, NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { ApiWaitingListService } from 'src/app/services/api-waiting-list.service';
+import { LoginService } from 'src/app/services/login.service';
+import { CreateWaitingListComponent } from '../../modals/create/create-waiting-list/create-waiting-list.component';
 
-import { DeleteModalComponent } from '../../modals/delete-modal/delete-modal.component';
-import { EditWaitingListComponent } from '../../modals/edit-waiting-list/edit-waiting-list.component';
+import { DeleteModalComponent } from '../../modals/delete/delete.component';
+import { EditWaitingListComponent } from '../../modals/edit/edit-waiting-list/edit-waiting-list.component';
+import { WarningComponent } from '../../modals/warning/warning.component';
 
 @Component({
   selector: 'app-waiting-list-table',
@@ -14,9 +17,13 @@ import { EditWaitingListComponent } from '../../modals/edit-waiting-list/edit-wa
 })
 export class WaitingListTableComponent implements OnInit {
 
+  @ViewChild('createWaitingList') private createWaitingList!: CreateWaitingListComponent
   @ViewChild('editWaitingList') private editWaitingList!: EditWaitingListComponent
+  @ViewChild('deleteModal') private deleteModal!: DeleteModalComponent
+  @ViewChild('warningModal') private warningModal!: WarningComponent
 
   allWaitingListData
+  sessionData
 
   page = 1
   pageSize = 5
@@ -25,6 +32,7 @@ export class WaitingListTableComponent implements OnInit {
   constructor(
     private api_waitingList: ApiWaitingListService,
     private modalService: NgbModal,
+    private api_session: LoginService,
     config: NgbModalConfig
   ) { 
     config.backdrop = 'static';
@@ -33,6 +41,7 @@ export class WaitingListTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.getWaitingListData()
+    this.getSessionData()
   }
 
   getWaitingListData(){
@@ -41,21 +50,42 @@ export class WaitingListTableComponent implements OnInit {
     })
   }
 
+  getSessionData(){
+    this.api_session.getSession().subscribe((res) => {
+      this.sessionData = res;
+    })
+  }
+
+  openCreateWaitingListModal(){
+    this.createWaitingList.open()
+  }
+
   openWaitingListEditModal(id: number, name: string, user_id: boolean, start_time: Time, end_time: Time, 
     service_id: number, status: number) {
-    console.log(id, name, user_id, start_time, end_time, service_id, status);
-    this.editWaitingList.open(id, name, status, start_time, end_time, service_id, user_id);
+    if(this.sessionData?.admin == false){
+      this.warningModal.open()
+    }else{
+      console.log(id, name, user_id, start_time, end_time, service_id, status);
+      this.editWaitingList.open(id, name, status, start_time, end_time, service_id, user_id);
+    }
   }
-  
+
+  openDeleteModal(id: number){
+    if(this.sessionData?.admin == false){
+      this.warningModal.open()
+    }else{
+      this.deleteModal.open('Tem a certeza de que pretende apagar este registo?', () => {
+        this.api_waitingList.deleteWaitingLists(id).subscribe(res => {
+          window.location.reload()
+        })
+      });
+    }
+  }  
+
   WaitingListTablePagination(){
     this.WaitingListPagination = this.allWaitingListData && this.allWaitingListData
       .map((waitingList, i) => ({id: i + 1, ...waitingList}))
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize)
   }
-
-  openDeleteModal(){
-    this.modalService.open(DeleteModalComponent, {centered: true});
-  }
-
 
 }

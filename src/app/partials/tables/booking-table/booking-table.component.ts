@@ -3,8 +3,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { ApiBookingService } from 'src/app/services/api-booking.service';
-import { DeleteModalComponent } from '../../modals/delete-modal/delete-modal.component';
-import { EditBookingModalComponent } from '../../modals/edit-booking-modal/edit-booking-modal.component';
+import { LoginService } from 'src/app/services/login.service';
+import { DeleteModalComponent } from '../../modals/delete/delete.component';
+import { EditBookingModalComponent } from '../../modals/edit/edit-booking-modal/edit-booking-modal.component';
+import { WarningComponent } from '../../modals/warning/warning.component';
 
 @Component({
   selector: 'app-booking-table',
@@ -14,9 +16,12 @@ import { EditBookingModalComponent } from '../../modals/edit-booking-modal/edit-
 export class BookingTableComponent implements OnInit {
 
   @ViewChild('editBooking') private editBooking!: EditBookingModalComponent
+  @ViewChild('deleteModal') private deleteModal!: DeleteModalComponent
+  @ViewChild('warningModal') private warningModal!: WarningComponent
 
   allBookingData
   bookingSearchBar
+  sessionData
 
   page = 1
   pageSize = 5
@@ -25,6 +30,7 @@ export class BookingTableComponent implements OnInit {
   constructor(
     private api_booking: ApiBookingService ,
     private modalService: NgbModal,
+    private api_session: LoginService,
     config: NgbModalConfig
   ) { 
     config.backdrop = 'static';
@@ -34,6 +40,7 @@ export class BookingTableComponent implements OnInit {
   ngOnInit(): void {
     this.getBookingData()
     this.BookingTablePagination()
+    this.getSessionData()
   }
 
   getBookingData(){
@@ -44,8 +51,12 @@ export class BookingTableComponent implements OnInit {
 
   openBookingEditModal(id: number, name: string, email: string, start_time: Time, priority: number, status: boolean,
     notes: string, service_id: number, location_id: number) {
-    console.log(id, name, email, start_time, priority, status, notes, service_id, location_id);
-    this.editBooking.open(id, name, email, start_time, priority, status, notes, service_id, location_id);
+    if(this.sessionData?.admin == false){
+      this.warningModal.open()
+    }else{
+      console.log(id, name, email, start_time, priority, status, notes, service_id, location_id);
+      this.editBooking.open(id, name, email, start_time, priority, status, notes, service_id, location_id);
+    }
   }
 
   BookingTablePagination(){
@@ -54,8 +65,22 @@ export class BookingTableComponent implements OnInit {
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize)
   }
 
-  openDeleteModal(){
-    this.modalService.open(DeleteModalComponent, {centered: true});
+  openDeleteModal(id: number){
+    if(this.sessionData?.admin == false){
+      this.warningModal.open()
+    }else{
+      this.deleteModal.open('Tem a certeza de que pretende apagar este registo?', () => {
+        this.api_booking.deleteBooking(id).subscribe(res => {
+          window.location.reload()
+        })
+      });
+    }
+  }
+
+  getSessionData(){
+    this.api_session.getSession().subscribe((res) => {
+      this.sessionData = res;
+    })
   }
 
 }

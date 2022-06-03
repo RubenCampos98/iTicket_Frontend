@@ -12,6 +12,8 @@ export class UserModule {
   name
   email
   password
+  passwordconfirmation
   phone
   admin
+  address
  }
