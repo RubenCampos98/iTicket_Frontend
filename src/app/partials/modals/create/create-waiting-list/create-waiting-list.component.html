@@ -12,32 +12,32 @@
       <div class="col-md-6">
         <label for="recipient-name" class="col-form-label">Funcionário</label><a class="mandatoryField">  *</a>
         <!-- <input formControlName="user_id" type="text" class="form-control form-control-lg notransition shadow-none"> -->
-        <select class="form-select form-select-lg notransition shadow-none" id="inputGroupSelect01">
+        <select formControlName="user_id" class="form-select form-select-lg notransition shadow-none" id="inputGroupSelect01">
           <option selected>Escolha um funcionário</option>
-          <option *ngFor="let func of allUserData" >{{ func.name }}</option>
+          <option *ngFor="let func of allUserData" [value]="func.id">{{ func.name }}</option>
         </select>
 
       </div>   
       <div class="col-md-6">
         <label for="recipient-name" class="col-form-label">Hora Inicio</label><a class="mandatoryField">  *</a>
-        <input formControlName="start_time" type="text" class="form-control form-control-lg notransition shadow-none">
+        <input formControlName="start_time" type="datetime-local" class="form-control form-control-lg notransition shadow-none">
       </div>   
       <div class="col-md-6">
         <label for="recipient-name" class="col-form-label">Hora Fim</label>
-        <input formControlName="end_time" type="text" class="form-control form-control-lg notransition shadow-none">
+        <input formControlName="end_time" type="datetime-local" class="form-control form-control-lg notransition shadow-none">
       </div>   
       <div class="col-md-6">
         <label for="recipient-name" class="col-form-label">Serviço</label><a class="mandatoryField">  *</a>
         <!-- <input type="text" class="form-control form-control-lg notransition shadow-none"> -->
-        <select class="form-select form-select-lg notransition shadow-none" id="inputGroupSelect01">
+        <select formControlName="service_id" class="form-select form-select-lg notransition shadow-none" id="inputGroupSelect01">
           <option selected>Escolha um serviço</option>
-          <option *ngFor="let service of allServiceData" [ngValue]="service.id">{{ service.name }}</option>
+          <option *ngFor="let service of allServiceData" [value]="service.id">{{ service.name }}</option>
         </select>
       </div>     
       <div class="col-md-3">
         <label for="recipient-name" class="col-form-label">Estado</label>
         <div class="form-check form-switch">
-          <input [checked]="checked" (change) = "checkClicked(checked)" class="form-check-input" type="checkbox" 
+          <input [checked]="checked" (change)="checkClicked(checked)" class="form-check-input" type="checkbox" 
           ngDefaultControl>
           <label *ngIf="checked" class="form-check-label" for="flexSwitchCheckDefault">
             <p ngDefaultControl>Ativa</p>

@@ -74,7 +74,7 @@ export class CreateWaitingListComponent implements OnInit {
     this.waitingListModule.end_time = this.waitingListFormValue.value.end_time;
     //this.waitingListModule.notes = this.waitingListFormValue.value.notes;
     this.waitingListModule.user_id = this.waitingListFormValue.value.user_id;
-    this.waitingListModule.service_id = this.waitingListFormValue.get('service_id').setValue('service.id');
+    this.waitingListModule.service_id = this.waitingListFormValue.value.service_id;
     this.api_waitingList.createWaitingLists(this.waitingListModule).subscribe(res => {
       let ref = document.getElementById('clear')
       ref?.click()

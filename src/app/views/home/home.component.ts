@@ -57,6 +57,8 @@ export class HomeComponent implements OnInit {
       name: [],
       status: 0,
       duration: 0,
+      start_time: [''],
+      end_time: [''],
       notes: ['']
     })
   }
@@ -97,28 +99,34 @@ export class HomeComponent implements OnInit {
   }
 
   EditTicket(data: any){
+    console.log('Edit: Start-time= ', this.ticketForm.value.start_time, 'End-time: ', this.ticketForm.value.end_time)
     this.ticketModelObj.id = data.id
     //this.ticketModelObj.status = 'started';
     this.ticketForm.controls['name'].setValue(data.name);
+    this.ticketForm.controls['status'].setValue('started');
     this.ticketForm.controls['duration'].setValue(data.duration);
     this.ticketForm.controls['notes'].setValue(data.notes);
+    this.ticketForm.controls['start_time'].setValue(new Date());
+    console.log("Status: ", this.ticketForm.value.status)
+    console.log('Edit: Start-time= ', this.ticketForm.value.start_time, 'End-time: ', this.ticketForm.value.end_time)
   }
 
   updateTicket(){
-    console.log(this.hour,':',this.min,':',this.sec)
     this.ticketModelObj.name = this.ticketForm.value.name;
-    this.ticketModelObj.notes = this.ticketForm.value.notes;
+    this.ticketModelObj.status = 'finished'
+    this.ticketModelObj.notes = this.ticketForm.value.notes;    
+    this.ticketModelObj.start_time = this.ticketForm.value.start_time;    
+    this.ticketModelObj.end_time = new Date();  
     this.ticketModelObj.duration = this.hour + ':' + this.min + ':' + this.sec;
     this.api_ticket.updateTicket(this.ticketModelObj, this.ticketModelObj.id).subscribe(res => {
+    console.log("Status: ", this.ticketModelObj.status)
+    console.log('Update: Start-time= ', this.ticketModelObj.start_time, 'End-time: ', this.ticketModelObj.end_time)
       this.toastr.success("Concluido!")
       let ref = document.getElementById('clear')
       ref?.click()
       this.ticketForm.reset()
       this.getTicketData()
-    })    
-    if(this.allTicketByIdData.status == 'pending'){
-      console.log(this.allTicketByIdData.status)
-    }
+    })
   }
 
   getTicket_QueueData(){
@@ -174,7 +182,6 @@ export class HomeComponent implements OnInit {
   }
 
   stop(): void{
-    console.log(this.hour,':',this.min,':',this.sec)
     clearInterval(this.startTime);
     this.running = false;
   }

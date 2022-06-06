@@ -11,7 +11,9 @@ export class TicketModule {
   id
   number
   name
-  status 
+  status
+  start_time
+  end_time 
   duration
   notes 
   waiting_list_id

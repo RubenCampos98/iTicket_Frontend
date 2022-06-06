@@ -140,3 +140,119 @@ h3{
   }
 
 }
+
+button{
+  color: white;
+  //position: absolute;
+  width: 130px;
+  height: 40px;
+  background: #1193F2;
+  border: 1px solid #1193F2;
+  margin-right: 20px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 40px;
+}
+
+::ng-deep .mat-form-field {
+  background-color: white;
+}
+
+::ng-deep .mat-form-field-underline:hover {
+  color: red;
+}
+
+::ng-deep .mat-select-value{    
+  color: black!important;  
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: #1193F2;
+}
+
+::ng-deep .mat-form-field.mat-focused .mat-form-field-label {
+  color: #1193F2;
+}
+
+::ng-deep .mat-form-field.mat-focused.mat-primary .mat-select-arrow{
+  color: #1193F2;
+}
+
+::ng-deep .mat-primary .mat-option.mat-selected:not(.mat-option-disabled){
+  color: #1193F2;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #1193F2!important;
+  // opacity: 1!important;
+}
+
+//mat-input focused color
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #1193F2 !important;
+}
+
+::ng-deep .mat-option .mat-selected{
+  color: red!important;  
+}
+
+.mat-stepper-vertical {
+  margin-top: 8px;
+  border: 1px solid red;
+}
+
+.mat-step-header{
+  box-shadow: none;
+  text-decoration: none;  
+  border: 1px solid red;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+
+::ng-deep .mat-step-header .mat-step-icon-selected{
+  background-color: #1193F2;
+  box-shadow: none;
+}
+
+::ng-deep .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+  background-color: transparent !important;
+  color: green;
+  +.mat-step-label{
+    color: green !important;
+  }
+}
+
+::ng-deep .mat-step-header .mat-step-icon-state-edit{
+  background-color: green;
+}
+
+::ng-deep .mat-step-header:hover{
+  background-color: white;
+  box-shadow: none;
+  & 
+  div.mat-step-label.mat-step-label-active.mat-step-label-selected {
+    color: #1193F2;
+  }
+}
+
+::ng-deep .mat-step-header-selected{
+  background-color: black;
+}
+
+::ng-deep .mat-step-header:not(:hover){
+  background-color: white;
+  box-shadow: none;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+  background-color: #086cb4;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar{
+  background-color: red;
+}
+
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+  background-color: #1193F2;
+}

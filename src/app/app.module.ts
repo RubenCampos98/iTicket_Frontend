@@ -5,6 +5,11 @@ import { CookieService } from 'ngx-cookie-service';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http'
@@ -98,6 +103,11 @@ import { CreateUserComponent } from './partials/modals/create/create-user/create
     MatTabsModule,
     MatPaginatorModule,
     MatSortModule,
+    MatStepperModule,
+    MatFormFieldModule,
+    MatSlideToggleModule,
+    MatInputModule,
+    MatSelectModule,
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
