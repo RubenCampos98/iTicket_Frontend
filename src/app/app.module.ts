@@ -9,6 +9,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -56,6 +57,10 @@ import { CreateBookingComponent } from './partials/modals/create/create-booking-
 import { WarningComponent } from './partials/modals/warning/warning.component';
 import { CreateWaitingListComponent } from './partials/modals/create/create-waiting-list/create-waiting-list.component';
 import { CreateUserComponent } from './partials/modals/create/create-user/create-user.component';
+import { BookingScheduleTableComponent } from './partials/tables/booking-schedule-table/booking-schedule-table.component';
+import { CreateBookingScheduleComponent } from './partials/modals/create/create-booking-schedule/create-booking-schedule.component';
+import { EditBookingScheduleComponent } from './partials/modals/edit/edit-booking-schedule/edit-booking-schedule.component';
+import { BookingConfirmationComponent } from './views/booking-confirmation/booking-confirmation.component';
 
 
 
@@ -92,7 +97,11 @@ import { CreateUserComponent } from './partials/modals/create/create-user/create
     CreateBookingComponent,
     WarningComponent,
     CreateWaitingListComponent,
-    CreateUserComponent
+    CreateUserComponent,
+    BookingScheduleTableComponent,
+    CreateBookingScheduleComponent,
+    EditBookingScheduleComponent,
+    BookingConfirmationComponent
   ],
   imports: [
     CommonModule,
@@ -104,6 +113,7 @@ import { CreateUserComponent } from './partials/modals/create/create-user/create
     MatPaginatorModule,
     MatSortModule,
     MatStepperModule,
+    MatIconModule,
     MatFormFieldModule,
     MatSlideToggleModule,
     MatInputModule,

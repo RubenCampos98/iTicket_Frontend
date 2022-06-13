@@ -18,7 +18,7 @@ h2{
   color: #004B92;
 }
 
-h3{
+.horario h3{
   position: relative;
   font-family: 'Poppins';
   font-style: normal;
@@ -26,6 +26,8 @@ h3{
   font-size: 25px;
   line-height: 38px;
   color: #004B92;
+  margin-bottom: 40px;
+  margin-top: 20px;
 }
 
 .horario{
@@ -39,13 +41,14 @@ h3{
   border: 0px solid orange;
   position: relative;
   display: table-cell;
+  height: auto;
+  width: auto;
 }
 
   .ticket .ticketTime{
     border: 0px solid red;
-    width: 85px;
-    height: 50px;
-    position: absolute;
+    width: 150px;
+    height: 100px;
     left: 0;
     right: 25%;
     top: 0;
@@ -60,18 +63,38 @@ h3{
     font-weight: 700;
     font-size: 30px;
     color: #1193F2;
-  }
-
-  img{
-    position: relative;
-    transition: transform .6s;
+    background-image: url("../../../assets/icons/senha_contorno_normal.svg");
+    background-repeat: no-repeat;
     cursor: pointer;
   }
 
-    img:hover{
-      transform: scale(1.1);
-      border: 1px solid red;
-    }
+  .ticket .ticketTime_clicked{
+    border: 0px solid red;
+    width: 150px;
+    height: 100px;
+    left: 0;
+    right: 25%;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    text-align: center;
+    align-items: center;
+    vertical-align: middle;
+    line-height: 50px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    color: white;
+    background-image: url("../../../assets/icons/senha_selecionada_preenchida.svg");
+    background-repeat: no-repeat;
+    cursor: pointer;
+  }
+
+  .ticket p{
+    border: 0px solid red;
+    padding-top: 15%;
+  }
 
 .end_line{
   border: 2px solid #D7E6F2; 
@@ -191,15 +214,6 @@ button{
   color: #1193F2 !important;
 }
 
-::ng-deep .mat-option .mat-selected{
-  color: red!important;  
-}
-
-.mat-stepper-vertical {
-  margin-top: 8px;
-  border: 1px solid red;
-}
-
 .mat-step-header{
   box-shadow: none;
   text-decoration: none;  
@@ -217,18 +231,18 @@ button{
 
 ::ng-deep .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
   background-color: transparent !important;
-  color: green;
+  color: #1193F2;
   +.mat-step-label{
-    color: green !important;
+    color: #1193F2 !important;
   }
 }
 
 ::ng-deep .mat-step-header .mat-step-icon-state-edit{
-  background-color: green;
+  color: white;
 }
 
 ::ng-deep .mat-step-header:hover{
-  background-color: white;
+  background: #EAF3FA;
   box-shadow: none;
   & 
   div.mat-step-label.mat-step-label-active.mat-step-label-selected {
@@ -236,12 +250,21 @@ button{
   }
 }
 
+::ng-deep .mat-step-label .mat-step-active .mat-step-selected{
+  background-color: red;
+}
+
 ::ng-deep .mat-step-header-selected{
-  background-color: black;
+  background-color: green;
 }
 
 ::ng-deep .mat-step-header:not(:hover){
-  background-color: white;
+  background: #EAF3FA;
+  box-shadow: none;
+}
+
+::ng-deep .mat-step-header:hover{
+  background: #EAF3FA;
   box-shadow: none;
 }
 
@@ -250,9 +273,18 @@ button{
 }
 
 ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar{
-  background-color: red;
+  background-color: #1193F2;
 }
 
 ::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
   background-color: #1193F2;
+}
+
+::ng-deep .mat-horizontal-stepper-header-container{
+  border: 0px solid red;
+  background: #EAF3FA;
+}
+
+::ng-deep .mat-stepper-horizontal-line{
+  border: 1px solid #1193F2;
 }

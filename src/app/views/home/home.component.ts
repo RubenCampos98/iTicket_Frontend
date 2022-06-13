@@ -185,5 +185,16 @@ export class HomeComponent implements OnInit {
     clearInterval(this.startTime);
     this.running = false;
   }
+
+  changeTicket(event: any, classOne: string, classTwo: string){
+    const haveClass = event.target.classList.contains(classOne)
+    if(haveClass){
+      event.target.classList.remove(classOne)
+      event.target.classList.add(classTwo)
+    }else{
+      event.target.classList.remove(classTwo)
+      event.target.classList.add(classOne)
+    }
+  }
   
 }

@@ -1,547 +1,52 @@
 <app-navbar></app-navbar>
 
-<!-- <div class="container">
-  <div class="row row-cols-2 row-cols-lg-3">
-    <div class="col-sm-12 col-lg-12 title">
-      <h2>Selecione o dia e hora para fazer o agendamento</h2>
-    </div>
-    <div class="col-10 offset-1 col-md-10 col-lg-12 offset-lg-0 horario mt-4">
-      <h3>{{today | date: 'fullDate'}}</h3>
-      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-        <div class="ticketTime">
-          <p>9:30</p>
-        </div>
-        <img src="../../../assets/icons/senhaV2.svg">
-      </div>
-      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-        <div class="ticketTime">
-          <p>9:30</p>
-        </div>
-        <img src="../../../assets/icons/senha_2.svg">
-      </div>
-      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-        <div class="ticketTime">
-          <p>9:30</p>
-        </div>
-        <img src="../../../assets/icons/senha_2.svg">
-      </div>
-      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-        <div class="ticketTime">
-          <p>9:30</p>
-        </div>
-        <img src="../../../assets/icons/senha_2.svg">
-      </div>
-      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-        <div class="ticketTime">
-          <p>9:30</p>
-        </div>
-        <img src="../../../assets/icons/senha_2.svg">
-      </div>
-      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-        <div class="ticketTime">
-          <p>9:30</p>
-        </div>
-        <img src="../../../assets/icons/senha_2.svg">
-      </div>
-    </div>
-
-    <div class="col-10 offset-1 col-md-10 col-lg-12 offset-lg-0 horario mt-4">
-      <h3>{{day1() | date: 'fullDate'}}</h3>
-      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-        <div class="ticketTime">
-          <p>9:30</p>
-        </div>
-        <img src="../../../assets/icons/senha_2.svg">
-      </div>
-      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-        <div class="ticketTime">
-          <p>9:30</p>
-        </div>
-        <img src="../../../assets/icons/senha_2.svg">
-      </div>
-      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-        <div class="ticketTime">
-          <p>9:30</p>
-        </div>
-        <img src="../../../assets/icons/senha_2.svg">
-      </div>
-      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-        <div class="ticketTime">
-          <p>9:30</p>
-        </div>
-        <img src="../../../assets/icons/senha_2.svg">
-      </div>
-      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-        <div class="ticketTime">
-          <p>9:30</p>
-        </div>
-        <img src="../../../assets/icons/senha_2.svg">
-      </div>
-      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-        <div class="ticketTime">
-          <p>9:30</p>
-        </div>
-        <img src="../../../assets/icons/senha_2.svg">
-      </div>
-    </div>
-
-    <div class="col-10 offset-1 col-md-10 col-lg-12 offset-lg-0 horario mt-4">
-      <h3>{{day2() | date: 'fullDate'}}</h3>
-      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-        <div class="ticketTime">
-          <p>9:30</p>
-        </div>
-        <img src="../../../assets/icons/senha_2.svg">
-      </div>
-      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-        <div class="ticketTime">
-          <p>9:30</p>
-        </div>
-        <img src="../../../assets/icons/senha_2.svg">
-      </div>
-      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-        <div class="ticketTime">
-          <p>9:30</p>
-        </div>
-        <img src="../../../assets/icons/senha_2.svg">
-      </div>
-      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-        <div class="ticketTime">
-          <p>9:30</p>
-        </div>
-        <img src="../../../assets/icons/senha_2.svg">
-      </div>
-      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-        <div class="ticketTime">
-          <p>9:30</p>
-        </div>
-        <img src="../../../assets/icons/senha_2.svg">
-      </div>
-      <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-        <div class="ticketTime">
-          <p>9:30</p>
-        </div>
-        <img src="../../../assets/icons/senha_2.svg">
-      </div>
-    </div>
-
-  </div>
-</div> -->
-<!-- 
-<mat-stepper orientation="vertical" labelPosition="bottom" [linear]="isLinear" #stepper>
-  <mat-step [stepControl]="firstFormGroup" label="Escolha o serviço">
-    <div class="container">
-      <div class="row row-cols-2 row-cols-lg-3">
-        <div class="col-sm-12 col-lg-12 title">
-          <h2>Selecione o dia e hora para fazer o agendamento</h2>
-        </div>
-        <div class="col-10 offset-1 col-md-10 col-lg-12 offset-lg-0 horario mt-4">
-          <h3>{{today | date: 'fullDate'}}</h3>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senhaV2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-        </div>
-    
-        <div class="col-10 offset-1 col-md-10 col-lg-12 offset-lg-0 horario mt-4">
-          <h3>{{day1() | date: 'fullDate'}}</h3>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-        </div>
-    
-        <div class="col-10 offset-1 col-md-10 col-lg-12 offset-lg-0 horario mt-4">
-          <h3>{{day2() | date: 'fullDate'}}</h3>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-        </div>
-    
-      </div>
-    </div>
-  </mat-step>
-  <mat-step [stepControl]="firstFormGroup" label="Escolha o local">
-    <div class="container">
-      <div class="row row-cols-2 row-cols-lg-3">
-        <div class="col-sm-12 col-lg-12 title">
-          <h2>Selecione o dia e hora para fazer o agendamento</h2>
-        </div>
-        <div class="col-10 offset-1 col-md-10 col-lg-12 offset-lg-0 horario mt-4">
-          <h3>{{today | date: 'fullDate'}}</h3>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senhaV2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-        </div>
-    
-        <div class="col-10 offset-1 col-md-10 col-lg-12 offset-lg-0 horario mt-4">
-          <h3>{{day1() | date: 'fullDate'}}</h3>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-        </div>
-    
-        <div class="col-10 offset-1 col-md-10 col-lg-12 offset-lg-0 horario mt-4">
-          <h3>{{day2() | date: 'fullDate'}}</h3>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-        </div>
-    
-      </div>
-    </div>
-  </mat-step>
-  <mat-step [stepControl]="firstFormGroup" label="Escolha a hora">
-    <div class="container">
-      <div class="row row-cols-2 row-cols-lg-3">
-        <div class="col-sm-12 col-lg-12 title">
-          <h2>Selecione o dia e hora para fazer o agendamento</h2>
-        </div>
-        <div class="col-10 offset-1 col-md-10 col-lg-12 offset-lg-0 horario mt-4">
-          <h3>{{today | date: 'fullDate'}}</h3>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senhaV2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-        </div>
-    
-        <div class="col-10 offset-1 col-md-10 col-lg-12 offset-lg-0 horario mt-4">
-          <h3>{{day1() | date: 'fullDate'}}</h3>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-        </div>
-    
-        <div class="col-10 offset-1 col-md-10 col-lg-12 offset-lg-0 horario mt-4">
-          <h3>{{day2() | date: 'fullDate'}}</h3>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-          <div (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-            <div class="ticketTime">
-              <p>9:30</p>
-            </div>
-            <img src="../../../assets/icons/senha_2.svg">
-          </div>
-        </div>
-    
-      </div>
-    </div>
-  </mat-step>
-</mat-stepper> -->
+<div class="container">
+<div class="row">
+    <div class="col-lg-12 offset-lg-0">
+<h1>Agendar Atendimento</h1>
 
 <mat-stepper linear #stepper>
   <form [formGroup]="bookingFormGroup">
     <mat-step [stepControl]="bookingFormGroup" [editable]="isEditable">
       <ng-template matStepLabel>Escolha o local</ng-template>
-      <mat-form-field appearance="outline" class="col-lg-4">
+      <mat-form-field appearance="outline" class="col-lg-6 offset-lg-3">
         <mat-label>Local</mat-label>
         <mat-select formControlName="location_id" >
           <mat-option *ngFor="let location of allLocationData" [value]="location.id">{{ location.address }}</mat-option>
         </mat-select>
       </mat-form-field>
-      <div>
-        <button mat-button matStepperNext>Seguinte</button>
+      <div class="col-lg-6 offset-lg-3">
+        <button mat-button matStepperNext (click)="onMouseClick($event)">Seguinte</button>
       </div>
     </mat-step>
 
     <mat-step [stepControl]="bookingFormGroup" [editable]="isEditable">
       <ng-template matStepLabel>Escolha o serviço</ng-template>
-      <mat-form-field appearance="outline" class="col-lg-4" style="border: 0px solid red;">
+      <mat-form-field appearance="outline" class="col-lg-6 offset-lg-3">
         <mat-label>Serviço</mat-label>
         <mat-select formControlName="service_id" >
           <mat-option *ngFor="let service of allServiceData" [value]="service.id">{{ service.name }}</mat-option>
         </mat-select>
       </mat-form-field>
-      <div>
+      <div class="col-lg-6 offset-lg-3">
+        <mat-label class="mb-3">Tipo de Atendimento</mat-label>
+        <br>
+        <br>
+        <mat-slide-toggle [checked]="checked" (change)="checkClicked(checked)"></mat-slide-toggle>
+        <mat-label *ngIf="!checked">
+          <p ngDefaultControl>Normal</p>
+          <input matInput formControlName="priority" hidden="true" value="{{ this.bookingFormGroup.patchValue({priority: 'normal'}) }}">
+        </mat-label>
+        <mat-label *ngIf="checked">
+          <p ngDefaultControl>Prioritário</p>
+          <input matInput formControlName="priority" hidden="true" value="{{ this.bookingFormGroup.patchValue({priority: 'priority'}) }}">
+        </mat-label>
+        <mat-hint>
+          Prioritários apenas engloba pessoas deficientes, grávidas ou idosas. 
+          Todos outros casos, caso escolham este estatudo e não sejam um dos casos referidos, corre risco do cancelamento do agendamento.
+        </mat-hint>
+      </div>
+      <div class="col-lg-6 offset-lg-3">
         <button mat-button matStepperPrevious>Anterior</button>
         <button mat-button matStepperNext>Seguinte</button>
       </div>
@@ -549,17 +54,17 @@
 
     <mat-step [stepControl]="bookingFormGroup" [editable]="isEditable">
       <ng-template matStepLabel>Escolha um horario</ng-template>
-      <div *ngFor="let day of availableDays" class="col-10 offset-1 col-md-10 col-lg-12 offset-lg-0 horario mt-5">
-        <h3>{{ getday(day) | date: 'fullDate' }}</h3>
-        <div *ngFor="let time of avaiableTimes" (click)="openFinishBookingModal()" class="col-2 col-lg-1 ticket">
-          <div class="ticketTime">
-            <p>{{ time }}</p>
+      <input matInput formControlName="start_time" hidden="true">
+      <div *ngFor="let day of allAvailableDays" class="col-10 offset-1 col-md-10 col-lg-6 offset-lg-3 horario mt-5">
+        <h3 >{{ getday(day.day) | date:'EEEE, dd MMMM yyyy' }}</h3>
+        <div *ngFor="let time of getHourOfDay(day)" class="col-2 col-lg-1 ticket">
+          <div *ngIf="day.id == time['service_available_day'].id" class="ticketTime" (click)="onMouseClick($event);
+          changeTicket($event, 'ticketTime', 'ticketTime_clicked')">
+            <p>{{ time.hour | date:'HH:mm' }}</p>
           </div>
-          <img src="../../../assets/icons/senha_2.svg">
         </div>
       </div>
-  
-      <div>
+      <div class="col-lg-6 offset-lg-3">
         <button mat-button matStepperPrevious>Anterior</button>
         <button mat-button matStepperNext>Seguinte</button>
       </div>
@@ -567,49 +72,58 @@
 
     <mat-step [stepControl]="bookingFormGroup" [editable]="isEditable">
       <ng-template matStepLabel>Dados pessoais</ng-template>
-      <mat-form-field appearance="outline" class="col-lg-12">
+      <mat-form-field appearance="outline" class="col-lg-6 offset-lg-3">
         <mat-label>Nome</mat-label>
         <input matInput formControlName="name">
       </mat-form-field>
-      <mat-label class="mb-3">Tipo de Atendimento</mat-label>
-      <br>
-      <br>
-      <mat-slide-toggle [checked]="checked" (change)="checkClicked(checked)"></mat-slide-toggle>
-      <mat-label *ngIf="!checked">
-        <p ngDefaultControl>Normal</p>
-        <input matInput formControlName="priority" hidden="true" value="{{ this.bookingFormGroup.patchValue({priority: 'normal'}) }}">
-      </mat-label>
-      <mat-label *ngIf="checked">
-        <p ngDefaultControl>Prioritário</p>
-        <input matInput formControlName="priority" hidden="true" value="{{ this.bookingFormGroup.patchValue({priority: 'priority'}) }}">
-      </mat-label>
-      <mat-hint>
-        Prioritários apenas engloba pessoas deficientes, grávidas ou idosas. 
-        Todos outros casos, caso escolham este estatudo e não sejam um dos casos referidos, corre risco do cancelamento do agendamento.
-      </mat-hint>
-      <br>
-      <br>
-      <mat-form-field class="col-lg-6" appearance="outline">
+      <mat-form-field appearance="outline" class="col-lg-6 offset-lg-3">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email">
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="col-lg-6 offset-lg-3">
+        <mat-label>Contacto</mat-label>
+        <input matInput formControlName="phone">
+      </mat-form-field>
+      <mat-form-field  class="col-lg-6 offset-lg-3" appearance="outline">
         <mat-label>Notas</mat-label>
         <textarea cdkTextareaAutosize cdkAutosizeMinRows="5" matInput formControlName="notes"></textarea>
       </mat-form-field>
-      <div>
+      <div class="col-lg-6 offset-lg-3">
         <button mat-button matStepperPrevious>Anterior</button>
-        <button mat-button (click)="openFinishBookingModal()" matStepperNext>Concluir</button>
+        <button mat-button matStepperNext>Seguinte</button>
         <button mat-button (click)="viewData()" >Console.log formData</button>
       </div>
     </mat-step>
 
     <mat-step>
       <ng-template matStepLabel>Concluir</ng-template>
-      <p>Aqui aparece modal</p>
+      <h1>Resumo</h1>
+      <p>Local: {{ bookingFormGroup.value.location_id}}</p>
+      <p>Serviço: {{ bookingFormGroup.value.service_id }}</p>
+      <p>Horário: {{ bookingFormGroup.value.start_time }}</p>
+      <p>Nome: {{ bookingFormGroup.value.name }}</p>
+      <p>Email: {{ bookingFormGroup.value.email }}</p>
+      <p>Notas: {{ bookingFormGroup.value.notes }}</p>
+      <p>Prioridade: {{ bookingFormGroup.value.priority }}</p>
       <div>
         <button mat-button matStepperPrevious>Anterior</button>
-        <button mat-button (click)="stepper.reset()">Concluir</button>
+        <button mat-button (click)="addBooking()">Concluir</button><!-- (click)="stepper.reset()" -->
       </div>
     </mat-step>
   </form>
+
+  <ng-template matStepperIcon="local">
+    <mat-icon>home</mat-icon>
+  </ng-template>
+  <ng-template matStepperIcon="chat">
+    <mat-icon>forum</mat-icon>
+  </ng-template>
 </mat-stepper>
+
+</div>
+</div>
+</div>
+
 
 <app-create-booking #createBooking></app-create-booking>
 

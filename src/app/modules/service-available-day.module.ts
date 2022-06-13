@@ -7,15 +7,8 @@ import { CommonModule } from '@angular/common';
     CommonModule
   ]
 })
-export class BookingModule { 
+export class ServiceAvailableDayModule {
   id
-  name
-  email
-  phone
-  start_time
-  priority
-  status
-  notes
+  day
   service_id
-  location_id
-}
+ }

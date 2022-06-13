@@ -36,19 +36,28 @@ export class UpdatePasswordComponent implements OnInit {
     })
   }
 
-  editUserPassword(data: any){
+/*   editUserPassword(data: any){
     this.userModelObj.id = data.id
     this.updatePassForm.controls['password'].setValue(data.password);
+  } */
+
+  dados(){
+    console.log(this.updatePassForm.value.password)
+    console.log(this.updatePassForm.value.password_confirmations)
   }
 
-/*   updateUserPassword(){
+  updateUserPassword(){
+    this.userModelObj.id = this.updatePassForm.value.id;
     this.userModelObj.password = this.updatePassForm.value.password
-    this.api_user.updateUser(this.updatePassForm, this.updatePassForm.id).subscribe(res => {
-      this.toastr.success("Palavra-passe atualizada com sucesso!")
-    },
-    err => {
-      this.toastr.error("Não foi possivel atualizar a palavra-passe")
-    })
-  } */
+    if(this.updatePassForm.value.password == this.updatePassForm.value.password_confirmation){
+      this.api_user.updateUser(this.updatePassForm, this.updatePassForm.value.id).subscribe(res => {
+        this.toastr.success("Palavra-passe atualizada com sucesso!")
+      },
+      err => {
+        this.toastr.error("Não foi possivel atualizar a palavra-passe")
+      })
+    }else
+    this.toastr.error("Os dois campos têm que ser iguais!")
+  }
 
 }

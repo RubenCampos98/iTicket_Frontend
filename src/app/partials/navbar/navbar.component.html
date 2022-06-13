@@ -20,8 +20,9 @@
             <img src="../../../assets/icons/settings.svg">
             <a>Definições</a>
           </li>
-          <li class="nav-item dropdown" *ngIf="!url.includes('senhas') && !url.includes('login') && !url.includes('agendar')" 
-          style="text-align: end;">
+          <li class="nav-item dropdown" style="text-align: end;"
+          *ngIf="!url.includes('senhas') && !url.includes('login') && !url.includes('agendar') &&
+          !url.includes('agendamento_concluido')">
             <img src="../../../assets/icons/user_avatar.svg"> 
             <a class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               {{ sessionData?.name }}

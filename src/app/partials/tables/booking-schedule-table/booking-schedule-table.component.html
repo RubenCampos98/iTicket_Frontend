@@ -1,0 +1,57 @@
+<div class="top-table">
+  <input [(ngModel)]="bookingScheduleSearchBar" class="form-control mt-2 mb-2 shadow-none" type="text" 
+  placeholder="Pesquisar..." ngDefaultControl> 
+  <button class="btn mt-2 mb-2 btn-primary">Adicionar</button>
+</div>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nome do serviço</th>
+      <th scope="col">Data </th>
+      <th scope="col">Hora </th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of allAvailableHours | slice: (page-1) * pageSize : page * pageSize | searchBar: bookingScheduleSearchBar">
+      <td style="width: 40%;">{{ data['service_available_day']['service'].name }}</td>
+      <td style="width: 35%;">{{ getday(data['service_available_day'].day) | date:'EEEE, dd MMMM yyyy' }}</td>
+      <td style="width: 15%;">{{ data['hour'] | date:'HH:mm'  }}</td>
+      
+      <td style="width: 10%;">
+        <img src="../../../assets/icons/edit.svg"/>
+        <img style="margin-left: 25%;" 
+        src="../../../assets/icons/trash.svg"/>
+      </td>
+    </tr>
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" [attr.colspan]="allServiceData.length">
+        Sem informação a apresentar
+      </td>
+    </tr>
+    <div *ngIf="(allServiceData | searchBar: bookingScheduleSearchBar)?.length == 0">
+      <td style="width: 100%; font-size: 16px; ">
+        Não existem dados correspondentes
+      </td>
+    </div>
+  </tbody>
+</table>
+<div class="bottom-table">
+  <select class="form-select shadow-none" style="width: auto" [(ngModel)]="pageSize" 
+  (ngModelChange)="BookingScheduleTablePagination()" ngDefaultControl>
+    <option [ngValue]="5">Mostrar 5</option>
+    <option [ngValue]="10">Mostrar 10</option>
+    <option [ngValue]="15">Mostrar 15</option>
+  </select>
+  <ngb-pagination class="d-flex justify-content-right"
+    [rotate]="true"
+    [ellipses]="true"
+    [(page)]="page" 
+    [pageSize]="pageSize" 
+    [collectionSize]="allAvailableHours?.length"
+    (pageChange)="BookingScheduleTablePagination()">
+    <ng-template ngbPaginationPrevious>Anterior</ng-template>
+    <ng-template ngbPaginationNext>Próximo</ng-template>
+    <ng-template ngbPaginationEllipsis>...</ng-template>
+  </ngb-pagination>
+</div>

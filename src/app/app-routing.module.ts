@@ -10,15 +10,17 @@ import { BookingComponent } from './views/booking/booking.component';
 import { UpdatePasswordComponent } from './views/authentication/update-password/update-password.component';
 import { Page404Component } from './views/page404/page404.component';
 import { BookingPage2Component } from './views/booking-page2/booking-page2.component';
+import { BookingConfirmationComponent } from './views/booking-confirmation/booking-confirmation.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'definicoes', component: SettingsComponent, canActivate: [AuthGuard]},
+  {path: 'perfil', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'recuperar_password', component: RecoverPasswordComponent},
   {path: 'nova_password', component: UpdatePasswordComponent},
-  {path: 'perfil', component: ProfileComponent, canActivate: [AuthGuard]},
-  {path: 'senhas', component: BookingComponent, canActivate: [AuthGuard]},
-  {path: 'agendar', component: BookingPage2Component, canActivate: [AuthGuard]},
+  {path: 'senhas', component: BookingComponent},
+  {path: 'agendar', component: BookingPage2Component},
+  {path: 'agendamento_concluido', component: BookingConfirmationComponent},
   {path: '', component: LoginComponent,
     children: [
       {path: '', redirectTo: 'login', pathMatch: 'full'},
