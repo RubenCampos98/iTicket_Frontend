@@ -25,7 +25,7 @@ export class ApiServiceAvailableHourService {
     }))
   }
 
-  updateServicevHour(data: any, id: number){
+  updateServiceAvailableHour(data: any, id: number){
     return this.http.put<any>(`${environment.api}/services_available_hours/` + id, data, { withCredentials: true }).pipe(map((res:any) =>{
       return res;
     }))

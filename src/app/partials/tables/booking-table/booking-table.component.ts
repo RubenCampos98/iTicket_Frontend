@@ -21,6 +21,7 @@ export class BookingTableComponent implements OnInit {
 
   allBookingData
   bookingSearchBar
+  bookingSearchBar1
   sessionData
 
   page = 1

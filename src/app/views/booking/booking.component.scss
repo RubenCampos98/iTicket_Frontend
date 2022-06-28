@@ -150,9 +150,13 @@
     text-align: center;
   }
 
+  .senha{
+    margin-bottom: 70px;
+  }
+
   .ticket{
     border: 0px solid red;
-    position: relative;
+    position: absolute;
   }
 
     .ticket img{
@@ -160,44 +164,40 @@
       height: 100%;
     }
 
-  .senha{
-    margin-bottom: 70px;
-  }
-
   .serviceInfo{
-    position: relative;
+    position: absolute;
   }
 
-  .serviceName{
-    border: 0px solid blue;
-    position: relative;
-    font-size: 15px;
-    color: #004B92;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    line-height: 42px;
-    text-align: center;
-    margin-left: 0px;
-  }
+    .serviceName{
+      border: 0px solid blue;
+      position: relative;
+      font-size: 15px;
+      color: #004B92;
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+      line-height: 42px;
+      text-align: center;
+      margin-left: 0px;
+    }
 
-  .serviceType{
-    border: 0px solid blue;
-    position: relative;
-    font-size: 13px;
-    color: #1193F2;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    line-height: 42px;
-    text-align: center;
-    margin-left: 0px;
-  }
+    .serviceType{
+      border: 0px solid blue;
+      position: relative;
+      font-size: 13px;
+      color: #1193F2;
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+      line-height: 42px;
+      text-align: center;
+      margin-left: 0px;
+    }
   
   .ticketButton{
-    border: 0px solid black;
+    border: 1px solid black;
     position: relative;
-    text-align: center;
+    text-align: center; 
   }
 
     .ticketButton button{

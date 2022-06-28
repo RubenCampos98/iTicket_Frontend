@@ -16,7 +16,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let data of allBookingData | slice: (page-1) * pageSize : page * pageSize">
+    <tr *ngFor="let data of allBookingData | slice: (page-1) * pageSize : page * pageSize | bookingSearchBar: bookingSearchBar">
       <td style="width: 15%;"> {{ data['name'] }} </td>
       <td style="width: 15%;"> {{ data['email'] }} </td>
       <td style="width: 15%;"> {{ data['start_time'] | date:'dd MMMM yyyy - HH:mm aa' }} </td>
@@ -24,6 +24,7 @@
       <td style="width: 10%;"> {{ data['location'].address }} </td>
       <td *ngIf="data['priority']" style="width: 10%;"> 
         <div class="form-check form-switch">
+          l
           <input *ngIf="data['priority'] == 'priority'" class="form-check-input" type="checkbox"
           style="border-color:#ffa600; background-color: #ffa600;" checked>
           <input *ngIf="data['priority'] == 'normal'" class="form-check-input" type="checkbox" checked>
@@ -55,11 +56,11 @@
       </td>
     </tr>
     
-    <!-- <div *ngIf="(allBookingData | searchBar: bookingSearchBar)?.length === 0">
+    <div *ngIf="(allBookingData | bookingSearchBar: bookingSearchBar)?.length === 0">
       <td style="width: 100%; font-size: 16px; ">
         Não existem dados correspondentes
       </td>
-    </div> -->
+    </div>
 
   </tbody>
 </table>

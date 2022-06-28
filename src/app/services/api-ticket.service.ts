@@ -30,7 +30,6 @@ export class ApiTicketService {
     }))
   }
 
-  //Update Location
   updateTicket(data: any, id: number){
     return this.http.put<any>(`${environment.api}/tickets/` + id, data, { withCredentials: true }).pipe(map((res:any) =>{
       return res;

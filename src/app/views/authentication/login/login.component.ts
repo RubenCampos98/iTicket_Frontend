@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
           this.userSubject?.next(this.user);
           resolve(this.user!);
           this.toastr.success("Bem vindo!")
-          console.log('Email: ', this.email, ', Password: ', this.password)
           this.router.navigate(['home']);
         },
         error: err => {
@@ -54,7 +53,7 @@ export class LoginComponent implements OnInit {
           this.userSubject?.next(this.user);
           reject(err);
           console.log(err.error.message);
-          this.toastr.error("Não foi possível iniciar sessão. Tente novamente.")
+          this.toastr.error("Email ou password inválidos. Tente novamente.")
         }
       });
     });

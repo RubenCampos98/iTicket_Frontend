@@ -1,7 +1,7 @@
 <div class="top-table">
   <input [(ngModel)]="bookingScheduleSearchBar" class="form-control mt-2 mb-2 shadow-none" type="text" 
   placeholder="Pesquisar..." ngDefaultControl> 
-  <button class="btn mt-2 mb-2 btn-primary">Adicionar</button>
+  <button (click)="openCreateBookingScheduleModal()" class="btn mt-2 mb-2 btn-primary">Adicionar</button>
 </div>
 <table class="table table-hover">
   <thead>
@@ -19,9 +19,9 @@
       <td style="width: 15%;">{{ data['hour'] | date:'HH:mm'  }}</td>
       
       <td style="width: 10%;">
-        <img src="../../../assets/icons/edit.svg"/>
-        <img style="margin-left: 25%;" 
-        src="../../../assets/icons/trash.svg"/>
+        <img (click)="openEditBookingScheduleModal(data['id'], data['hour'], data['service_available_day_id'], data['service_available_day'])" 
+        src="../../../assets/icons/edit.svg"/>
+        <img (click)="openDeleteModal(data['id']);" style="margin-left: 25%;" src="../../../assets/icons/trash.svg"/>
       </td>
     </tr>
     <tr class="mat-row" *matNoDataRow>
@@ -55,3 +55,8 @@
     <ng-template ngbPaginationEllipsis>...</ng-template>
   </ngb-pagination>
 </div>
+
+<app-edit-booking-schedule #editBookingSchedule></app-edit-booking-schedule>
+<app-create-booking-schedule #createBookingSchedule></app-create-booking-schedule>
+<app-delete-modal #deleteModal></app-delete-modal>
+<app-warning #warningModal></app-warning>

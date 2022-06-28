@@ -1,1 +1,27 @@
-<p>edit-booking-schedule works!</p>
+<ng-template #editBookingSchedule>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Adicionar Local</h5>
+    <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="availableDatesForms" class="row g-3">
+      <div class="col-md-6">
+        <label for="recipient-name" class="col-form-label">Serviço</label><a class="mandatoryField">  *</a>
+        <input formControlName="service_available_day.service" type="text" class="form-control form-control-lg notransition shadow-none"
+        id="address">
+      </div>
+      <div class="col-md-6">
+        <label for="recipient-name" class="col-form-label">Data</label><a class="mandatoryField">  *</a>
+        <input formControlName="service_available_day_id" type="text" class="form-control form-control-lg notransition shadow-none">
+      </div> 
+      <div class="col-md-6">
+        <label for="recipient-name" class="col-form-label">Hora</label><a class="mandatoryField">  *</a>
+        <input formControlName="hour" type="text" class="form-control form-control-lg notransition shadow-none">
+      </div> 
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a (click)="closeModal()"> Cancelar </a>
+    <button type="button" class="btn mt-2 mb-2 btn-primary">Adicionar</button>
+  </div>
+</ng-template>

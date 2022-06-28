@@ -23,8 +23,7 @@ export class RecoverPasswordComponent implements OnInit {
     private toastr: ToastrService
   ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   resetPassword(){
     this.api_resetPass.resetPassword(this.resetPassForm.value['email']).subscribe(res => {

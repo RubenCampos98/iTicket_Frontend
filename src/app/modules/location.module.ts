@@ -10,6 +10,6 @@ import { CommonModule } from '@angular/common';
 export class LocationModule {   
   id
   address
-  status
   notes
+  status
 }

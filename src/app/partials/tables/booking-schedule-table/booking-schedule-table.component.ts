@@ -1,7 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Time } from '@angular/common';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ApiServiceAvailableDayService } from 'src/app/services/api-service-available-day.service';
 import { ApiServiceAvailableHourService } from 'src/app/services/api-service-available-hour.service';
 import { ApiServiceService } from 'src/app/services/api-service.service';
+import { LoginService } from 'src/app/services/login.service';
+import { CreateBookingScheduleComponent } from '../../modals/create/create-booking-schedule/create-booking-schedule.component';
+import { DeleteModalComponent } from '../../modals/delete/delete.component';
+import { EditBookingScheduleComponent } from '../../modals/edit/edit-booking-schedule/edit-booking-schedule.component';
+import { WarningComponent } from '../../modals/warning/warning.component';
 
 @Component({
   selector: 'app-booking-schedule-table',
@@ -9,6 +16,12 @@ import { ApiServiceService } from 'src/app/services/api-service.service';
   styleUrls: ['./booking-schedule-table.component.scss']
 })
 export class BookingScheduleTableComponent implements OnInit {
+
+  @ViewChild('createBookingSchedule') private createBookingSchedule!: CreateBookingScheduleComponent
+  @ViewChild('editBookingSchedule') private editBookingSchedule!: EditBookingScheduleComponent
+  @ViewChild('deleteModal') private deleteModal!: DeleteModalComponent
+  @ViewChild('warningModal') private warningModal!: WarningComponent
+
 
   allAvailableDays
   allAvailableHours
@@ -21,11 +34,18 @@ export class BookingScheduleTableComponent implements OnInit {
   pageSize = 5
   BookingSchedulePagination: Location[]
 
+  sessionData
+
   constructor(
     private api_service: ApiServiceService,
     private api_availableDay: ApiServiceAvailableDayService,
     private api_availableHour: ApiServiceAvailableHourService,
-  ) {}
+    private api_session: LoginService,
+    config: NgbModalConfig
+  ) { 
+    config.backdrop = 'static';
+    config.keyboard = false;
+  }
 
   ngOnInit(): void {
     this.getAvailableDays()
@@ -64,6 +84,33 @@ export class BookingScheduleTableComponent implements OnInit {
     var requestedDate = new Date(new Date(dt).setDate(dt.getDate() - lessDays));
     requestedDate.setDate(requestedDate.getDate()+date)
     return requestedDate
+  }
+
+  openCreateBookingScheduleModal(){
+    this.createBookingSchedule.open()
+  }
+
+  openEditBookingScheduleModal(id: number, hour: Time, service_available_day_id: number, service_available_day: any) {
+    console.log(id, service_available_day_id)
+    this.editBookingSchedule.open(id, hour, service_available_day_id, service_available_day);
+  }
+
+  openDeleteModal(id: number){
+    if(this.sessionData?.admin != true){
+      this.warningModal.open()
+    }else{
+      this.deleteModal.open('Tem a certeza de que pretende apagar este registo?', () => {
+        /* this.api_location.deleteLocation(id).subscribe(res => {
+          window.location.reload()
+        }) */
+      });
+    }
+  }
+
+  getSessionData(){
+    this.api_session.getSession().subscribe((res) => {
+      this.sessionData = res;
+    })
   }
 
 }

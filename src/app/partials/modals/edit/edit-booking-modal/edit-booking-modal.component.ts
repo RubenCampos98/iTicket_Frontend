@@ -36,16 +36,7 @@ export class EditBookingModalComponent implements OnInit {
     config.keyboard = false; 
   }
 
-  ngOnInit(): void {
-    this.bookingForm = this.formBuilder.group({
-      name: [''],
-      email:[''],
-      start_time:[''],
-      priority:[''],
-      status:[''],
-      notes: ['']
-    })
-  }
+  ngOnInit(): void {}
 
   checkClicked(val){
     if(val){
@@ -57,10 +48,7 @@ export class EditBookingModalComponent implements OnInit {
   }
 
   updateBooking(){
-    this.bookingModule.name = this.bookingForm.value.name;
     this.bookingModule.notes = this.bookingForm.value.notes;
-    this.bookingModule.status = this.bookingForm.value.status;
-    console.log(this.bookingForm)
     this.api_booking.updateBooking(this.bookingModule, this.bookingModule.id).subscribe(res => {
       let ref = document.getElementById('clear')
       ref?.click()
@@ -69,8 +57,6 @@ export class EditBookingModalComponent implements OnInit {
     },
     err => {
       console.log('Deu erro')
-      this.user_errors = err.error.errors
-      console.log(this.user_errors)
     })
   }
 

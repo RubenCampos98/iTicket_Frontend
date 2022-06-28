@@ -52,6 +52,9 @@ export class BookingPage2Component implements OnInit {
 
   emailFormControl 
 
+  horaSchedule
+  dataSchedule
+
   constructor(
     private _formBuilder: FormBuilder,
     private api_location: ApiLocationService,
@@ -184,12 +187,22 @@ export class BookingPage2Component implements OnInit {
   }
 
   onMouseClick(e: MouseEvent) {
-    this.bookingFormGroup.patchValue({start_time: e.target['outerText']})
+    //this.bookingFormGroup.patchValue({start_time: e.target['outerText']})
+    console.log(e)
     //console.log('Hora na div: ', e.target['outerText'])
     //console.log('Hora selecionada: ', e['path'][0]);
     //this.bookingFormGroup.value.start_time = e.target['outerText'];
     //console.log(this.bookingModule.start_time)
     //console.log(PointerEvent);
+  }
+
+  onMouseClickTudo(e: MouseEvent) {
+    this.bookingFormGroup.patchValue({start_time: e['path'][3]['innerText']})
+    this.horaSchedule = e['path'][0]['innerText']
+    this.dataSchedule = e['path'][3]['childNodes'][0]['innerText']
+    console.log('Module: ', e['path'][3]['innerText'])
+    console.log('Hora: ', e['path'][0]['innerText'])
+    console.log('Data: ', e['path'][3]['childNodes'][0]['innerText'])
   }
 
 }

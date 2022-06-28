@@ -8,13 +8,32 @@
   margin-bottom: 75px;
 }
 
-h2{
-  position: absolute;
+h1{
   font-family: 'Poppins';
   font-style: normal;
-  font-weight: 600;
-  font-size: 30px;
-  line-height: 45px;
+  font-weight: 900;
+  font-size: 18px;
+  line-height: 27px;
+  display: flex;
+  align-items: center;
+  color: #004B92;
+}
+
+h2{
+  font-family: 'Poppins';
+  font-style: normal ;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+  color: #004B92;
+}    
+
+h2 a{
+  text-decoration: none;
+}
+
+hr{
+  width: 40%;
   color: #004B92;
 }
 
@@ -92,7 +111,7 @@ h2{
   }
 
   .ticket p{
-    border: 0px solid red;
+    border: 1px solid red;
     padding-top: 15%;
   }
 
@@ -172,6 +191,7 @@ button{
   background: #1193F2;
   border: 1px solid #1193F2;
   margin-right: 20px;
+  margin-top: 55px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
   border-radius: 40px;
 }

@@ -13,6 +13,7 @@ export class UserModule {
   email
   password
   passwordconfirmation
+  token
   phone
   admin
   address

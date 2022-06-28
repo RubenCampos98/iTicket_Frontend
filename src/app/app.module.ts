@@ -30,7 +30,8 @@ import { UpdatePasswordComponent } from './views/authentication/update-password/
 import { ProfileComponent } from './views/profile/profile.component';
 import { BookingComponent } from './views/booking/booking.component';
 
-import { SearchBarPipe } from './views/settings/pipes/Service_search-bar.pipe';
+import { SearchBarPipe } from './partials/tables/service-table/pipes/Service_search-bar.pipe';
+import { LocationSearchBarPipe } from './partials/tables/location-table/pipes/location-search-bar.pipe';
 
 import { NavbarComponent } from './partials/navbar/navbar.component';
 import { DeleteModalComponent } from './partials/modals/delete/delete.component';
@@ -61,7 +62,7 @@ import { BookingScheduleTableComponent } from './partials/tables/booking-schedul
 import { CreateBookingScheduleComponent } from './partials/modals/create/create-booking-schedule/create-booking-schedule.component';
 import { EditBookingScheduleComponent } from './partials/modals/edit/edit-booking-schedule/edit-booking-schedule.component';
 import { BookingConfirmationComponent } from './views/booking-confirmation/booking-confirmation.component';
-
+import { BookingSearchBarPipe } from './partials/tables/booking-table/pipes/booking-search-bar.pipe';
 
 
 @NgModule({
@@ -101,7 +102,9 @@ import { BookingConfirmationComponent } from './views/booking-confirmation/booki
     BookingScheduleTableComponent,
     CreateBookingScheduleComponent,
     EditBookingScheduleComponent,
-    BookingConfirmationComponent
+    BookingConfirmationComponent,
+    LocationSearchBarPipe,
+    BookingSearchBarPipe
   ],
   imports: [
     CommonModule,

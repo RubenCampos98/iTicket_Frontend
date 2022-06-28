@@ -41,7 +41,8 @@ export class LoginService {
     }))
   }
 
-  updatePassword(data: any){
+  updatePassword(data: any,){
+    console.log(data)
     return this.http.post<any>(`${environment.api}/update_password`, data).pipe(map((res: any) =>{
       return res;
     }))

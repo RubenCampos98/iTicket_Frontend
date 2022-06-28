@@ -116,35 +116,4 @@ export class ServiceTableComponent implements OnInit {
     }
   }
 
-  day1(){
-    const tomorrow1 = new Date(this.today)
-    tomorrow1.setDate(new Date().getDate() + 1)
-    return tomorrow1
-  }
-  day2(){
-    const tomorrow2 = new Date(this.today)
-    tomorrow2.setDate(new Date().getDate() + 2)
-    return tomorrow2
-  }
-  day3(){
-    const tomorrow3 = new Date(this.today)
-    tomorrow3.setDate(new Date().getDate() + 3)
-    return tomorrow3
-  }
-  day4(){
-    const tomorrow4 = new Date(this.today)
-    tomorrow4.setDate(new Date().getDate() + 4)
-    return tomorrow4
-  }
-  day5(){
-    const tomorrow5 = new Date(this.today)
-    tomorrow5.setDate(new Date().getDate() + 5)
-    return tomorrow5
-  }
-  day6(){
-    const tomorrow6 = new Date(this.today)
-    tomorrow6.setDate(new Date().getDate() + 6)
-    return tomorrow6
-  }
-
 }

@@ -1,7 +1,7 @@
 <div class="top-table">
   <input [(ngModel)]="serviceSearchBar" class="form-control mt-2 mb-2 shadow-none" type="text" 
   placeholder="Pesquisar..." ngDefaultControl> 
-  <button class="btn mt-2 mb-2 btn-primary" (click)="openCreateServiceModal()">Adicionar</button>
+  <button (click)="openCreateServiceModal()" class="btn mt-2 mb-2 btn-primary">Adicionar</button>
 </div>
 <table class="table table-hover">
   <thead>
@@ -12,48 +12,6 @@
       <th scope="col"></th>
     </tr>
   </thead>
-<!--   <tbody>
-    <tr *ngFor="let data of allAvailableHours | slice: (page-1) * pageSize : page * pageSize | searchBar: serviceSearchBar">
-      <td style="width: 15%;">{{ data['service_available_day']['service'].name }}</td>
-
-      <td style="width: 25%;" *ngIf="data['service_available_day'].day == 1">{{ today | date:'dd MMMM yyyy' }}</td>
-      <td style="width: 25%;" *ngIf="data['service_available_day'].day == 2">{{ day1() | date:'dd MMMM yyyy' }}</td>
-      <td style="width: 25%;" *ngIf="data['service_available_day'].day == 3">{{ day2() | date:'dd MMMM yyyy' }}</td>
-      <td style="width: 25%;" *ngIf="data['service_available_day'].day == 4">{{ day3() | date:'dd MMMM yyyy' }}</td>
-      <td style="width: 25%;" *ngIf="data['service_available_day'].day == 5">{{ day4() | date:'dd MMMM yyyy' }}</td>
-      <td style="width: 25%;" *ngIf="data['service_available_day'].day == 6">{{ day5() | date:'dd MMMM yyyy' }}</td>
-      <td style="width: 25%;" *ngIf="data['service_available_day'].day == 7">{{ day6() | date:'dd MMMM yyyy' }}</td>
-
-      <td style="width: 25%;">{{ data['service_available_day']['service'].notes }}</td>
-      <td *ngIf="data['status']" style="width: 25%;">
-        <div class="form-check form-switch">
-          <input *ngIf="data['service_available_day']['service'].status == 'active'" class="form-check-input" type="checkbox" checked>
-          <input *ngIf="data['service_available_day']['service'].status == 'inactive'" class="form-check-input" type="checkbox">
-          <label class="form-check-label" for="flexSwitchCheckDefault">
-            <p *ngIf="data['service_available_day']['service'].status == 'active'" ngDefaultControl>Ativo</p>
-            <p *ngIf="data['service_available_day']['service'].status == 'inactive'" ngDefaultControl>Inativo</p>
-          </label>
-        </div>
-      </td>
-      <td *ngIf="!data['service_available_day']['service'].status" style="width: 25%;"></td>
-      <td style="width: 10%;">
-        <img (click)="openServiceEditModal(data['id'], data['name'], data['notes'], data['status'] =='active')" 
-          src="../../../assets/icons/edit.svg"/>
-        <img (click)="openDeleteModal(data['id'])" style="margin-left: 25%;" 
-        src="../../../assets/icons/trash.svg"/>
-      </td>
-    </tr>
-    <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" [attr.colspan]="allServiceData.length">
-        Sem informação a apresentar
-      </td>
-    </tr>
-    <div *ngIf="(allServiceData | searchBar: serviceSearchBar)?.length == 0">
-      <td style="width: 100%; font-size: 16px; ">
-        Não existem dados correspondentes
-      </td>
-    </div>
-  </tbody> -->
   <tbody>
     <tr *ngFor="let data of allServiceData | slice: (page-1) * pageSize : page * pageSize | searchBar: serviceSearchBar">
       <td style="width: 30%;">{{ data['name'] }}</td>

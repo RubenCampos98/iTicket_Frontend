@@ -2,15 +2,15 @@
 
 <div class="container">
   <div *ngFor="let queue of allWaitingListBookingData" class="row row-cols-2 row-cols-lg-3 mt-5">
-    <div class="col-lg-3 mb-3 queuesName">
+    <div class="queuesName col-lg-4 offset-lg-1 mb-3" style="border: 1px solid blue;">
       <h1>{{ queue.service.name }}</h1>
     </div>
     <div class="col-lg-10 offset-md-1 offset-3 senha overflow-auto">
         
-        <div class="col-12 col-lg-1 ticket mt-2">
+        <div class="col-3 col-sm-3 col-lg-1 offset-lg-0 offset-sm-1 offset-1 mt-2 ticket" style="border: 1px solid blue;">
           <img src="../../../assets/icons/senha_2.svg">
         </div>  
-        <div class="col-12 col-lg-3 offset-md-1 mt-3 serviceInfo">
+        <div class="col-3 col-sm-3 col-lg-2 offset-lg-0 offset-sm-1 offset-1 mt-3 serviceInfo" style="border: 1px solid red;">
           <div class="serviceName">
             {{ queue.name }}
           </div>
@@ -18,10 +18,9 @@
             {{ queue.name }}
           </div>
         </div>
-        <div class="col-12 col-lg-1 offset-md-5 mt-4 ticketButton">
+        <div class="col-12 col-sm-1 col-lg-1 offset-lg-6 offset-md-5 offset-sm-1 mt-4 ticketButton">
           <button class="btn btn-primary btn-lg">Tirar Senha</button>
         </div> 
-
     </div>
     <div class="end_line mt-5"></div> 
   </div>

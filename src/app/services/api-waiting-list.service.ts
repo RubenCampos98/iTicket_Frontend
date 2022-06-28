@@ -30,6 +30,12 @@ export class ApiWaitingListService {
     }))
   }
 
+  updateWaitingList(data: any, id: number){
+    return this.http.put<any>(`${environment.api}/waiting_lists/` + id, data, { withCredentials: true }).pipe(map((res:any) =>{
+      return res;
+    }))
+  }
+
   deleteWaitingLists(id: number){
     return this.http.delete<any>(`${environment.api}/waiting_lists/` + id, { withCredentials: true }).pipe(map((res:any) =>{
       return res;

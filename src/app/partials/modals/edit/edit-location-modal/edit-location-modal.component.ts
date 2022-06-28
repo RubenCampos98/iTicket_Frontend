@@ -35,12 +35,7 @@ export class EditLocationModalComponent implements OnInit {
     config.keyboard = false; 
   }
 
-  ngOnInit(): void {
-    this.locationForm = this.formBuilder.group({
-      address: [''],
-      notes: [''],
-      status:['']
-    })}
+  ngOnInit(): void {}
 
   updateLocation(){
     this.locationModule.address = this.locationForm.value.address

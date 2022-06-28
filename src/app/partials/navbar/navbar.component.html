@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-md">
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
     </div>
-      <div class="mx-auto order-0">
+      <div class="mx-auto order-0" style="border: 0px solid black;">
         <a class="navbar-brand" (click)="WhereToGo()">
           <img src="../assets/images/iTicket_logo.svg">
         </a>
@@ -31,10 +31,6 @@
               <li routerLink="/perfil">
                 <img src="../../../assets/icons/profile.svg">
                 <a class="dropdown-item">Perfil</a>
-              </li>
-              <li>
-                <img src="../../../assets/icons/sessions.svg">
-                <a class="dropdown-item">Sessões</a>
               </li>
               <li><hr class="dropdown-divider"></li>
               <li (click)="Logout(this.sessionData.id)">

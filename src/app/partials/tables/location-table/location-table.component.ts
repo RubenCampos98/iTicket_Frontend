@@ -1,10 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+
 import { ApiLocationService } from 'src/app/services/api-location.service';
 import { LoginService } from 'src/app/services/login.service';
+
 import { CreateLocationComponent } from '../../modals/create/create-location/create-location.component';
 import { DeleteModalComponent } from '../../modals/delete/delete.component';
-
 import { EditLocationModalComponent } from '../../modals/edit/edit-location-modal/edit-location-modal.component';
 import { WarningComponent } from '../../modals/warning/warning.component';
 
@@ -23,6 +24,9 @@ export class LocationTableComponent implements OnInit {
   allLocationData
   locationSearchBar
   sessionData
+
+  address
+  notes
 
   page = 1
   pageSize = 5
