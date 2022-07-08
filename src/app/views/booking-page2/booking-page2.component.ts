@@ -145,7 +145,7 @@ export class BookingPage2Component implements OnInit {
 
     this.bookingModule.service_id = this.bookingFormGroup.value.service_id;
 
-/*     this.api_booking.createBooking(this.bookingModule).subscribe(res => {
+    this.api_booking.createBooking(this.bookingModule).subscribe(res => {
       let ref = document.getElementById('clear')
       ref?.click()
       this.bookingFormGroup.reset()
@@ -156,7 +156,7 @@ export class BookingPage2Component implements OnInit {
       console.log('Deu erro')
       this.booking_errors = err.error.errors
       console.log(this.booking_errors)
-    }) */
+    })
   }
 
   openFinishBookingModal(){
