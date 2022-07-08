@@ -1,7 +1,7 @@
 import { Time } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 import { BookingModule } from 'src/app/modules/booking.module';
@@ -35,11 +35,14 @@ export class BookingPage2Component implements OnInit {
 
   allLocationData
   allServiceData
-  
+
   isEditable = true;
   checked = false
 
   booking_errors
+
+  bookingAddress
+  bookingService
 
   allAvailableDays
   allAvailableHours
@@ -89,6 +92,7 @@ export class BookingPage2Component implements OnInit {
   getLocationData(){
     this.api_location.getLocation().subscribe(res => {
       this.allLocationData = res['data'];
+      console.log(this.allLocationData)
     })
   } 
 
@@ -114,6 +118,21 @@ export class BookingPage2Component implements OnInit {
     return this.allAvailableHours.filter(h => h.service_available_day.id == day.id)
   }
 
+  locationAddress(){
+    for(let a = 0; this.allLocationData[a]; a++){
+      if(this.bookingFormGroup.value.location_id == this.allLocationData[a].id){
+        this.bookingAddress = this.allLocationData[a].address
+        console.log(this.bookingAddress)
+      }
+    }
+    for(let b = 0; this.allServiceData[b]; b++){
+      if(this.bookingFormGroup.value.service_id == this.allServiceData[b].id){
+        this.bookingService = this.allServiceData[b].name
+        console.log(this.bookingService)
+      }
+    }
+  }
+
   addBooking(){
     this.bookingModule.name = this.bookingFormGroup.value.name;
     this.bookingModule.email = this.bookingFormGroup.value.email;
@@ -123,8 +142,10 @@ export class BookingPage2Component implements OnInit {
     this.bookingModule.priority = this.bookingFormGroup.value.priority;
     this.bookingModule.notes = this.bookingFormGroup.value.notes;
     this.bookingModule.location_id = this.bookingFormGroup.value.location_id;
+
     this.bookingModule.service_id = this.bookingFormGroup.value.service_id;
-    this.api_booking.createBooking(this.bookingModule).subscribe(res => {
+
+/*     this.api_booking.createBooking(this.bookingModule).subscribe(res => {
       let ref = document.getElementById('clear')
       ref?.click()
       this.bookingFormGroup.reset()
@@ -135,7 +156,7 @@ export class BookingPage2Component implements OnInit {
       console.log('Deu erro')
       this.booking_errors = err.error.errors
       console.log(this.booking_errors)
-    })
+    }) */
   }
 
   openFinishBookingModal(){

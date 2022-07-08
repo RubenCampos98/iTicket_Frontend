@@ -131,7 +131,8 @@ export class HomeComponent implements OnInit {
 
   getTicket_QueueData(){
     this.api_ticket.getTicket_Queues().subscribe(res => {
-      this.allTicketQueueData = res['data'];      
+      this.allTicketQueueData = res['data'];
+    console.log(this.allTicketQueueData)      
     })
   }
 

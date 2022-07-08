@@ -1,0 +1,32 @@
+<ng-template #createdTicket>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Dados Senha</h5>    
+    <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="createdTicketForm" class="row g-3">
+      <div class="col-md-2">
+        <label for="recipient-name" class="col-form-label">Numero</label>
+        <input formControlName="number" type="text" class="form-control form-control-lg notransition shadow-none"
+        id="name" readonly>
+      </div>
+      <div class="col-md-5">
+        <label for="recipient-name" class="col-form-label">Fila</label>
+        <input formControlName="waiting_list_name" type="text" class="form-control form-control-lg notransition shadow-none"
+        id="name" readonly>
+      </div>
+      <div class="col-md-5">
+        <label for="recipient-name" class="col-form-label">Serviço</label>
+        <input formControlName="waiting_list_service" type="text" class="form-control form-control-lg notransition shadow-none"
+        id="name" readonly>
+      </div>
+      <div class="col-md-12 mt-4">
+        <label for="recipient-name" class="col-form-label">Introduza o seu email para receber a senha</label>
+        <input formControlName="name" type="email" class="form-control form-control-lg">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button (click)="createTicket()" type="button" class="btn mt-2 mb-2 btn-primary">Confirmar</button>
+  </div>
+</ng-template>

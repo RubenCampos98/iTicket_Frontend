@@ -30,6 +30,18 @@ export class ApiTicketService {
     }))
   }
 
+  getCurrentDayTickets(){
+    return this.http.get<any>(`${environment.api}/tickets/100/countTicketsTodayOrderByWL/99`, { withCredentials: true }).pipe(map((res:any) =>{
+      return res;
+    }))
+  }
+
+  createTicket(data: any){
+    return this.http.post<any>(`${environment.api}/tickets`, data, { withCredentials: true }).pipe(map((res: any) =>{
+      return res;
+    }))
+  }
+
   updateTicket(data: any, id: number){
     return this.http.put<any>(`${environment.api}/tickets/` + id, data, { withCredentials: true }).pipe(map((res:any) =>{
       return res;

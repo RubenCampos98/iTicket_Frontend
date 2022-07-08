@@ -63,6 +63,7 @@ import { CreateBookingScheduleComponent } from './partials/modals/create/create-
 import { EditBookingScheduleComponent } from './partials/modals/edit/edit-booking-schedule/edit-booking-schedule.component';
 import { BookingConfirmationComponent } from './views/booking-confirmation/booking-confirmation.component';
 import { BookingSearchBarPipe } from './partials/tables/booking-table/pipes/booking-search-bar.pipe';
+import { CreatedTicketComponent } from './partials/modals/create/created-ticket/created-ticket.component';
 
 
 @NgModule({
@@ -104,7 +105,8 @@ import { BookingSearchBarPipe } from './partials/tables/booking-table/pipes/book
     EditBookingScheduleComponent,
     BookingConfirmationComponent,
     LocationSearchBarPipe,
-    BookingSearchBarPipe
+    BookingSearchBarPipe,
+    CreatedTicketComponent
   ],
   imports: [
     CommonModule,

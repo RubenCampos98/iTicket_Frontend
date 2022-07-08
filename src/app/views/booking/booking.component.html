@@ -4,6 +4,8 @@
   <div *ngFor="let queue of allWaitingListBookingData" class="row row-cols-2 row-cols-lg-3 mt-5">
     <div class="queuesName col-lg-4 offset-lg-1 mb-3" style="border: 1px solid blue;">
       <h1>{{ queue.service.name }}</h1>
+      <h1 class="id">{{ queue.service.id }}</h1>
+      <h1 class="idd">{{ queue.id }}</h1>
     </div>
     <div class="col-lg-10 offset-md-1 offset-3 senha overflow-auto">
         
@@ -19,7 +21,7 @@
           </div>
         </div>
         <div class="col-12 col-sm-1 col-lg-1 offset-lg-6 offset-md-5 offset-sm-1 mt-4 ticketButton">
-          <button class="btn btn-primary btn-lg">Tirar Senha</button>
+          <button class="btn btn-primary btn-lg" (click)="onMouseClick($event); createTicket(); openCreatedTicket(this.newNumber, this.queue)">Tirar Senha</button>
         </div> 
     </div>
     <div class="end_line mt-5"></div> 
@@ -30,9 +32,11 @@
   <div class="row">
     <div class="col-12 col-lg-12">
       <div class="btnFooter">
-        <button (click)="booking_step2()" class="btn btn-primary btn-lg btnBooking">Agendar</button>
+        <button routerLink="/agendar" class="btn btn-primary btn-lg btnBooking">Agendar</button>
       </div>  
     </div>
   </div>
 </div>
+
+<app-created-ticket #createdTicket></app-created-ticket>
 

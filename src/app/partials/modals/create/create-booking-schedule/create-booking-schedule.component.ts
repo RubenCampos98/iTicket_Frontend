@@ -21,6 +21,7 @@ export class CreateBookingScheduleComponent implements OnInit {
   @ViewChild('createBookingSchedule') private createBookingSchedule!: CreateBookingScheduleComponent
 
   allServiceData
+  allAvailableDaysData
 
   availableDaysModule : ServiceAvailableDayModule = new ServiceAvailableDayModule
   availableHoursModule : ServiceAvailableHourModule =  new ServiceAvailableHourModule
@@ -44,6 +45,7 @@ export class CreateBookingScheduleComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.todaysDate)
     this.getServiceData()
+    this.getAvailableDays()
     this.bookingScheduleForm = this.formBuilder.group({
       service_id: [''],
       day: [''],
@@ -73,6 +75,33 @@ export class CreateBookingScheduleComponent implements OnInit {
     this.api_service.getService().subscribe(res => {
       this.allServiceData = res['data']; 
     })
+  }
+
+  getAvailableDays(){
+    this.api_availableDays.getServiceAvailableDay().subscribe(res => {
+      this.allAvailableDaysData = res['data']; 
+    })
+  }
+
+  getday(date: number){
+    var dt = new Date(); // current date of week
+    var currentWeekDay = dt.getDay();
+    var lessDays = currentWeekDay == 0 ? 6 : currentWeekDay - 1;
+    var requestedDate = new Date(new Date(dt).setDate(dt.getDate() - lessDays));
+    requestedDate.setDate(requestedDate.getDate()+date)
+    console.log(requestedDate) 
+    return requestedDate
+  }
+
+  changeTicket(event: any, classOne: string, classTwo: string){
+    const haveClass = event.target.classList.contains(classOne)
+    if(haveClass){
+      event.target.classList.remove(classOne)
+      event.target.classList.add(classTwo)
+    }else{
+      event.target.classList.remove(classTwo)
+      event.target.classList.add(classOne)
+    }
   }
 
   open(){

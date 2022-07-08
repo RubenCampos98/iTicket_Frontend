@@ -8,7 +8,7 @@
 <mat-stepper linear #stepper>
   <form [formGroup]="bookingFormGroup">
     <mat-step [stepControl]="bookingFormGroup" [editable]="isEditable">
-      <ng-template matStepLabel>Escolha o local</ng-template>
+      <ng-template matStepLabel><h2 class="mt-2">Escolha o local</h2></ng-template>
       <mat-form-field appearance="outline" class="col-12 col-lg-6 offset-lg-3">
         <mat-label>Local</mat-label>
         <mat-select formControlName="location_id" >
@@ -21,7 +21,7 @@
     </mat-step>
 
     <mat-step [stepControl]="bookingFormGroup" [editable]="isEditable">
-      <ng-template matStepLabel>Escolha o serviço</ng-template>
+      <ng-template matStepLabel><h2 class="mt-2">Escolha o serviço</h2></ng-template>
       <mat-form-field appearance="outline" class="col-12 col-lg-6 offset-lg-3">
         <mat-label>Serviço</mat-label>
         <mat-select formControlName="service_id" >
@@ -53,7 +53,7 @@
     </mat-step>
 
     <mat-step [stepControl]="bookingFormGroup" [editable]="isEditable">
-      <ng-template matStepLabel>Escolha um horario</ng-template>
+      <ng-template matStepLabel><h2 class="mt-2">Escolha um horario</h2></ng-template>
       <input matInput formControlName="start_time" hidden="true">
       <div *ngFor="let day of allAvailableDays" class="col-10 col-md-10 col-lg-6 offset-1 offset-lg-3 horario mt-5"
       style="border: 1px solid blue;" (click)="onMouseClickTudo($event)">
@@ -72,7 +72,7 @@
     </mat-step>
 
     <mat-step [stepControl]="bookingFormGroup" [editable]="isEditable">
-      <ng-template matStepLabel>Dados pessoais</ng-template>
+      <ng-template matStepLabel><h2 class="mt-2">Dados pessoais</h2></ng-template>
       <mat-form-field appearance="outline" class="col-12 col-lg-6 offset-lg-3">
         <mat-label>Nome</mat-label>
         <input matInput formControlName="name">
@@ -91,20 +91,21 @@
       </mat-form-field>
       <div class="col-lg-6 offset-lg-3">
         <button mat-button matStepperPrevious>Anterior</button>
-        <button mat-button matStepperNext>Seguinte</button>
+        <button mat-button matStepperNext (click)="locationAddress()">Seguinte</button>
         <button mat-button (click)="viewData()" >Console.log formData</button>
       </div>
     </mat-step>
-
     <mat-step>
-      <ng-template matStepLabel>Concluir</ng-template>
+      <ng-template matStepLabel>
+        <h2 class="mt-2" (click)="locationAddress()">Concluir</h2>
+      </ng-template>
       <h1 class="mt-5">Resumo</h1>
       <h2 class="mt-3 col-12">Local: 
-        <a class="" style="color: #1193F2;">{{ allLocationData.address }}</a>
+        <a class="" style="color: #1193F2;">{{ bookingAddress }}</a>
       </h2>
       <hr>
       <h2>Serviço: 
-        <a style="color: #1193F2;">{{ bookingFormGroup.value.service_id }}</a>
+        <a style="color: #1193F2;">{{ bookingService }}</a>
       </h2>
       <hr>
 

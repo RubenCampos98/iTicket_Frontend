@@ -14,7 +14,18 @@
       </div>
       <div class="col-md-6">
         <label for="recipient-name" class="col-form-label">Data</label><a class="mandatoryField">  *</a>
-        <input formControlName="day" type="date"  min=this.todaysDate class="form-control form-control-lg notransition shadow-none">
+        <select formControlName="service_id" class="form-select form-select-lg notransition shadow-none" id="inputGroupSelect01">
+          <option selected>Escolha uma data</option>
+          <option *ngFor="let day of allAvailableDaysData" [value]="day.id">
+            <a *ngIf="day.day == 0">{{ getday(day.day) | date:'EEEE, dd MMMM yyyy'  }}</a>
+            <a *ngIf="day.day == 1">{{ getday(day.day) | date:'EEEE, dd MMMM yyyy'  }}</a>
+            <a *ngIf="day.day == 2">{{ getday(day.day) | date:'EEEE, dd MMMM yyyy'  }}</a>
+            <a *ngIf="day.day == 3">{{ getday(day.day) | date:'EEEE, dd MMMM yyyy'  }}</a>
+            <a *ngIf="day.day == 4">{{ getday(day.day) | date:'EEEE, dd MMMM yyyy'  }}</a>
+            <a *ngIf="day.day == 5">{{ getday(day.day) | date:'EEEE, dd MMMM yyyy'  }}</a>
+            <a *ngIf="day.day == 6">{{ getday(day.day) | date:'EEEE, dd MMMM yyyy'  }}</a>
+          </option>
+        </select>      
       </div> 
       <div class="col-md-6">
         <label for="recipient-name" class="col-form-label">Hora</label><a class="mandatoryField">  *</a>
