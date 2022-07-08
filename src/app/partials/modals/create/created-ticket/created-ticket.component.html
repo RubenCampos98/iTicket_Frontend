@@ -20,6 +20,23 @@
         <input formControlName="waiting_list_service" type="text" class="form-control form-control-lg notransition shadow-none"
         id="name" readonly>
       </div>
+      <div class="col-md-4">
+        <label for="recipient-name" class="col-form-label">Atendimento</label>
+        <div class="form-check form-switch">
+          <input [checked]="checked" (change) = "checkClicked(checked)" class="form-check-input" type="checkbox" 
+          ngDefaultControl>
+          <label *ngIf="!checked" class="form-check-label" for="flexSwitchCheckDefault">
+            <p ngDefaultControl>Normal</p>
+            <input formControlName="priority" type="hidden" 
+            value="{{ this.createdTicketForm.patchValue({priority: 'normal'}) }}">
+          </label>
+          <label *ngIf="checked" class="form-check-label" for="flexSwitchCheckDefault">
+            <p ngDefaultControl>Prioritário</p>
+            <input formControlName="priority" type="hidden"
+            value="{{ this.createdTicketForm.patchValue({priority: 'priority'}) }}">
+          </label>
+        </div>
+      </div>
       <div class="col-md-12 mt-4">
         <label for="recipient-name" class="col-form-label">Introduza o seu email para receber a senha</label>
         <input formControlName="name" type="email" class="form-control form-control-lg">
@@ -27,6 +44,6 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button (click)="createTicket()" type="button" class="btn mt-2 mb-2 btn-primary">Confirmar</button>
+    <button (click)="createTicket()" type="button" class="btn mt-2 mb-2 btn-primary col-md-4 offset-md-8">Confirmar</button>
   </div>
 </ng-template>

@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit {
 
   allBookingData
   allWaitingListData
+  allTicketsByQueueData
+  allBookingsByQueueData
   allTicketData
   allTicketByIdData
   allTicketQueueData
@@ -53,6 +55,8 @@ export class HomeComponent implements OnInit {
     this.getWaitingListsData()
     this.getTicketData()
     this.getTicket_QueueData()
+    this.getTicketsByQueue()
+    this.getBookingsByQueue()
     this.ticketForm = this.formBuilder.group({
       name: [],
       status: 0,
@@ -76,6 +80,20 @@ export class HomeComponent implements OnInit {
   getWaitingListsData(){
     this.api_waitingList.getWaitingLists().subscribe(res => {
       this.allWaitingListData = res['data'];
+    })
+  }
+
+  getTicketsByQueue(){
+    this.api_waitingList.getTicketsByQueue().subscribe(res => {
+      this.allTicketsByQueueData = res['data'];
+      console.log(this.allTicketsByQueueData)
+    })
+  }
+
+  getBookingsByQueue(){
+    this.api_waitingList.getBookingsByQueue().subscribe(res => {
+      this.allBookingsByQueueData = res['data'];
+      console.log(this.allBookingsByQueueData)
     })
   }
 

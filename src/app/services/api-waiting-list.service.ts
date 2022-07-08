@@ -30,6 +30,18 @@ export class ApiWaitingListService {
     }))
   }
 
+  getTicketsByQueue(){
+    return this.http.get<any>(`${environment.api}/waiting_lists/1/numberOfTicketByQueue`, { withCredentials: true }).pipe(map((res: any) =>{
+      return res;
+    }))
+  }
+
+  getBookingsByQueue(){
+    return this.http.get<any>(`${environment.api}/waiting_lists/1/numberOfBookingsByQueue`, { withCredentials: true }).pipe(map((res: any) =>{
+      return res;
+    }))
+  }
+
   updateWaitingList(data: any, id: number){
     return this.http.put<any>(`${environment.api}/waiting_lists/` + id, data, { withCredentials: true }).pipe(map((res:any) =>{
       return res;

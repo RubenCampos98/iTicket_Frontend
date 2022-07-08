@@ -45,7 +45,6 @@ input{
   border-radius: 40px;
   background: #1193F2;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
-  width: 23%;
   height: 50px;
   font-family: 'Poppins';
   font-style: normal;
@@ -53,6 +52,17 @@ input{
   font-size: 18px;
   text-transform: uppercase;
   line-height: 27px;
+}
+
+.form-check-input:checked {
+  background-color: #ffa600;
+  border-color: #ffa600;
+  box-shadow: none;
+}
+
+.form-check-input{
+  border-color: #A3A3A3;
+  box-shadow: none;
 }
 
 

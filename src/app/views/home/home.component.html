@@ -9,39 +9,45 @@
 
         <div class="queuesBody">
           <div *ngFor="let data of allWaitingListData | slice: 0:1" class="card-header" href="calling">
-            Filas({{ NumberOfQueues }})
+            Filas ({{ NumberOfQueues }})
           </div>
-
-          <div *ngFor="let data of allTicketQueueData | slice: 0:3 " class="card-body text-primary">
-            <div class="ticket">
-              <img src="../../../assets/icons/senha_2.svg">
-              <div class="ticketNum">
-                <p>{{ data['waiting_list'].name | homePipes }} {{ data['number'] | number: '3.0' }}</p>
+          <div class="toScroll">
+            <div *ngFor="let ticket of allTicketQueueData" 
+            class="card-body text-primary">
+              <div class="ticket" (click)="changeTicket($event, 'ticket', 'ticketcalled')">
+                <div class="ticketNum">
+                  <p>{{ ticket['waiting_list']['service'].name | homePipes }} {{ ticket['number'] | number: '3.0' }}</p>
+                </div>
               </div>
+              <div class="ticketInfo">
+                <div class="infoServico">
+                  {{ ticket['waiting_list']['service'].name }}
+                </div>
+                <div class="infoTipoAtendimento" *ngIf="ticket['priority'] == 0 || ticket['priority'] == null">
+                  Atendimento Normal
+                </div>
+                <div class="infoTipoAtendimento" *ngIf="ticket['priority'] == 1">
+                  Atendimento Prioritário
+                </div>
+                <div *ngFor="let ticketNumbers of allTicketsByQueueData">
+                  <div *ngFor="let bookingNumbers of allBookingsByQueueData">
+                    <div class="numTickets" *ngIf="ticketNumbers['name'] == ticket['waiting_list'].name">
+                      <img src="../../../assets/icons/waiting_users.svg">
+                      {{ ticketNumbers['Nº de senhas por fila'] }}
+                    </div>
+                    <div class="numBookings" *ngIf="bookingNumbers['Nome'] == ticket['waiting_list'].name">
+                      <img src="../../../assets/icons/bookings.svg">
+                      {{ bookingNumbers['Nº Total de Agendamentos'] }}
+                    </div>
+                  </div>
+                </div>
+                <button class="rounded-pill btn btn-primary btn-lg" 
+                (click)="getTicketById(ticket['id']); CallingScreen()">
+                  Chamar
+                </button>
+              </div>
+              <hr>
             </div>
-            <div class="ticketInfo">
-              <div class="infoServico">
-                {{ data['waiting_list']['service'].name }}
-              </div>
-              <div class="infoTipoAtendimento" *ngIf="data['priority'] == 0 || data['priority'] == null">
-                Atendimento Normal
-              </div>
-              <div class="infoTipoAtendimento" *ngIf="data['priority'] == 1">
-                Atendimento Prioritário
-              </div>
-              <div class="numTickets">
-                <img src="../../../assets/icons/waiting_users.svg">
-                {{ data['number'] }}
-              </div>
-              <div class="numBookings">
-                <img src="../../../assets/icons/bookings.svg">
-                {{ data['number'] }}
-              </div>
-              <button class="rounded-pill btn btn-primary btn-lg" (click)="getTicketById(data['id']); CallingScreen()">
-                Chamar
-              </button>
-            </div>
-            <hr>
           </div>
         </div>
       <!----------------------------Calling Screen-------------------- ngClass="{'appears': changeToCalling==true}"-------->
@@ -160,7 +166,7 @@
                       <button (click)="data.isHidden = !data.isHidden" class="accordion-button" type="button"
                         data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-controls="collapseOne">
                         <div class="accordionInfo">
-                          <div class="ticket">
+                          <div class="ticketH">
                             <div class="ticketInfo">
                               {{ data.waiting_list.name | homePipes }} {{ data.number | number: '3.0' }}       
                             </div>
@@ -202,7 +208,7 @@
                       <button (click)="data.isHidden = !data.isHidden" class="accordion-button" type="button"
                         data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-controls="collapseOne">
                         <div class="accordionInfo">
-                          <div class="ticket" (click)="changeTicket($event, 'ticket', 'ticket_clicked')">
+                          <div class="ticketH">
                             <div class="ticketInfo">
                               A 001          
                             </div>

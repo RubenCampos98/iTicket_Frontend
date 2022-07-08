@@ -37,6 +37,13 @@
   background-color: #ffffff;
 }
 
+.toScroll{
+  border: 0px solid red;
+  width: 100%;
+  height: 90%;
+  overflow: auto ;
+}
+
 .card-body{
   border: 0px solid gray;
   margin-top: 0%;
@@ -64,46 +71,35 @@
     }
 
   .ticket{
-    position: absolute;
+    position: relative;
+    float: left;
     border: 0px solid green;
     width: 20%;
-    height: 15%;
+    height: 70%;
     color: #1193F2;
     margin-top: 3%;
+    background-image: url("../../../assets/icons/senha_contorno_normal.svg");
+    background-repeat: no-repeat;
   }
 
-    .ticket img{
-      border: 0px solid #F17777;
-      width: 100%;
-    }
-
-    .ticket img:hover{
-      border: 3px solid #F17777;
-      -webkit-transition: .1s ease-in-out;
-      transition: .1s ease-in-out;
-    }
-
-/*   .ticket111 {
-    width:300px;
-    height:200px;
-    border:2px solid;
-    background:
-      radial-gradient(circle 31px at right,#000 95%,#0000),
-      radial-gradient(circle 31px at left ,#000 95%,#0000);
-    background-origin:border-box;
-    -webkit-mask:
-      radial-gradient(circle 29px at right,#0000 95%,#000) right,
-      radial-gradient(circle 29px at left ,#0000 95%,#000) left;
-    -webkit-mask-size:51% 100%;
-    -webkit-mask-repeat:no-repeat;
-  } */
+  .ticketcalled{
+    position: relative;
+    float: left;
+    border: 0px solid green;
+    width: 20%;
+    height: 70%;
+    color: #1193F2;
+    margin-top: 3%;
+    background-image: url("../../../assets/icons/senha_contorno_vermelho_nAtendeu.svg");
+    background-repeat: no-repeat;
+  }
 
     .ticketNum{
       border: 0px solid blue; 
       position: absolute;
       width: 55%;
       height: 30%;
-      top: 40%;
+      top: 25%;
       left: 22%;
       position: absolute;
       margin: auto;
@@ -183,8 +179,8 @@
       text-align: center;
       font-weight: bold;
       text-transform: uppercase;
-      margin-left: 75%;
-      margin-top: 13%;
+      margin-left: 70%;
+      margin-top: 10%;
       width: 25%;
       background-color: #1193F2;
       color: white;
@@ -275,14 +271,16 @@ h6{
   }
 
     .callingBody .ticket{
-      border: 3px solid #1193F2;
-      border-radius: 25px;
-      position: absolute;
+      position: relative;
+      float: left;
+      color: #1193F2;
+      background-image: url("../../../assets/icons/senha_contorno_normal.svg");
+      background-repeat: no-repeat;
+      border: 0px solid #1193F2;
       width: 38%;
       height: 52%;
       margin-top: 11%;
       margin-left: 0%;
-      color: rgba(43, 117, 255, 0.788);
     }
 
     .callingBody .ticketNum{
@@ -430,6 +428,16 @@ h6{
   transform: translateX(-110%);
   background-color: #ffffff;
   //display: hidden;
+}
+
+.ticketH{
+  position: relative;
+  float: left;
+  width: 95px;
+  height: 63px;
+  color: #1193F2;
+  border: 3px solid #D7E6F2;
+  border-radius: 15px;
 }
 
 .attendanceBody .card-header{

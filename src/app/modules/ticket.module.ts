@@ -11,6 +11,7 @@ export class TicketModule {
   id
   number
   name
+  priority
   status
   start_time
   end_time 

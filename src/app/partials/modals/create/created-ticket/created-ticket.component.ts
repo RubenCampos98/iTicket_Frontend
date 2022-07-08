@@ -23,6 +23,8 @@ export class CreatedTicketComponent implements OnInit {
 
   ticketModule :TicketModule = new TicketModule
 
+  checked: boolean = false;
+
   allWaitingListData
 
   constructor(
@@ -43,6 +45,7 @@ export class CreatedTicketComponent implements OnInit {
     this.createdTicketForm = this.formBuilder.group({
       name: [''],
       number: number,
+      priority: [''],
       waiting_list_id: waiting_list_id['id'],
       waiting_list_name: waiting_list_id['name'],
       waiting_list_service: waiting_list_id['service']['name']
@@ -54,6 +57,7 @@ export class CreatedTicketComponent implements OnInit {
     this.ticketModule.number = this.createdTicketForm.value.number
     this.ticketModule.waiting_list_id = this.createdTicketForm.value.waiting_list_id
     this.ticketModule.name = this.createdTicketForm.value.name
+    this.ticketModule.priority = this.createdTicketForm.value.priority
     console.log(this.ticketModule.waiting_list_id)
     this.api_ticket.createTicket(this.ticketModule).subscribe(res => {
       let ref = document.getElementById('clear')
@@ -74,7 +78,16 @@ export class CreatedTicketComponent implements OnInit {
 
   closeModal() {
     this.modalService.dismissAll();
-      window.location.reload()
+      //window.location.reload()
+  }
+
+  checkClicked(val){
+    if(val){
+      this.checked = false;
+    } else{
+      this.checked = true;
+    }
+    console.log(val);
   }
 
 }
