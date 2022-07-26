@@ -1,6 +1,6 @@
 <div class="top-table">
   <input [(ngModel)]="userSearchBar" class="form-control mt-2 mb-2 shadow-none" type="text"
-  placeholder="Pesquisar..." ngDefaultControl> 
+  placeholder="Pesquisar por nome ou email" ngDefaultControl> 
   <button (click)="openUserCreateModal()" class="btn mt-2 mb-2 btn-primary">Adicionar</button>
 </div>
 <table class="table table-hover">
@@ -15,7 +15,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let data of allUserData | slice: (page-1) * pageSize : page * pageSize">
+    <tr *ngFor="let data of allUserData | slice: (page-1) * pageSize : page * pageSize | userSearchBar: userSearchBar">
       <td style="width: 20%;">{{ data['name'] }}</td>
       <td style="width: 20%;">{{ data['email'] }}</td>
       <td style="width: 15%;">{{ data['phone'] }}</td>
@@ -43,11 +43,21 @@
         src="../../../assets/icons/trash.svg">
       </td>
     </tr>
-<!--                   <div *ngIf="(allUserData | searchBar: userSearchBar)?.length === 0">
+    <div *ngIf="allUserData?.length == null">
+      <td style="width: 100%; font-size: 16px;">
+        Erro a carregar dados
+      </td>
+    </div>
+    <div *ngIf="allUserData?.length == 0">
+      <td style="width: 100%; font-size: 16px;">
+        Sem informação a apresentar
+      </td>
+    </div>
+    <div *ngIf="(allUserData | userSearchBar: userSearchBar)?.length == 0 && allUserData?.length != 0">
       <td style="width: 100%; font-size: 16px; ">
         Não existem dados correspondentes
       </td>
-    </div> -->
+    </div>
   </tbody>
 </table>    
 <div class="bottom-table">

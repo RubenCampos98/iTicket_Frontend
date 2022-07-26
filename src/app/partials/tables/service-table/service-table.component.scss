@@ -75,26 +75,28 @@
     color: #004B92;
   }
 
-    td img{
-      border: 0px solid red; 
-      background-color: #cbe3f6;
-      margin-left: 20%; 
-      padding: 5%; 
-      border-radius: 3px;
-      -webkit-filter: grayscale(100%);
-      filter: grayscale(100%);
-      opacity: 0.5;
-    }
+  td img{
+    background-color: #cbe3f6;
+    margin-left: 20%; 
+    padding: 5%; 
+    border-radius: 3px;
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+    -webkit-filter: grayscale(0);
+    filter: grayscale(0);
+    opacity: 1;
+    cursor: pointer;
+  }
 
-    td img:hover{
-      background-color: #a0c4df;
-      -webkit-transition: .3s ease-in-out;
-      transition: .3s ease-in-out;
-      -webkit-filter: grayscale(0);
-      filter: grayscale(0);
-      opacity: 1;
-      cursor: pointer;
-    }
+  td img:hover{
+    background-color: #a0c4df;
+    -webkit-transition: .3s ease-in-out;
+    transition: .3s ease-in-out;
+    -webkit-filter: grayscale(0);
+    filter: grayscale(0);
+    opacity: 1;
+    cursor: pointer;
+  }
 
     .form-check-input:checked {
         background-color: #3DB612;
@@ -136,10 +138,10 @@
   .bottom-table ngb-pagination{
     border: 0px solid red;
     position: absolute;
-    margin-left: 80%; 
+/*     margin-left: 80%; 
     margin-right: 20%;
-    width: 20%;
-    height: 50px;
+    width: 20%;*/
+    height: 50px; 
     font-family:'Poppins';
     font-size: 16px;
     color: #004B92;
@@ -160,17 +162,21 @@
       font-family: 'Poppins';
       text-decoration: none;
       border-radius: 50px;
-    }
+    }*/
 
     ngb-pagination .page-item.active .page-link {
       background-color: #7460ee;
       border-color: #7460ee;
     }
-    */
+    
 
-    .pagination {
+/*     .pagination {
       display: flex;
-      padding-left: 0;
       list-style: none;
       border-radius: .25rem;
+      margin-left: auto;
+    } */
+
+    ::ng-deep .pagination{
+      margin-left: auto;
     }

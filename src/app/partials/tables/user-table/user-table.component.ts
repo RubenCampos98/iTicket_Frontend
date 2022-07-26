@@ -61,7 +61,6 @@ export class UserTableComponent implements OnInit {
     if(this.sessionData?.admin == false){
       this.warningModal.open()
     }else{
-      console.log(id, name, email, phone, admin, address);
       this.editUser.open(id, name, email, phone, admin, address);
     }
   }

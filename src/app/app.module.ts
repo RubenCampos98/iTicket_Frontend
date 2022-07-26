@@ -64,6 +64,10 @@ import { EditBookingScheduleComponent } from './partials/modals/edit/edit-bookin
 import { BookingConfirmationComponent } from './views/booking-confirmation/booking-confirmation.component';
 import { BookingSearchBarPipe } from './partials/tables/booking-table/pipes/booking-search-bar.pipe';
 import { CreatedTicketComponent } from './partials/modals/create/created-ticket/created-ticket.component';
+import { BookingsdisallowedComponent } from './partials/modals/bookingsdisallowed/bookingsdisallowed.component';
+import { UserSearchBarPipe } from './partials/tables/user-table/pipes/user-search-bar.pipe';
+import { TicketSearchBarPipe } from './partials/tables/ticket-table/pipes/ticket-search-bar.pipe';
+import { WaitingListSearchBarPipe } from './partials/tables/waiting-list-table/pipes/waiting-list-search-bar.pipe';
 
 
 @NgModule({
@@ -106,7 +110,11 @@ import { CreatedTicketComponent } from './partials/modals/create/created-ticket/
     BookingConfirmationComponent,
     LocationSearchBarPipe,
     BookingSearchBarPipe,
-    CreatedTicketComponent
+    CreatedTicketComponent,
+    BookingsdisallowedComponent,
+    UserSearchBarPipe,
+    TicketSearchBarPipe,
+    WaitingListSearchBarPipe
   ],
   imports: [
     CommonModule,
@@ -129,7 +137,12 @@ import { CreatedTicketComponent } from './partials/modals/create/created-ticket/
     HttpClientModule,
     FontAwesomeModule,
     NgbModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+      maxOpened: 6,
+      countDuplicates: true
+    })
   ],
   providers: [
     AuthGuard

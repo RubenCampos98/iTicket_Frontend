@@ -23,7 +23,7 @@ export class EditLocationModalComponent implements OnInit {
 
   user_errors
 
-  checked
+  checked 
 
   constructor(
     private formBuilder: FormBuilder,
@@ -49,7 +49,6 @@ export class EditLocationModalComponent implements OnInit {
     },
     err => {
       this.user_errors = err.error.errors
-      console.log(this.user_errors)
     })
   }
 
@@ -69,7 +68,6 @@ export class EditLocationModalComponent implements OnInit {
     } else{
       this.checked = true;
     }
-    console.log(val);
   }
 
   openDeleteModal(id: number){

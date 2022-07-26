@@ -18,6 +18,18 @@ export class ApiTicketService {
     }))
   }
 
+  getTicketFromBooking(){
+    return this.http.get<any>(`${environment.api}/tickets/1/ticketFromBooking`, { withCredentials: true }).pipe(map((res:any) =>{
+      return res;
+    }))
+  }
+
+  getTicketNotAttended(){
+    return this.http.get<any>(`${environment.api}/tickets/1/notMetTicket`, { withCredentials: true }).pipe(map((res:any) =>{
+      return res;
+    }))
+  }
+
   getTicketById(id){
     return this.http.get<any>(`${environment.api}/tickets/` + id, { withCredentials: true }).pipe(map((res:any) =>{
       return res;
@@ -32,6 +44,12 @@ export class ApiTicketService {
 
   getCurrentDayTickets(){
     return this.http.get<any>(`${environment.api}/tickets/100/countTicketsTodayOrderByWL/99`, { withCredentials: true }).pipe(map((res:any) =>{
+      return res;
+    }))
+  }
+
+  getTodayBookingTickets(){
+    return this.http.get<any>(`${environment.api}/tickets/100/todayBookingTickets`, { withCredentials: true }).pipe(map((res:any) =>{
       return res;
     }))
   }

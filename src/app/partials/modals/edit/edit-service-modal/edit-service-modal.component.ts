@@ -49,7 +49,6 @@ export class EditServiceModalComponent implements OnInit {
     } else{
       this.checked = true;
     }
-    console.log(val);
   }
 
   updateService(){
@@ -65,7 +64,6 @@ export class EditServiceModalComponent implements OnInit {
     err => {
       console.log('Deu erro')
       this.user_errors = err.error.errors
-      console.log(this.user_errors)
     })
   }
 

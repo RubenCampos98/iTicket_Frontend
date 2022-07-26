@@ -19,27 +19,27 @@
         <label for="recipient-name" class="col-form-label">Funcionário</label><a class="mandatoryField">  *</a>
         <!-- <input formControlName="user_id" type="text" class="form-control form-control-lg notransition shadow-none"> -->
         <select formControlName="user_id" class="form-select form-select-lg notransition shadow-none" id="inputGroupSelect01">
-          <option selected>Escolha um funcionário</option>
           <option *ngFor="let func of allUserData" [value]="func.id">{{ func.name }}</option>
+          <option selected>Escolha um funcionário</option>
         </select>
       </div> 
       <div class="col-md-6" *ngIf="this.waitingListForm.get('start_time').value">
         <label for="recipient-name" class="col-form-label">Hora Inicio</label><a class="mandatoryField">  *</a>
         <input formControlName="{{ this.waitingListForm.get('start_time').value }}" 
-        [value]="waitingListForm.get('start_time').value | date:'dd MMMM yyyy - HH:mm aa'"
-        type="text" class="form-control form-control-lg notransition shadow-none"
+        value="{{waitingListForm.get('start_time')}}"
+        type="datetime-local" class="form-control form-control-lg notransition shadow-none"
         id="start_time">
       </div>    
       <div class="col-md-6" *ngIf="!this.waitingListForm.get('start_time').value">
-        <label for="recipient-name" class="col-form-label">Hora Inicio</label><a class="mandatoryField">  *</a>
-        <input placeholder="Por iniciar" type="text" class="form-control form-control-lg notransition shadow-none"
+        <label for="recipient-name" class="col-form-label">Hora Inicio</label>
+        <input placeholder="Por iniciar" type="datetime-local" class="form-control form-control-lg notransition shadow-none"
         id="end_time">
       </div>  
       <div class="col-md-6" *ngIf="this.waitingListForm.get('end_time').value">
         <label for="recipient-name" class="col-form-label">Hora Fim:</label>
         <input formControlName="{{ this.waitingListForm.get('start_time').value }}" 
         [value]="waitingListForm.get('end_time').value | date:'dd MMMM yyyy - HH:mm aa'"        
-        type="text" class="form-control form-control-lg notransition shadow-none"
+        type="datetime-local" class="form-control form-control-lg notransition shadow-none"
         id="end_time">
       </div>   
       <div class="col-md-6" *ngIf="!this.waitingListForm.get('end_time').value">

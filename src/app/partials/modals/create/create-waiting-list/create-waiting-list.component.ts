@@ -25,7 +25,7 @@ export class CreateWaitingListComponent implements OnInit {
 
   checked: boolean = true
 
-  user_errors
+  waitingList_errors
 
   allUserData
   allServiceData
@@ -75,17 +75,18 @@ export class CreateWaitingListComponent implements OnInit {
     //this.waitingListModule.notes = this.waitingListFormValue.value.notes;
     this.waitingListModule.user_id = this.waitingListFormValue.value.user_id;
     this.waitingListModule.service_id = this.waitingListFormValue.value.service_id;
-    this.api_waitingList.createWaitingLists(this.waitingListModule).subscribe(res => {
-      let ref = document.getElementById('clear')
-      ref?.click()
-      this.waitingListFormValue.reset()
-      window.location.reload()
-    },
-    err => {
-      console.log('Deu erro')
-      this.user_errors = err.error.errors
-      console.log(this.user_errors)
-    })
+    if(this.waitingListModule.start_time < this.waitingListModule.end_time || this.waitingListModule.end_time?.length == 0){
+      this.api_waitingList.createWaitingLists(this.waitingListModule).subscribe(res => {
+        let ref = document.getElementById('clear')
+        ref?.click()
+        this.waitingListFormValue.reset()
+        window.location.reload()
+      },
+      err => {
+        this.waitingList_errors = err.error.errors
+        console.log(this.waitingList_errors)
+      })
+    }
   }
 
   checkClicked(val){

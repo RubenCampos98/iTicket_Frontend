@@ -8,11 +8,12 @@
 <mat-stepper linear #stepper>
   <form [formGroup]="bookingFormGroup">
     <mat-step [stepControl]="bookingFormGroup" [editable]="isEditable">
-      <ng-template matStepLabel><h2 class="mt-2">Escolha o local</h2></ng-template>
+      <ng-template matStepLabel><h2 class="mt-2 hide">Escolha o local</h2></ng-template>
+      <h2 class="stepNames">Escolha o local</h2>
       <mat-form-field appearance="outline" class="col-12 col-lg-6 offset-lg-3">
         <mat-label>Local</mat-label>
         <mat-select formControlName="location_id" >
-          <mat-option *ngFor="let location of allLocationData" [value]="location.id">{{ location.address }}</mat-option>
+          <mat-option *ngFor="let location of allActiveLocationsData" [value]="location.id">{{ location.address }}</mat-option>
         </mat-select>
       </mat-form-field>
       <div class="col-lg-6 offset-lg-3">
@@ -21,11 +22,12 @@
     </mat-step>
 
     <mat-step [stepControl]="bookingFormGroup" [editable]="isEditable">
-      <ng-template matStepLabel><h2 class="mt-2">Escolha o serviço</h2></ng-template>
+      <ng-template matStepLabel><h2 class="mt-2 hide">Escolha o serviço</h2></ng-template>
+      <h2 class="stepNames">Escolha um serviço</h2>
       <mat-form-field appearance="outline" class="col-12 col-lg-6 offset-lg-3">
         <mat-label>Serviço</mat-label>
         <mat-select formControlName="service_id" >
-          <mat-option *ngFor="let service of allServiceData" [value]="service.id">{{ service.name }}</mat-option>
+          <mat-option *ngFor="let service of allActiveServicesData" [value]="service.id">{{ service.name }}</mat-option>
         </mat-select>
       </mat-form-field>
       <div class="col-lg-6 offset-lg-3">
@@ -42,8 +44,8 @@
           <input matInput formControlName="priority" hidden="true" value="{{ this.bookingFormGroup.patchValue({priority: 'priority'}) }}">
         </mat-label>
         <mat-hint class="mb-5">
-          Prioritários apenas engloba pessoas deficientes, grávidas ou idosas. 
-          Todos outros casos, caso escolham este estatudo e não sejam um dos casos referidos, corre risco do cancelamento do agendamento.
+          Atendimento prioritário apenas para pessoas com defeciência, idosas ou grávidas. 
+          Caso escolha este estatudo e não seja um dos casos referidos, corre risco do cancelamento da senha ou agendamento.
         </mat-hint>
       </div>
       <div class="col-lg-6 offset-lg-3">
@@ -53,14 +55,15 @@
     </mat-step>
 
     <mat-step [stepControl]="bookingFormGroup" [editable]="isEditable">
-      <ng-template matStepLabel><h2 class="mt-2">Escolha um horario</h2></ng-template>
+      <ng-template matStepLabel><h2 class="mt-2 hide">Escolha um horario</h2></ng-template>
+      <h2 class="stepNames">Escolha um horário</h2>
       <input matInput formControlName="start_time" hidden="true">
-      <div *ngFor="let day of allAvailableDays" class="col-10 col-md-10 col-lg-6 offset-1 offset-lg-3 horario mt-5"
-      style="border: 1px solid blue;" (click)="onMouseClickTudo($event)">
+      <div *ngFor="let day of allAvailableDaysWH" class="col-12 col-md-10 col-lg-6 offset-0 offset-lg-3 horario mt-5"
+      style="border: 0px solid blue;" (click)="onMouseClickTudo($event)">
         <h3>{{ getday(day.day) | date:'EEEE, dd MMMM yyyy' }}</h3>
-        <div *ngFor="let time of getHourOfDay(day)" class="col-8 col-sm-12 col-lg-1 offset-1 ticket" style="border: 1px solid black;">
-          <div *ngIf="day.id == time['service_available_day'].id" class="ticketTime col-12" (click)="onMouseClick($event);
-          changeTicket($event, 'ticketTime', 'ticketTime_clicked')">
+        <div *ngFor="let time of getHourOfDay(day)" class="col-sm-12 col-lg-12 ticket">
+          <div *ngIf="day.id == time['service_available_day'].id" class="col-1 offset-6 ticketTime" (click)="onMouseClick($event);
+          changeTicket($event, 'ticketTime', 'ticketTime_clicked')" style="border: 0px solid black;">
             <p class="col-12">{{ time.hour | date:'HH:mm' }}</p>
           </div>
         </div>
@@ -72,7 +75,8 @@
     </mat-step>
 
     <mat-step [stepControl]="bookingFormGroup" [editable]="isEditable">
-      <ng-template matStepLabel><h2 class="mt-2">Dados pessoais</h2></ng-template>
+      <ng-template matStepLabel><h2 class="mt-2 hide">Dados pessoais</h2></ng-template>
+      <h2 class="stepNames">Dados pessoais</h2>
       <mat-form-field appearance="outline" class="col-12 col-lg-6 offset-lg-3">
         <mat-label>Nome</mat-label>
         <input matInput formControlName="name">
@@ -92,43 +96,71 @@
       <div class="col-lg-6 offset-lg-3">
         <button mat-button matStepperPrevious>Anterior</button>
         <button mat-button matStepperNext (click)="locationAddress()">Seguinte</button>
-        <button mat-button (click)="viewData()" >Console.log formData</button>
       </div>
     </mat-step>
     <mat-step>
       <ng-template matStepLabel>
-        <h2 class="mt-2" (click)="locationAddress()">Concluir</h2>
+        <h2 class="mt-2 hide" (click)="locationAddress()">Concluir</h2>
       </ng-template>
-      <h1 class="mt-5">Resumo</h1>
+      <h2 class="stepNames">Concluir</h2>
+      <h1 class="mt-5 mb-5 hide">Resumo</h1>
+
       <h2 class="mt-3 col-12">Local: 
-        <a class="" style="color: #1193F2;">{{ bookingAddress }}</a>
+        <a style="color: #1193F2;">{{ bookingAddress }}</a>
       </h2>
+      <label class="errorMessage" *ngIf="booking_errors?.location">
+        {{ booking_errors.location.message }}
+      </label>
       <hr>
+      
       <h2>Serviço: 
         <a style="color: #1193F2;">{{ bookingService }}</a>
       </h2>
+      <label class="errorMessage" *ngIf="booking_errors?.service">
+        {{ booking_errors.service.message }}
+      </label>
       <hr>
-
+      
       <h2 *ngIf="bookingFormGroup.value.priority == 'priority'">Atendimento Prioritário: 
         <a style="color: #1193F2;">Sim</a>
       </h2> 
       <h2 *ngIf="bookingFormGroup.value.priority == 'normal'">Atendimento Prioritário: 
         <a style="color: #1193F2;">Não</a>
       </h2>
-
-      <hr>
-      <h2 *ngIf="bookingFormGroup.value.start_time !== '' ">Dia e Hora: 
+      <hr>      
+      
+<!--       <h2 *ngIf="bookingFormGroup.value.start_time !== '' ">Dia e Hora: 
         <a style="color: #1193F2;">{{ dataSchedule }} às {{ horaSchedule }} </a>
-        <hr>
+      </h2> -->
+      <h2>Dia e Hora: 
+        <a *ngIf="bookingFormGroup.value.start_time !== '' " style="color: #1193F2;">
+          {{ dataSchedule }} às {{ horaSchedule }} 
+        </a>
+        <br>
       </h2>
+      <label class="errorMessage" *ngIf="booking_errors?.start_time">
+        {{ booking_errors.start_time.message }}
+      </label>
+      <hr>
+      
       <h2>Nome: 
         <a style="color: #1193F2;">{{ bookingFormGroup.value.name }}</a>
       </h2>
       <hr>
+      
       <h2>Email: 
         <a style="color: #1193F2;">{{ bookingFormGroup.value.email }}</a>
       </h2>
+      <label class="errorMessage" *ngIf="booking_errors?.email">
+        {{ booking_errors.email.message }}
+      </label>
       <hr>
+      
+      <h2>Contacto: 
+        <a style="color: #1193F2;">{{ bookingFormGroup.value.phone }}</a>
+      </h2>
+      <hr>
+
       <h2>Observações: 
         <a style="color: #1193F2;">{{ bookingFormGroup.value.notes }}</a>
       </h2>

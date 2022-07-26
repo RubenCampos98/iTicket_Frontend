@@ -20,6 +20,7 @@ export class BookingConfirmationComponent implements OnInit {
   allBookingData
   allTodayTicketsData
   allWaitingListData
+  allTodayTicketsFromBookings
 
   servicoo
   senhaTirada = 0
@@ -37,19 +38,19 @@ export class BookingConfirmationComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    //console.log('ID: ', this.route.snapshot.queryParamMap.get('token').split("3D", 2)[1])
     console.log('Verifica: ', this.verifica)
     this.getWaitingListsData()//3
     this.getBookingData()//5
     this.getTodayTickets()//4
-    this.updateBooking()//1
+    //this.updateBooking()//1
     //this.createTicketforThisBooking()//2
+    this.getTodayBookingTickets()
   }
 
   getBookingData(){
     this.api_booking.getBooking().subscribe(res => {
-      this.allBookingData = res['data'];      
-      console.log("bookings: ",this.allBookingData[0].id)
+      this.allBookingData = res['data'];  
+      console.log(this.allBookingData)    
     })
   }
 
@@ -57,6 +58,13 @@ export class BookingConfirmationComponent implements OnInit {
     this.api_waitingList.getWaitingLists().subscribe(res => {
       this.allWaitingListData = res['data'];
       console.log("Filas: ", this.allWaitingListData)
+    })
+  }
+
+  getTodayBookingTickets(){
+    this.api_ticket.getTodayBookingTickets().subscribe(res => {
+      this.allTodayTicketsFromBookings = res['data'];
+      console.log("adada: ", this.allTodayTicketsFromBookings)
     })
   }
 
@@ -77,62 +85,33 @@ export class BookingConfirmationComponent implements OnInit {
       ref?.click()
     },
     err => {
-      console.log('Deu erro')
     })
   }
 
   createTicketforThisBooking(){
-    console.log("rp")
     for(let a = 0; this.allBookingData[a]; a++){
-      console.log("Entrou 2.0")
-      console.log("ID booking: ",this.allBookingData[a].id)
-      console.log("Id do url: ", this.verifica)
       if(this.allBookingData[a].id == this.verifica){
-        this.servicoo = this.allBookingData[a].service_id
-
-        console.log("Serviço: ", this.servicoo)
-        console.log("Email: ", this.allBookingData[a].email)
-
-        this.ticketModule.name = this.allBookingData[a].email
-
+        this.servicoo = this.allBookingData[a].service_id  
+        this.ticketModule.ticket_type = 1;
+        this.ticketModule.email = this.allBookingData[a].email
+        this.ticketModule.start_time = this.allBookingData[a].start_time
         for(let b = 0; this.allWaitingListData[b]; b++){
-          console.log('2º FOR')
           if(this.allWaitingListData[b].service_id == this.servicoo){
             this.ticketModule.waiting_list_id = this.allWaitingListData[b].id
-            console.log("Fila: ", this.ticketModule.waiting_list_id)
-            if(this.allTodayTicketsData.length != 0){
-              console.log("If do tamanho")
-                for(let c = 0; this.allTodayTicketsData[c]; c++){
-                  console.log('3º FOR')
-                  if(this.allTodayTicketsData[c].waiting_list_id == this.ticketModule.waiting_list_id){
-                    this.ticketModule.number = this.allTodayTicketsData[c].number + 1;
-                    console.log('Numero', this.ticketModule.number)
-                    this.api_ticket.createTicket(this.ticketModule).subscribe(res => {
-                      let ref = document.getElementById('clear')
-                      ref?.click()
-                      this.toastr.success('Senha tirada com sucesso')
-                      //window.location.reload()
-                    },
-                    err => {
-                      this.toastr.error('Erro ao tirar senha')
-                    })
-                    break;
-                  }
-                }
+            if(this.allTodayTicketsFromBookings?.length == 1){
+              this.ticketModule.number = this.allTodayTicketsFromBookings[0].number + 1
             }else{
-              console.log("elseeee")
-              this.ticketModule.number = 1;
-              this.api_ticket.createTicket(this.ticketModule).subscribe(res => {
-                let ref = document.getElementById('clear')
-                ref?.click()
-                this.toastr.success('Senha tirada com sucesso')
-                //window.location.reload()
-              },
-              err => {
-                this.toastr.error('Erro ao tirar senha')
-              })
-              break;
+              this.ticketModule.number = 1
             }
+            this.api_ticket.createTicket(this.ticketModule).subscribe(res => {
+              let ref = document.getElementById('clear')
+              ref?.click()
+              //window.location.reload()
+            },
+            err => {
+              this.toastr.error('Erro ao confirmar')
+            })
+            break;
           }
         }
       }

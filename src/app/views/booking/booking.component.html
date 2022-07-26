@@ -1,30 +1,58 @@
 <app-navbar></app-navbar>
 
 <div class="container">
-  <div *ngFor="let queue of allWaitingListBookingData" class="row row-cols-2 row-cols-lg-3 mt-5">
-    <div class="queuesName col-lg-4 offset-lg-1 mb-3" style="border: 1px solid blue;">
-      <h1>{{ queue.service.name }}</h1>
-      <h1 class="id">{{ queue.service.id }}</h1>
-      <h1 class="idd">{{ queue.id }}</h1>
-    </div>
-    <div class="col-lg-10 offset-md-1 offset-3 senha overflow-auto">
-        
-        <div class="col-3 col-sm-3 col-lg-1 offset-lg-0 offset-sm-1 offset-1 mt-2 ticket" style="border: 1px solid blue;">
+  <div *ngIf="this.allWaitingListBookingData != 0">
+    <div *ngFor="let queue of allWaitingListBookingData" class="row row-cols-2 row-cols-lg-3 mt-5">
+      <div class="queuesName col-lg-4 offset-lg-1 mb-3">
+        <h1>{{ queue.service.name }}</h1>
+        <h1 class="id">{{ queue.id }}</h1>
+      </div>
+      <div *ngIf="this.allTodayTicketsData?.length != 0" class="col-lg-10 offset-md-1 offset-3 senha overflow-auto"> 
+        <div *ngFor="let data of allTodayTicketsData"> 
+          <div class="col-3 col-sm-3 col-lg-1 offset-lg-0 offset-sm-1 offset-1 mt-2 ticket">
+            <img src="../../../assets/icons/senha_2.svg">
+          </div>  
+          <div class="col-3 col-sm-3 col-lg-1 offset-lg-0 offset-sm-1 offset-1 mt-3 serviceInfo">
+            <div *ngIf="queue.id == data.waiting_list_id" class="ticketNumber">
+              {{ queue['service'].name | homePipes }} {{ data.new_number | number: '3.0' }}
+            </div>
+<!--             <div *ngIf="queue.id != data.waiting_list_id" class="ticketNumber">
+              {{ queue['service'].name | homePipes }} {{ 1 | number: '3.0' }}
+            </div> -->
+          </div>
+          <div class="col-3 col-lg-2 offset-lg-2 offset-1 waitingListName">
+            <h2>{{ queue.name }}</h2>
+          </div>
+          <div class="col-3 col-sm-1 col-lg-1 offset-lg-6 offset-md-5 offset-sm-1 offset-1 mt-4 ticketButton">
+            <button class="btn btn-primary btn-lg" (click)="onMouseClick($event); openCreatedTicket(this.newestNumber, this.queue)">Tirar Senha</button>
+            <h1 class="id">{{ queue.service.id }}</h1>
+          </div> 
+        </div> 
+      </div>
+      <div *ngIf="this.allTodayTicketsData?.length == 0"  class="col-lg-10 offset-md-1 offset-3 senha overflow-auto">
+        <div class="col-3 col-sm-3 col-lg-1 offset-lg-0 offset-sm-1 offset-1 mt-2 ticket">
           <img src="../../../assets/icons/senha_2.svg">
         </div>  
-        <div class="col-3 col-sm-3 col-lg-2 offset-lg-0 offset-sm-1 offset-1 mt-3 serviceInfo" style="border: 1px solid red;">
-          <div class="serviceName">
-            {{ queue.name }}
-          </div>
-          <div class="serviceType">
-            {{ queue.name }}
+        <div class="col-3 col-sm-3 col-lg-1 offset-lg-0 offset-sm-1 offset-1 mt-3 serviceInfo">
+          <div class="ticketNumber">
+            {{ queue['service'].name | homePipes }} {{ 1 | number: '3.0' }}
           </div>
         </div>
-        <div class="col-12 col-sm-1 col-lg-1 offset-lg-6 offset-md-5 offset-sm-1 mt-4 ticketButton">
-          <button class="btn btn-primary btn-lg" (click)="onMouseClick($event); createTicket(); openCreatedTicket(this.newNumber, this.queue)">Tirar Senha</button>
+        <div class="col-3 col-lg-2 offset-lg-2 offset-1 waitingListName">
+          <h2>{{ queue.name }}</h2>
+        </div>
+        <div class="col-3 col-sm-1 col-lg-1 offset-lg-6 offset-md-5 offset-sm-1 offset-1 mt-4 ticketButton">
+          <button class="btn btn-primary btn-lg" (click)="onMouseClick($event); openCreatedTicket(this.newestNumber, this.queue)">Tirar Senha</button>
+          <h1 class="id">{{ queue.service.id }}</h1>
         </div> 
+      </div>
+      <div class="end_line mt-5"></div>
     </div>
-    <div class="end_line mt-5"></div> 
+  </div>
+  <div *ngIf="this.allWaitingListBookingData == 0 || this.allWaitingListBookingData == null">
+    <div class="col-10 offset-lg-2 avisoSenhas">
+      De momento não é possível tirar senhas. Por favor tente mais tarde.
+    </div>
   </div>
 </div>
 
@@ -32,11 +60,12 @@
   <div class="row">
     <div class="col-12 col-lg-12">
       <div class="btnFooter">
-        <button routerLink="/agendar" class="btn btn-primary btn-lg btnBooking">Agendar</button>
+        <button (click)="bookingsUnavailable()" class="btn btn-primary btn-lg btnBooking">Agendar</button>
       </div>  
     </div>
   </div>
 </div>
 
 <app-created-ticket #createdTicket></app-created-ticket>
+<app-bookingsdisallowed #bookingsDisallowed></app-bookingsdisallowed>
 

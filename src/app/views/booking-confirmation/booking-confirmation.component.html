@@ -4,9 +4,9 @@
   <div class="row">
     <div class="col-lg-10 offset-lg-1">
       <h1>O seu agendamento foi confirmado com sucesso!</h1>
-      <h1>{{ toKen }}</h1>
-      <button class="btn btn-primary" (click)="createTicketforThisBooking()">Confirmar</button>
-      <button class="btn btn-primary" routerLink="/senhas">Novo Agendamento</button>
+      <div class="col-lg-2 offset-lg-3" style="border: 0px solid red; position: absolute; margin-top: 10%;">
+      <button class="col-3 col-lg-5 offset-7 offset-lg-2 btn btn-primary" (click)="createTicketforThisBooking()" routerLink="/agendar">Novo Agendamento</button>
+      </div>
     </div>
   </div>
 

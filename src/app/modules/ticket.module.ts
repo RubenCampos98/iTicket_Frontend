@@ -11,8 +11,10 @@ export class TicketModule {
   id
   number
   name
+  email
   priority
   status
+  ticket_type
   start_time
   end_time 
   duration

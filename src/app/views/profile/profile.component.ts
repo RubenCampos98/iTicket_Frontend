@@ -50,12 +50,22 @@ export class ProfileComponent implements OnInit {
     this.api_user.updateUser(this.userModule, this.userModule.id).subscribe(res => {
       let ref = document.getElementById('clear')
       ref?.click()
+      this.toastr.success('Perfil atualizado com sucesso!', "Perfil", {
+        closeButton: true,
+        disableTimeOut: true
+      })
+      setTimeout(function () { 
+        window.location.reload(); 
+      }, 2000);
       this.userForm.reset()
-      window.location.reload()
     },
     err => {
       this.user_errors = err.error
       this.user_errorsV2 = err.error.errors
+      this.toastr.error('Erro ao editar perfil!', "Perfil", {
+        closeButton: true,
+        disableTimeOut: true
+      })
     })
   }
 
@@ -87,7 +97,10 @@ export class ProfileComponent implements OnInit {
 
   editarCurrentUser(){
     if(this.editar == false){
-      this.toastr.info('Pronto a atualizar!')
+      this.toastr.info('Pronto a atualizar!', "Perfil", {
+        closeButton: true,
+        disableTimeOut: true
+      })
     }
     return this.editar =! this.editar 
   }

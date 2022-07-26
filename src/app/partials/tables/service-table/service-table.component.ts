@@ -93,7 +93,6 @@ export class ServiceTableComponent implements OnInit {
     if(this.sessionData?.admin == false){
       this.warningModal.open()
     }else{
-      console.log(id, name, notes, status)
       this.editService.open(id, name, notes, status);
     }
   }

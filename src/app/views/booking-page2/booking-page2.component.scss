@@ -26,7 +26,17 @@ h2{
   font-size: 18px;
   line-height: 27px;
   color: #004B92;
-}    
+}   
+
+.errorMessage{
+  color: rgb(244, 20, 20);
+  margin-top: 5px;
+  font-family: 'Poppins';
+  font-style: normal ;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 27px;
+}
 
 h2 a{
   text-decoration: none;
@@ -37,24 +47,24 @@ hr{
   color: #004B92;
 }
 
-.horario h3{
-  position: relative;
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 25px;
-  line-height: 38px;
-  color: #004B92;
-  margin-bottom: 40px;
-  margin-top: 20px;
-}
-
 .horario{
   border: 0px solid red;
   border-bottom: 2px solid #D7E6F2;
-  height: 220px;
-  margin-bottom: 20px;
+/*   height: 220px;
+  margin-bottom: 20px; */
 }
+
+  .horario h3{
+    position: relative;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 25px;
+    line-height: 38px;
+    color: #004B92;
+    margin-bottom: 40px;
+    margin-top: 20px;
+  }
 
 .ticket{
   border: 0px solid orange;
@@ -111,7 +121,7 @@ hr{
   }
 
   .ticket p{
-    border: 1px solid red;
+    border: 0px solid red;
     padding-top: 15%;
   }
 
@@ -120,65 +130,115 @@ hr{
   width: 100%;
 }
 
+.stepNames{
+  display: none;
+}
+
 @media screen and (max-width:780px){
 
-  .ticket{
+  .horario{
     border: 0px solid red;
-    position: relative;
+    border-bottom: 2px solid #D7E6F2;
+    //height: 120px;
   }
 
-  img{
-    position: relative;
-  }
-
-    .ticket img{
-      width: 100%;
-      height: 100%;
+    .horario h3{
+      position: relative;
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 25px;
+      line-height: 20px;
+      color: #004B92;
+      margin-bottom: 40px;
+      margin-top: 20px;
     }
 
-  .ticket .ticketTime{
-    border: 0px solid red;
-    width: 45px;
-    height: 25px;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
-    text-align: center;
-    align-items: center;
-    vertical-align: middle;
-    line-height: 25px;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 18px;
-    color: #1193F2;
+  .ticket{
+    border: 0px solid orange;
+    //position: relative;
+    display: block;
+  }  
+
+/*     .ticket .ticketTime p{
+      border: 1px solid grey;
+      //padding-top: 10%;
+      //padding-left: 5%;
+      width: 60px;
+      height: 20px;
+      //margin-left: 16px;
+    } */
+
+    .ticket .ticketTime{
+      border: 0px solid red;
+      //margin: 0 auto;
+      height: 70px;
+      width: 120px;
+      position: relative;
+      text-align: center;
+      align-items: center;
+      vertical-align: middle;
+      line-height: 45px;
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 23px;
+      color: #1193F2;
+      background-image: url("../../../assets/icons/senha_contorno_normal.svg");
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+
+    .ticket .ticketTime_clicked{
+      border: 0px solid red;
+      //margin: 0 auto;
+      height: 70px;
+      width: 120px;
+      position: relative;
+      text-align: center;
+      align-items: center;
+      vertical-align: middle;
+      line-height: 45px;
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 23px;
+      color: white;
+      background-image: url("../../../assets/icons/senha_selecionada_preenchida.svg");
+      background-repeat: no-repeat;
+      cursor: pointer;
+    }
+
+  .stepNames{
+    position: relative;
+    display: inline-block;
   }
 
-  .ticket .ticketTime p{
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    margin: auto;
+  .hide{
+    display: none;
+    position: relative;
+  }
+
+  h1{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 23px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    color: #004B92;
   }
 
   h2{
-    position: absolute;
+    position: relative;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
     font-size: 20px;
     line-height: 45px;
     color: #004B92;
-  }
-
-  .horario{
-    border: 0px solid red;
-    border-bottom: 2px solid #D7E6F2;
-    height: 140px;
+    //bottom: 10%;
   }
 
 }
@@ -225,7 +285,7 @@ button{
 }
 
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-  color: #1193F2!important;
+  color: #1193F2 !important;
   // opacity: 1!important;
 }
 
@@ -262,7 +322,7 @@ button{
 }
 
 ::ng-deep .mat-step-header:hover{
-  background: #EAF3FA;
+  //background: #EAF3FA;
   box-shadow: none;
   & 
   div.mat-step-label.mat-step-label-active.mat-step-label-selected {
@@ -279,13 +339,15 @@ button{
 }
 
 ::ng-deep .mat-step-header:not(:hover){
-  background: #EAF3FA;
-  box-shadow: none;
+/*   background: #EAF3FA;
+  box-shadow: none; */
+  //background-color: red;
 }
 
 ::ng-deep .mat-step-header:hover{
-  background: #EAF3FA;
-  box-shadow: none;
+/*   background: #EAF3FA;
+  box-shadow: none; */
+  //background-color: #EAF3FA;
 }
 
 ::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {

@@ -13,6 +13,7 @@ import { ApiServiceAvailableDayService } from 'src/app/services/api-service-avai
 import { ApiServiceAvailableHourService } from 'src/app/services/api-service-available-hour.service';
 import { ApiServiceService } from 'src/app/services/api-service.service';
 import { ApiWaitingListService } from 'src/app/services/api-waiting-list.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-booking-page2',
@@ -45,7 +46,10 @@ export class BookingPage2Component implements OnInit {
   bookingService
 
   allAvailableDays
+  allAvailableDaysWH
   allAvailableHours
+  allActiveServicesData
+  allActiveLocationsData
 
   selectedTicket = false;
 
@@ -65,6 +69,7 @@ export class BookingPage2Component implements OnInit {
     private api_booking: ApiBookingService,
     private api_availableDay: ApiServiceAvailableDayService,
     private api_availableHour: ApiServiceAvailableHourService,
+    private toastr: ToastrService,
     config: NgbModalConfig
   ) { 
     config.backdrop = 'static';
@@ -72,9 +77,10 @@ export class BookingPage2Component implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getLocationData()
-    this.getServiceData()
+    this.getActiveLocationsData()
+    this.getActiveServicesData()
     this.getAvailableDays()
+    this.getAvailableDaysWithHours()
     this.getAvailableHours()
     this.bookingFormGroup = this._formBuilder.group({
       name: [''],
@@ -91,8 +97,13 @@ export class BookingPage2Component implements OnInit {
 
   getLocationData(){
     this.api_location.getLocation().subscribe(res => {
-      this.allLocationData = res['data'];
-      console.log(this.allLocationData)
+        this.allLocationData = res['data'];  
+    })
+  } 
+
+  getActiveLocationsData(){
+    this.api_location.getActiveLocations().subscribe(res => {
+      this.allActiveLocationsData = res['data'];  
     })
   } 
 
@@ -102,9 +113,21 @@ export class BookingPage2Component implements OnInit {
     })
   }
 
+  getActiveServicesData(){
+    this.api_service.getActiveService().subscribe(res => {
+      this.allActiveServicesData = res['data'];  
+    })
+  }
+
   getAvailableDays(){
     this.api_availableDay.getServiceAvailableDay().subscribe((res) => {
-      this.allAvailableDays = res['data'];
+      this.allAvailableDays = res['data'];    
+    })
+  }
+
+  getAvailableDaysWithHours(){
+    this.api_availableDay.getDaysWithHoursAssociated().subscribe((res) => {
+      this.allAvailableDaysWH = res['data'];
     })
   }
 
@@ -119,16 +142,14 @@ export class BookingPage2Component implements OnInit {
   }
 
   locationAddress(){
-    for(let a = 0; this.allLocationData[a]; a++){
-      if(this.bookingFormGroup.value.location_id == this.allLocationData[a].id){
-        this.bookingAddress = this.allLocationData[a].address
-        console.log(this.bookingAddress)
+    for(let a = 0; this.allActiveLocationsData[a]; a++){
+      if(this.bookingFormGroup.value.location_id == this.allActiveLocationsData[a].id){
+        this.bookingAddress = this.allActiveLocationsData[a].address
       }
     }
-    for(let b = 0; this.allServiceData[b]; b++){
-      if(this.bookingFormGroup.value.service_id == this.allServiceData[b].id){
-        this.bookingService = this.allServiceData[b].name
-        console.log(this.bookingService)
+    for(let b = 0; this.allActiveServicesData[b]; b++){
+      if(this.bookingFormGroup.value.service_id == this.allActiveServicesData[b].id){
+        this.bookingService = this.allActiveServicesData[b].name
       }
     }
   }
@@ -144,18 +165,24 @@ export class BookingPage2Component implements OnInit {
     this.bookingModule.location_id = this.bookingFormGroup.value.location_id;
 
     this.bookingModule.service_id = this.bookingFormGroup.value.service_id;
-
     this.api_booking.createBooking(this.bookingModule).subscribe(res => {
       let ref = document.getElementById('clear')
       ref?.click()
+      this.toastr.success("Aceda ao email indicado para confirmar o agendamento", "Agendamento submetido!", {
+        closeButton: true,
+        disableTimeOut: true
+      })
+      setTimeout(function () { 
+        window.location.reload(); 
+      }, 3000);
       this.bookingFormGroup.reset()
-      //console.log(this.bookingModule)
-      //window.location.reload()
     },
     err => {
-      console.log('Deu erro')
-      this.booking_errors = err.error.errors
-      console.log(this.booking_errors)
+      this.booking_errors = err.error.errors  
+      this.toastr.error("Não foi possível marcar o agendamento!", "Agendamento não submetido!", {
+        closeButton: true,
+        disableTimeOut: true
+      })  
     })
   }
 
@@ -163,10 +190,6 @@ export class BookingPage2Component implements OnInit {
     this.createBooking.open();
   }
 
-  viewData(){
-    console.log(this.bookingFormGroup)
-    console.log(this.bookingModule)
-  }
   //--------------------display das datas--------------------
   getday(date: number){
     var dt = new Date(); // current date of week
@@ -183,19 +206,8 @@ export class BookingPage2Component implements OnInit {
     } else{
       this.checked = true;
     }
-    console.log(val);
   }
 
-/*   changeTicket(event: any){
-    const haveClass = event.target.classList.contains('ticketTime')
-    if(haveClass){
-      event.target.classList.remove('ticketTime')
-      event.target.classList.add('ticketTime_clicked')
-    }else{
-      event.target.classList.remove('ticketTime_clicked')
-      event.target.classList.add('ticketTime')
-    }
-  } */
   changeTicket(event: any, classOne: string, classTwo: string){
     const haveClass = event.target.classList.contains(classOne)
     if(haveClass){
@@ -207,23 +219,10 @@ export class BookingPage2Component implements OnInit {
     }
   }
 
-  onMouseClick(e: MouseEvent) {
-    //this.bookingFormGroup.patchValue({start_time: e.target['outerText']})
-    console.log(e)
-    //console.log('Hora na div: ', e.target['outerText'])
-    //console.log('Hora selecionada: ', e['path'][0]);
-    //this.bookingFormGroup.value.start_time = e.target['outerText'];
-    //console.log(this.bookingModule.start_time)
-    //console.log(PointerEvent);
-  }
-
   onMouseClickTudo(e: MouseEvent) {
     this.bookingFormGroup.patchValue({start_time: e['path'][3]['innerText']})
     this.horaSchedule = e['path'][0]['innerText']
     this.dataSchedule = e['path'][3]['childNodes'][0]['innerText']
-    console.log('Module: ', e['path'][3]['innerText'])
-    console.log('Hora: ', e['path'][0]['innerText'])
-    console.log('Data: ', e['path'][3]['childNodes'][0]['innerText'])
   }
 
 }

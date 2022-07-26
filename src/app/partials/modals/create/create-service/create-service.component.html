@@ -9,6 +9,9 @@
         <label for="recipient-name" class="col-form-label">Nome</label><a class="mandatoryField">  *</a>
         <input formControlName="name" type="text" class="form-control form-control-lg notransition shadow-none"
         id="name">
+        <label class="errorMessage" *ngIf="user_errors?.name">
+          {{ user_errors.name.message }}
+        </label>
       </div>
       <div class="col-md-4 offset-md-2">
         <label for="recipient-name" class="col-form-label">Estado</label>

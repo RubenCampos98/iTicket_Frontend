@@ -28,7 +28,7 @@ export class BookingScheduleTableComponent implements OnInit {
   allServiceData
   bookingScheduleSearchBar
 
-  today = new Date()
+  today : Date = new Date()
 
   page = 1
   pageSize = 5
@@ -50,6 +50,8 @@ export class BookingScheduleTableComponent implements OnInit {
   ngOnInit(): void {
     this.getAvailableDays()
     this.getAvailableHours()
+    this.getSessionData()
+    this.getWeekDay(0)
     this.BookingScheduleTablePagination()
   }
 
@@ -91,7 +93,6 @@ export class BookingScheduleTableComponent implements OnInit {
   }
 
   openEditBookingScheduleModal(id: number, hour: Time, service_available_day_id: number, service_available_day: any) {
-    console.log(id, service_available_day_id)
     this.editBookingSchedule.open(id, hour, service_available_day_id, service_available_day);
   }
 
@@ -111,6 +112,15 @@ export class BookingScheduleTableComponent implements OnInit {
     this.api_session.getSession().subscribe((res) => {
       this.sessionData = res;
     })
+  }
+
+  getWeekDay(date: number){
+    var dt = new Date(); // current date of week
+    var currentWeekDay = dt.getDay();
+    var lessDays = currentWeekDay == 0 ? 6 : currentWeekDay - 1;
+    var requestedDate = new Date(new Date(dt).setDate(dt.getDate() - lessDays));
+    requestedDate.setDate(requestedDate.getDate()+date)
+    return requestedDate
   }
 
 }

@@ -8,6 +8,9 @@
       <div class="col-md-6">
         <label for="recipient-name" class="col-form-label">Nome</label><a class="mandatoryField">  *</a>
         <input formControlName="name" type="text" class="form-control form-control-lg notransition shadow-none">
+        <label class="errorMessage" *ngIf="waitingList_errors?.name">
+          {{ waitingList_errors.name.message }}
+        </label>
       </div>  
       <div class="col-md-6">
         <label for="recipient-name" class="col-form-label">Funcionário</label><a class="mandatoryField">  *</a>
@@ -16,9 +19,12 @@
           <option selected>Escolha um funcionário</option>
           <option *ngFor="let func of allUserData" [value]="func.id">{{ func.name }}</option>
         </select>
+        <label class="errorMessage" *ngIf="waitingList_errors?.user">
+          {{ waitingList_errors.user.message }}
+        </label>
       </div>   
       <div class="col-md-6">
-        <label for="recipient-name" class="col-form-label">Hora Inicio</label><a class="mandatoryField">  *</a>
+        <label for="recipient-name" class="col-form-label">Hora Inicio</label>
         <input formControlName="start_time" type="datetime-local" class="form-control form-control-lg notransition shadow-none">
       </div>   
       <div class="col-md-6">
@@ -27,11 +33,13 @@
       </div>   
       <div class="col-md-6">
         <label for="recipient-name" class="col-form-label">Serviço</label><a class="mandatoryField">  *</a>
-        <!-- <input type="text" class="form-control form-control-lg notransition shadow-none"> -->
         <select formControlName="service_id" class="form-select form-select-lg notransition shadow-none" id="inputGroupSelect01">
           <option selected>Escolha um serviço</option>
           <option *ngFor="let service of allServiceData" [value]="service.id">{{ service.name }}</option>
         </select>
+        <label class="errorMessage" *ngIf="waitingList_errors?.service">
+          {{ waitingList_errors.service.message }}
+        </label>
       </div>     
       <div class="col-md-3">
         <label for="recipient-name" class="col-form-label">Estado</label>

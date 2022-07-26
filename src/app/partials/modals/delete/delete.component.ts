@@ -61,7 +61,6 @@ export class DeleteModalComponent implements OnInit {
   }
 
   redirectTo(url: string): void {
-    // When skipLocationChange true, navigates without pushing a new state into history.
     this.router.navigateByUrl('/home', {skipLocationChange: true}).then(() => {
         this.router.navigate([url]);
     });

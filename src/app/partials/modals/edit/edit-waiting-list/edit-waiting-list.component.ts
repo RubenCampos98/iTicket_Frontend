@@ -25,6 +25,8 @@ export class EditWaitingListComponent implements OnInit {
   allUserData
   allServiceData
 
+  waiting_list_errors
+
   waitingListModule :WaitingListModule = new WaitingListModule
 
   constructor(
@@ -69,9 +71,6 @@ export class EditWaitingListComponent implements OnInit {
       ref?.click()
       this.waitingListForm.reset()
       window.location.reload()
-    },
-    err => {
-      console.log('Deu erro')
     })
   }
 

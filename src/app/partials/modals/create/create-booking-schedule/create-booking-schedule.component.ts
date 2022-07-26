@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { ServiceAvailableDayModule } from 'src/app/modules/service-available-day.module';
 import { ServiceAvailableHourModule } from 'src/app/modules/service-available-hour.module';
 import { ApiServiceAvailableDayService } from 'src/app/services/api-service-available-day.service';
@@ -23,12 +24,31 @@ export class CreateBookingScheduleComponent implements OnInit {
   allServiceData
   allAvailableDaysData
 
+  schedule_errors
+
   availableDaysModule : ServiceAvailableDayModule = new ServiceAvailableDayModule
   availableHoursModule : ServiceAvailableHourModule =  new ServiceAvailableHourModule
 
   todaysDate = new Date();
+  today = this.todaysDate.getDate()
+  tomorrow = this.today + 1;
+  tomorrowplus1 = this.today + 2;
+  tomorrowplus2 = this.today + 3;
+  tomorrowplus3 = this.today + 4;
+  tomorrowplus4 = this.today + 5;
+  tomorrowplus5 = this.today + 6;
+  aWeekFromToday = this.today + 7;
+  firstday = new Date(this.todaysDate.setDate(this.today)).toUTCString();
+  secondday = new Date(this.todaysDate.setDate(this.tomorrow)).toUTCString();
+  thirdday = new Date(this.todaysDate.setDate(this.tomorrowplus1)).toUTCString();
+  forthday = new Date(this.todaysDate.setDate(this.tomorrowplus2)).toUTCString();
+  fifthday = new Date(this.todaysDate.setDate(this.tomorrowplus3)).toUTCString();
+  sixthday = new Date(this.todaysDate.setDate(this.tomorrowplus4)).toUTCString();
+  seventhday = new Date(this.todaysDate.setDate(this.tomorrowplus5)).toUTCString();
+  lastday = new Date(this.todaysDate.setDate(this.aWeekFromToday)).toUTCString();
 
   bookingScheduleForm !: FormGroup
+  bookingSchedulev2Form !: FormGroup
 
   constructor(
     private formBuilder: FormBuilder,
@@ -36,6 +56,7 @@ export class CreateBookingScheduleComponent implements OnInit {
     private api_availableDays: ApiServiceAvailableDayService,
     private api_availableHours: ApiServiceAvailableHourService,
     private api_service: ApiServiceService,
+    private toastr: ToastrService,
     config: NgbModalConfig
   ) { 
     config.backdrop = 'static';
@@ -43,31 +64,53 @@ export class CreateBookingScheduleComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.todaysDate)
     this.getServiceData()
     this.getAvailableDays()
     this.bookingScheduleForm = this.formBuilder.group({
-      service_id: [''],
-      day: [''],
-      hour: ['']
+      service_id: 0,
+      day: ['']
+    })
+    this.bookingSchedulev2Form = this.formBuilder.group({
+      hour: [''],
+      service_available_day_id: 0
+    })
+    console.log(this.firstday)
+    console.log(this.secondday)
+    console.log(this.thirdday)
+    console.log(this.forthday)
+    console.log(this.fifthday)
+    console.log(this.sixthday)
+    console.log(this.seventhday)
+    console.log(this.lastday)
+  }
+
+  addAvailableDay(){
+    this.availableDaysModule.service_id = this.bookingScheduleForm.value.service_id;
+    this.availableDaysModule.day = this.bookingScheduleForm.value.day;
+    this.api_availableDays.createServiceAvailableDay(this.availableDaysModule).subscribe(res => {
+      let ref = document.getElementById('clear')
+      ref?.click()
+      this.bookingScheduleForm.reset()
+      window.location.reload()
+    },
+    err => {
+      this.toastr.error('Erro ao inserir dia')
     })
   }
 
-  addBookingSchedule(){
-    this.availableDaysModule.service_id = this.bookingScheduleForm.value.service_id;
-    this.availableDaysModule.day = this.bookingScheduleForm.value.day;
-    this.availableHoursModule.hour = this.bookingScheduleForm.value.hour;
-    this.api_availableDays.createServiceAvailableDay(this.bookingScheduleForm).subscribe(res => {
+  addAvailableHour(){
+    this.availableHoursModule.hour = this.bookingSchedulev2Form.value.hour;
+    this.availableHoursModule.service_available_day_id = this.bookingSchedulev2Form.value.service_available_day_id;
+    console.log(this.bookingSchedulev2Form.value)
+    this.api_availableHours.createServiceAvailableHour(this.availableHoursModule).subscribe(res => {
       let ref = document.getElementById('clear')
       ref?.click()
-      this.bookingScheduleForm.reset()
+      this.bookingSchedulev2Form.reset()
       window.location.reload()
-    })
-    this.api_availableHours.createServiceAvailableHour(this.bookingScheduleForm).subscribe(res => {
-      let ref = document.getElementById('clear')
-      ref?.click()
-      this.bookingScheduleForm.reset()
-      window.location.reload()
+    },
+    err => {
+      this.schedule_errors =  err.error.errors
+      console.log(this.schedule_errors)
     })
   }
 
@@ -89,7 +132,6 @@ export class CreateBookingScheduleComponent implements OnInit {
     var lessDays = currentWeekDay == 0 ? 6 : currentWeekDay - 1;
     var requestedDate = new Date(new Date(dt).setDate(dt.getDate() - lessDays));
     requestedDate.setDate(requestedDate.getDate()+date)
-    console.log(requestedDate) 
     return requestedDate
   }
 

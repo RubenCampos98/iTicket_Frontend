@@ -27,6 +27,12 @@ export class ApiLocationService {
     }))
   }
 
+  getActiveLocations(){
+    return this.http.get<any>(`${environment.api}/locations/1/activeLocations`, { withCredentials: true }).pipe(map((res:any) =>{
+      return res;
+    }))
+  }
+
   getLocationById(id: number, data: any,){
     return this.http.get<any>(`${environment.api}/locations` + id, { withCredentials: true }).pipe(map((res:any) =>{
       return res;

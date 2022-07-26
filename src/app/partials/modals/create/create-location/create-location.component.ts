@@ -54,7 +54,6 @@ export class CreateLocationComponent implements OnInit {
       window.location.reload()
     },
     err => {
-      console.log('Deu erro')
       this.user_errors = err.error.errors
       console.log(this.user_errors)
     })

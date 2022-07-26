@@ -1,6 +1,6 @@
 <div class="top-table">
   <input [(ngModel)]="locationSearchBar" class="form-control mt-2 mb-2 shadow-none" type="text"
-  placeholder="Pesquisar..." ngDefaultControl> 
+  placeholder="Pesquisar por morada" ngDefaultControl> 
   <button (click)="openCreateLocationModal()" class="btn mt-2 mb-2 btn-primary">Adicionar</button>
 </div>
 <table class="table table-hover">
@@ -33,7 +33,17 @@
         <img (click)="openDeleteModal(data['id']);" style="margin-left: 25%;" src="../../../assets/icons/trash.svg">
       </td>
     </tr>
-    <div *ngIf="(allLocationData | locationSearchBar: locationSearchBar)?.length == 0">
+    <div *ngIf="allLocationData?.length == null">
+      <td style="width: 100%; font-size: 16px;">
+        Erro a carregar dados
+      </td>
+    </div>
+    <div *ngIf="allLocationData?.length == 0">
+      <td style="width: 100%; font-size: 16px;">
+        Sem informação a apresentar
+      </td>
+    </div>
+    <div *ngIf="(allLocationData | locationSearchBar: locationSearchBar)?.length == 0 && allLocationData?.length != 0">
       <td style="width: 100%; font-size: 16px; ">
         Não existem dados correspondentes
       </td>

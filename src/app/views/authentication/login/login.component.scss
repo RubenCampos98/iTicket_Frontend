@@ -58,6 +58,14 @@
         margin: auto;
       }
 
+/*         .formulario a{
+          position: absolute;
+        }
+
+        .formulario button{
+          position: absolute;
+        } */
+
         .formulario .form-label{
           border: 0px solid orange;
           margin: auto;
@@ -123,15 +131,15 @@
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
         } */
 
-        .card-footer{
+/*         .card-footer{
           background-color: white;
           border-top: 1px solid white;
-        }
+        } */
 
-        .card-footer a{
+        .bottom-card a{
           color: #1193F2;
-          position: absolute;
-          margin-top: 3%;
+          //position: absolute;
+          //margin-top: 3%;
           font-size: 14px;
           font-weight: 400;
           text-decoration: none;
@@ -140,11 +148,11 @@
           font-weight: 400;
           font-size: 14px;
           line-height: 21px;
-          display: flex;
+          //display: flex;
           align-items: center;
         }
 
-        .card-footer button{
+        .bottom-card button{
           background-color: #1193F2;
           border: 1px solid #1193F2;
           border-radius: 40px;
@@ -156,10 +164,11 @@
 /*           width: 231px;
           height: 59px; 
           width: 70%;*/
-          height: 60px;
+          height: 55px;
           //left: 100%;
-          margin-left: 50%;
+          //margin-left: 50%;
           box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+          margin-left: 98px;
         }
 
 @media screen and (max-width:420px){

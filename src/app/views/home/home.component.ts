@@ -7,6 +7,8 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiBookingService } from '../../services/api-booking.service'; 
 import { ApiWaitingListService } from '../../services/api-waiting-list.service';
 import { ApiTicketService } from '../../services/api-ticket.service';
+import { ApiServiceAvailableDayService } from 'src/app/services/api-service-available-day.service';
+import { ServiceAvailableDayModule } from 'src/app/modules/service-available-day.module';
 
 @Component({
   selector: 'app-home',
@@ -20,14 +22,29 @@ export class HomeComponent implements OnInit {
   allTicketsByQueueData
   allBookingsByQueueData
   allTicketData
+  allTicketFromBookingsData
+  allTicketNotAttendedData
+  allAvailableDaysData  
   allTicketByIdData
   allTicketQueueData
+  allTodayTicketsFromBookings
   logoutData
 
   ticketForm !:FormGroup
+  
   ticketModelObj :TicketModule = new TicketModule
+  availableDaysModule : ServiceAvailableDayModule = new ServiceAvailableDayModule
 
   isHidden: boolean
+
+  data
+  //.toISOString()
+
+  date = new Date();
+  numberOfMlSeconds = this.date.getTime();
+  addMlSeconds = 60 * 60 * 1000;
+  newDateObj = new Date(this.numberOfMlSeconds + this.addMlSeconds).toISOString();
+
 
   changeToCalling: boolean = true
   changeToAttending: boolean = true
@@ -47,6 +64,7 @@ export class HomeComponent implements OnInit {
     private api_booking: ApiBookingService,
     private api_waitingList: ApiWaitingListService,
     private api_ticket: ApiTicketService,
+    private api_availableDays: ApiServiceAvailableDayService,
     private toastr: ToastrService
   ) { }
 
@@ -54,9 +72,12 @@ export class HomeComponent implements OnInit {
     this.getBookingData()
     this.getWaitingListsData()
     this.getTicketData()
-    this.getTicket_QueueData()
-    this.getTicketsByQueue()
-    this.getBookingsByQueue()
+    this.getfirstTicketbyQueueData()
+    this.getnumberOfTicketsByQueue()
+    this.getnumberOfBookingsByQueue()
+    this.getTicketsNotAttendedData()
+    this.getTicketsFromBookingsData()
+    this.getTodayBookingTickets()
     this.ticketForm = this.formBuilder.group({
       name: [],
       status: 0,
@@ -67,6 +88,10 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  addHoursToDate(date: Date, hours: number): Date {
+    return this.data = new Date(new Date(date).setHours(date.getHours() + hours));
+  }
+
   //--------------------------------------------Booking--------------------------------------------
 
   getBookingData(){
@@ -75,25 +100,17 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  getnumberOfBookingsByQueue(){
+    this.api_waitingList.getBookingsByQueue().subscribe(res => {
+      this.allBookingsByQueueData = res['data'];
+    })
+  }
+
   //--------------------------------------------Waiting_lists--------------------------------------------
 
   getWaitingListsData(){
     this.api_waitingList.getWaitingLists().subscribe(res => {
       this.allWaitingListData = res['data'];
-    })
-  }
-
-  getTicketsByQueue(){
-    this.api_waitingList.getTicketsByQueue().subscribe(res => {
-      this.allTicketsByQueueData = res['data'];
-      console.log(this.allTicketsByQueueData)
-    })
-  }
-
-  getBookingsByQueue(){
-    this.api_waitingList.getBookingsByQueue().subscribe(res => {
-      this.allBookingsByQueueData = res['data'];
-      console.log(this.allBookingsByQueueData)
     })
   }
 
@@ -111,22 +128,75 @@ export class HomeComponent implements OnInit {
 
   getTicketById(id){
     this.api_ticket.getTicketById(id).subscribe(res => {
-      console.log(res.data)
-      this.allTicketByIdData = res['data'];   
+      this.allTicketByIdData = res['data'];  
+    })
+  }
+
+
+  getTodayBookingTickets(){
+    this.api_ticket.getTodayBookingTickets().subscribe(res => {
+      this.allTodayTicketsFromBookings = res['data'];
+    })
+  }
+
+
+  getfirstTicketbyQueueData(){
+    this.api_ticket.getTicket_Queues().subscribe(res => {
+      this.allTicketQueueData = res['data'];
+    })
+  }
+
+  getnumberOfTicketsByQueue(){
+    this.api_waitingList.getTicketsByQueue().subscribe(res => {
+      this.allTicketsByQueueData = res['data'];
+    })
+  }
+
+  getTicketsNotAttendedData(){
+    this.api_ticket.getTicketNotAttended().subscribe(res => {
+      this.allTicketNotAttendedData = res['data'];   
+    })
+  }
+
+  getTicketsFromBookingsData(){
+    this.api_ticket.getTicketFromBooking().subscribe(res => {
+      this.allTicketFromBookingsData = res['data'];   
+    })
+  }
+
+  EditNotMetTicket(){
+    this.ticketModelObj.id = this.allTicketByIdData.id;
+    this.ticketModelObj.status = 1;
+    this.api_ticket.updateTicket(this.ticketModelObj, this.ticketModelObj.id).subscribe(res => {
+      let ref = document.getElementById('clear')
+      ref?.click()
+      this.ticketForm.reset()
+      setTimeout(function () { 
+        location.reload(); 
+      }, 1000);
+    })
+  }
+  
+  CancelTicket(){
+    this.ticketModelObj.id = this.allTicketByIdData.id;
+    this.ticketModelObj.status = 2;
+    this.api_ticket.updateTicket(this.ticketModelObj, this.ticketModelObj.id).subscribe(res => {
+      let ref = document.getElementById('clear')
+      ref?.click()
+      this.ticketForm.reset()
+      setTimeout(function () { 
+        location.reload(); 
+      }, 1000);
     })
   }
 
   EditTicket(data: any){
-    console.log('Edit: Start-time= ', this.ticketForm.value.start_time, 'End-time: ', this.ticketForm.value.end_time)
     this.ticketModelObj.id = data.id
-    //this.ticketModelObj.status = 'started';
     this.ticketForm.controls['name'].setValue(data.name);
     this.ticketForm.controls['status'].setValue('started');
     this.ticketForm.controls['duration'].setValue(data.duration);
     this.ticketForm.controls['notes'].setValue(data.notes);
     this.ticketForm.controls['start_time'].setValue(new Date());
-    console.log("Status: ", this.ticketForm.value.status)
-    console.log('Edit: Start-time= ', this.ticketForm.value.start_time, 'End-time: ', this.ticketForm.value.end_time)
   }
 
   updateTicket(){
@@ -137,24 +207,36 @@ export class HomeComponent implements OnInit {
     this.ticketModelObj.end_time = new Date();  
     this.ticketModelObj.duration = this.hour + ':' + this.min + ':' + this.sec;
     this.api_ticket.updateTicket(this.ticketModelObj, this.ticketModelObj.id).subscribe(res => {
-    console.log("Status: ", this.ticketModelObj.status)
-    console.log('Update: Start-time= ', this.ticketModelObj.start_time, 'End-time: ', this.ticketModelObj.end_time)
-      this.toastr.success("Concluido!")
+      this.toastr.success("Atendimento concluido com sucesso!", "Senha", {
+        closeButton: true,
+        disableTimeOut: true
+      })
       let ref = document.getElementById('clear')
       ref?.click()
       this.ticketForm.reset()
       this.getTicketData()
-    })
-  }
-
-  getTicket_QueueData(){
-    this.api_ticket.getTicket_Queues().subscribe(res => {
-      this.allTicketQueueData = res['data'];
-    console.log(this.allTicketQueueData)      
+      setTimeout(function () { 
+        location.reload(); 
+      }, 3000);
     })
   }
 
   //---------------------------------------------Mudar de ecrã------------------------------------------------
+
+  getAvailableDays(){
+    this.api_availableDays.getServiceAvailableDay().subscribe(res => {
+      this.allAvailableDaysData = res['data']; 
+    })
+  }
+
+  addAvailableDays(){
+    if(this.allAvailableDaysData.length == 0 || this.allAvailableDaysData.length == null){
+      this.api_availableDays.createServiceAvailableDay(this.availableDaysModule).subscribe(res => {
+        let ref = document.getElementById('clear')
+        ref?.click()
+      })
+    }
+  }
 
   CallingScreen(){
     this.changeToCalling =!this.changeToCalling

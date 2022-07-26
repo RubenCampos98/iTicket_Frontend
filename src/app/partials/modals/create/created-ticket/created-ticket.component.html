@@ -10,12 +10,12 @@
         <input formControlName="number" type="text" class="form-control form-control-lg notransition shadow-none"
         id="name" readonly>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-4">
         <label for="recipient-name" class="col-form-label">Fila</label>
         <input formControlName="waiting_list_name" type="text" class="form-control form-control-lg notransition shadow-none"
         id="name" readonly>
       </div>
-      <div class="col-md-5">
+      <div class="col-md-6">
         <label for="recipient-name" class="col-form-label">Serviço</label>
         <input formControlName="waiting_list_service" type="text" class="form-control form-control-lg notransition shadow-none"
         id="name" readonly>
@@ -37,9 +37,17 @@
           </label>
         </div>
       </div>
+      <div class="col-md-12 aviso">
+        <label for="recipient-name" class="col-form-label">Aviso!</label>
+        <p>
+          Atendimento prioritário apenas para pessoas com defeciência, pessoas idosas ou grávidas. 
+        <br>
+          Caso escolha este estatudo e não seja um dos casos referidos, corre risco do cancelamento da senha ou agendamento.
+        </p>
+      </div>
       <div class="col-md-12 mt-4">
         <label for="recipient-name" class="col-form-label">Introduza o seu email para receber a senha</label>
-        <input formControlName="name" type="email" class="form-control form-control-lg">
+        <input formControlName="email" type="email" class="form-control form-control-lg">
       </div>
     </form>
   </div>

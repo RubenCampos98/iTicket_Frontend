@@ -60,13 +60,6 @@ export class LocationTableComponent implements OnInit {
     })
   } 
 
-/*   onEditLocation(data: any){
-    this.locationModelObj.id = data.id;
-    this.locationForm.controls['address'].setValue(data.address);
-    this.locationForm.controls['status'].setValue(data.status);
-    this.locationForm.controls['notes'].setValue(data.notes);
-  } */
-
   openCreateLocationModal(){
     this.createLocation.open();
   }
@@ -75,7 +68,6 @@ export class LocationTableComponent implements OnInit {
     if(this.sessionData?.admin == false){
       this.warningModal.open()
     }else{
-      console.log(id, address, status, notes)
       this.editLocation.open(id, address, status, notes);
     }
   }

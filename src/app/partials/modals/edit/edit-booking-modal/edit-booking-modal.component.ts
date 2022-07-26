@@ -44,7 +44,6 @@ export class EditBookingModalComponent implements OnInit {
     } else{
       this.checked = true;
     }
-    console.log(val);
   }
 
   updateBooking(){
@@ -54,9 +53,6 @@ export class EditBookingModalComponent implements OnInit {
       ref?.click()
       this.bookingForm.reset()
       window.location.reload()
-    },
-    err => {
-      console.log('Deu erro')
     })
   }
 

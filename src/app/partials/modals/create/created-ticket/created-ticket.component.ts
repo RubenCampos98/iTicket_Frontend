@@ -27,6 +27,9 @@ export class CreatedTicketComponent implements OnInit {
 
   allWaitingListData
 
+  allWaitingListBookingData
+  allTodayTicketsData
+
   constructor(
     private formBuilder: FormBuilder,
     private modalService: NgbModal,
@@ -43,7 +46,7 @@ export class CreatedTicketComponent implements OnInit {
 
   open(number: number, waiting_list_id: number){
     this.createdTicketForm = this.formBuilder.group({
-      name: [''],
+      email: [''],
       number: number,
       priority: [''],
       waiting_list_id: waiting_list_id['id'],
@@ -56,17 +59,25 @@ export class CreatedTicketComponent implements OnInit {
   createTicket(){
     this.ticketModule.number = this.createdTicketForm.value.number
     this.ticketModule.waiting_list_id = this.createdTicketForm.value.waiting_list_id
-    this.ticketModule.name = this.createdTicketForm.value.name
+    this.ticketModule.email = this.createdTicketForm.value.email
     this.ticketModule.priority = this.createdTicketForm.value.priority
     console.log(this.ticketModule.waiting_list_id)
     this.api_ticket.createTicket(this.ticketModule).subscribe(res => {
       let ref = document.getElementById('clear')
       ref?.click()
-      this.toastr.success('Senha tirada com sucesso')
-      //window.location.reload()
+      this.toastr.success('Senha tirada com sucesso!', "Senha", {
+        closeButton: true,
+        disableTimeOut: true
+      })
+      setTimeout(function () { 
+        window.location.reload(); 
+      }, 2000);
     },
     err => {
-      this.toastr.error('Erro ao tirar senha')
+      this.toastr.error('Erro ao tirar senha. Tente novamente', "Erro!", {
+        closeButton: true,
+        disableTimeOut: true
+      })
     })
   }
 
@@ -78,7 +89,6 @@ export class CreatedTicketComponent implements OnInit {
 
   closeModal() {
     this.modalService.dismissAll();
-      //window.location.reload()
   }
 
   checkClicked(val){

@@ -25,7 +25,6 @@ export class CreateUserComponent implements OnInit {
 
   user_errors
 
-  //textboxText= textboxText.replace(/^0+/, '')
 
   constructor(
     private formBuilder: FormBuilder,

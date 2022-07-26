@@ -1,6 +1,6 @@
 <div class="top-table">
   <input [(ngModel)]="serviceSearchBar" class="form-control mt-2 mb-2 shadow-none" type="text" 
-  placeholder="Pesquisar..." ngDefaultControl> 
+  placeholder="Pesquisar por nome" ngDefaultControl> 
   <button (click)="openCreateServiceModal()" class="btn mt-2 mb-2 btn-primary">Adicionar</button>
 </div>
 <table class="table table-hover">
@@ -34,12 +34,17 @@
         src="../../../assets/icons/trash.svg"/>
       </td>
     </tr>
-    <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" [attr.colspan]="allServiceData.length">
+    <div *ngIf="allServiceData?.length == null">
+      <td style="width: 100%; font-size: 16px;">
+        Erro a carregar dados
+      </td>
+    </div>
+    <div *ngIf="allServiceData?.length == 0">
+      <td style="width: 100%; font-size: 16px;">
         Sem informação a apresentar
       </td>
-    </tr>
-    <div *ngIf="(allServiceData | searchBar: serviceSearchBar)?.length == 0">
+    </div>
+    <div *ngIf="(allServiceData | searchBar: serviceSearchBar)?.length == 0 && allServiceData?.length != 0">
       <td style="width: 100%; font-size: 16px; ">
         Não existem dados correspondentes
       </td>
@@ -53,7 +58,7 @@
     <option [ngValue]="10">Mostrar 10</option>
     <option [ngValue]="15">Mostrar 15</option>
   </select>
-  <ngb-pagination class="d-flex justify-content-right"
+  <ngb-pagination class="d-flex justify-content-right col-lg-4 offset-lg-8"
     [rotate]="true"
     [ellipses]="true"
     [(page)]="page" 

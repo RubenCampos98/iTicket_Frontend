@@ -19,6 +19,12 @@ export class ApiServiceAvailableDayService {
     }))
   }
 
+  getDaysWithHoursAssociated(){
+    return this.http.get<any>(`${environment.api}/services_available_days/1/scheduleDays`, { withCredentials: true }).pipe(map((res:any) =>{
+      return res;
+    }))
+  }
+
   createServiceAvailableDay(data: any){
     return this.http.post<any>(`${environment.api}/services_available_days`, data, { withCredentials: true }).pipe(map((res: any) =>{
       return res;

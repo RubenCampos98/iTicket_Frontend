@@ -6,17 +6,15 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th scope="col">Nome do serviço</th>
-      <th scope="col">Data </th>
-      <th scope="col">Hora </th>
+      <th scope="col">Data</th>
+      <th scope="col">Hora</th>
       <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let data of allAvailableHours | slice: (page-1) * pageSize : page * pageSize | searchBar: bookingScheduleSearchBar">
-      <td style="width: 40%;">{{ data['service_available_day']['service'].name }}</td>
-      <td style="width: 35%;">{{ getday(data['service_available_day'].day) | date:'EEEE, dd MMMM yyyy' }}</td>
-      <td style="width: 15%;">{{ data['hour'] | date:'HH:mm'  }}</td>
+      <td style="width: 55%;">{{ getday(data['service_available_day'].day) | date:'EEEE, dd MMMM yyyy' }}</td>
+      <td style="width: 35%;">{{ data['hour'] | date:'HH:mm'  }}</td>
       
       <td style="width: 10%;">
         <img (click)="openEditBookingScheduleModal(data['id'], data['hour'], data['service_available_day_id'], data['service_available_day'])" 
@@ -24,16 +22,21 @@
         <img (click)="openDeleteModal(data['id']);" style="margin-left: 25%;" src="../../../assets/icons/trash.svg"/>
       </td>
     </tr>
-    <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" [attr.colspan]="allServiceData.length">
+    <div *ngIf="allAvailableHours?.length == null">
+      <td style="width: 100%; font-size: 16px;">
+        Erro a carregar os dados
+      </td>
+    </div>
+    <div *ngIf="allAvailableHours?.length == 0">
+      <td style="width: 100%; font-size: 16px;">
         Sem informação a apresentar
       </td>
-    </tr>
-    <div *ngIf="(allServiceData | searchBar: bookingScheduleSearchBar)?.length == 0">
+    </div>
+<!--     <div *ngIf="(allAvailableHours | bookingSearchBar: bookingSearchBar)?.length == 0 && allAvailableHours?.length != 0">
       <td style="width: 100%; font-size: 16px; ">
         Não existem dados correspondentes
       </td>
-    </div>
+    </div> -->
   </tbody>
 </table>
 <div class="bottom-table">
@@ -43,7 +46,7 @@
     <option [ngValue]="10">Mostrar 10</option>
     <option [ngValue]="15">Mostrar 15</option>
   </select>
-  <ngb-pagination class="d-flex justify-content-right"
+  <ngb-pagination class="d-flex justify-content-right col-lg-4 offset-lg-8"
     [rotate]="true"
     [ellipses]="true"
     [(page)]="page" 

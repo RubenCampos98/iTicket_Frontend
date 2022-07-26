@@ -57,18 +57,12 @@ export class EditBookingScheduleComponent implements OnInit {
       ref?.click()
       this.availableDatesForms.reset()
       window.location.reload()
-    },
-    err => {
-      console.log('Deu erro')
     })
     this.api_availableDays.updateServiceAvailableDay(this.availableDates, this.availableDates.id).subscribe(res => {
       let ref = document.getElementById('clear')
       ref?.click()
       this.availableDatesForms.reset()
       window.location.reload()
-    },
-    err => {
-      console.log('Deu erro')
     })
   }
 

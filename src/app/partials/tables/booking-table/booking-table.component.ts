@@ -55,7 +55,6 @@ export class BookingTableComponent implements OnInit {
     if(this.sessionData?.admin == false){
       this.warningModal.open()
     }else{
-      console.log(id, name, email, start_time, priority, status, notes, service_id, location_id);
       this.editBooking.open(id, name, email, start_time, priority, status, notes, service_id, location_id);
     }
   }

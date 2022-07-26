@@ -4,37 +4,75 @@
     <button type="button" class="btn-close" (click)="closeModal()" aria-label="Close"></button>
   </div>
   <div class="modal-body">
-    <form [formGroup]="" class="row g-3">
+    <form [formGroup]="bookingSchedulev2Form" class="row g-3">
       <div class="col-md-6">
         <label for="recipient-name" class="col-form-label">Serviço</label><a class="mandatoryField">  *</a>
-        <select formControlName="service_id" class="form-select form-select-lg notransition shadow-none" id="inputGroupSelect01">
+        <select class="form-select form-select-lg notransition shadow-none" id="inputGroupSelect01">
           <option selected>Escolha um serviço</option>
           <option *ngFor="let service of allServiceData" [value]="service.id">{{ service.name }}</option>
         </select>
       </div>
       <div class="col-md-6">
         <label for="recipient-name" class="col-form-label">Data</label><a class="mandatoryField">  *</a>
-        <select formControlName="service_id" class="form-select form-select-lg notransition shadow-none" id="inputGroupSelect01">
+        <select  formControlName="service_available_day_id" class="form-select form-select-lg notransition shadow-none">
           <option selected>Escolha uma data</option>
-          <option *ngFor="let day of allAvailableDaysData" [value]="day.id">
-            <a *ngIf="day.day == 0">{{ getday(day.day) | date:'EEEE, dd MMMM yyyy'  }}</a>
-            <a *ngIf="day.day == 1">{{ getday(day.day) | date:'EEEE, dd MMMM yyyy'  }}</a>
-            <a *ngIf="day.day == 2">{{ getday(day.day) | date:'EEEE, dd MMMM yyyy'  }}</a>
-            <a *ngIf="day.day == 3">{{ getday(day.day) | date:'EEEE, dd MMMM yyyy'  }}</a>
-            <a *ngIf="day.day == 4">{{ getday(day.day) | date:'EEEE, dd MMMM yyyy'  }}</a>
-            <a *ngIf="day.day == 5">{{ getday(day.day) | date:'EEEE, dd MMMM yyyy'  }}</a>
-            <a *ngIf="day.day == 6">{{ getday(day.day) | date:'EEEE, dd MMMM yyyy'  }}</a>
+          <option *ngFor="let day of allAvailableDaysData" value="{{day['id']}}">
+            {{ getday(day['day']) | date:'EEEE, dd MMMM yyyy' }}
           </option>
-        </select>      
+<!--           <option value="{{ this.bookingSchedulev2Form.patchValue({service_available_day_id: 0}) }}">
+            {{ firstday | date:'EEEE, dd MMMM yyyy' }}
+          </option>
+          <option value="{{ this.bookingSchedulev2Form.patchValue({service_available_day_id: 1}) }}">
+            {{ secondday | date:'EEEE, dd MMMM yyyy' }}
+          </option>
+          <option value="{{ this.bookingSchedulev2Form.patchValue({service_available_day_id: 2}) }}">
+            {{ thirdday | date:'EEEE, dd MMMM yyyy' }}
+          </option>
+          <option value="{{ this.bookingSchedulev2Form.patchValue({service_available_day_id: 3}) }}">
+            {{ forthday | date:'EEEE, dd MMMM yyyy' }}
+          </option>
+          <option value="{{ this.bookingSchedulev2Form.patchValue({service_available_day_id: 4}) }}">
+            {{ fifthday | date:'EEEE, dd MMMM yyyy' }}
+          </option>
+          <option value="{{ this.bookingSchedulev2Form.patchValue({service_available_day_id: 5}) }}">
+            {{ sixthday | date:'EEEE, dd MMMM yyyy' }}
+          </option>
+          <option value="{{ this.bookingSchedulev2Form.patchValue({service_available_day_id: 6}) }}">
+            {{ seventhday | date:'EEEE, dd MMMM yyyy' }}
+          </option>
+          <option value="{{ this.bookingSchedulev2Form.patchValue({service_available_day_id: 7}) }}">
+            {{ lastday | date:'EEEE, dd MMMM yyyy' }}
+          </option> -->
+        </select> 
+        <label class="errorMessage" *ngIf="schedule_errors?.service_available_day">
+          {{ schedule_errors.service_available_day.message }}
+        </label>
+<!--         <select formControlName="day" class="form-select form-select-lg notransition shadow-none" 
+        *ngIf="allAvailableDaysData.length == 0">
+          <option selected>Escolha uma data</option>
+          <option value="{{ this.bookingScheduleForm.patchValue({day: 1}) }}">Segunda-feira</option>
+          <option value="{{ this.bookingScheduleForm.patchValue({day: 2}) }}">Terça-feira</option>
+          <option value="{{ this.bookingScheduleForm.patchValue({day: 3}) }}">Quarta-feira</option>
+          <option value="{{ this.bookingScheduleForm.patchValue({day: 4}) }}">Quinta-feira</option>
+          <option value="{{ this.bookingScheduleForm.patchValue({day: 5}) }}">Sexta-feira</option>
+        </select>   -->   
       </div> 
+<!--       <div class="col-md-6">
+        <label for="recipient-name" class="col-form-label">Hora</label><a class="mandatoryField">  *</a>
+        <input formControlName="hour" type="date" min="{{firstday | date:'yyyy-MM-dd'}}" max="{{lastday | date:'yyyy-MM-dd'}}" id="AvailableDate" class="form-control form-control-lg notransition shadow-none">
+      </div>  -->
       <div class="col-md-6">
         <label for="recipient-name" class="col-form-label">Hora</label><a class="mandatoryField">  *</a>
-        <input formControlName="hour" type="time" step="600" min="09:00" max="18:00" class="form-control form-control-lg notransition shadow-none">
+        <input formControlName="hour" type="time" value="{{ firstday | date:'hh:mm:ss a' }}" min="09:00" max="18:00"
+        class="form-control form-control-lg notransition shadow-none" required>
+        <label class="errorMessage" *ngIf="schedule_errors?.hour">
+          {{ schedule_errors.hour.message }}
+        </label>
       </div> 
     </form>
   </div>
   <div class="modal-footer">
     <a (click)="closeModal()"> Cancelar </a>
-    <button type="button" class="btn mt-2 mb-2 btn-primary">Adicionar</button>
+    <button (click)="addAvailableHour()" type="button" class="btn mt-2 mb-2 btn-primary">Adicionar</button>
   </div>
 </ng-template>

@@ -59,7 +59,6 @@ export class EditUserModalComponent implements OnInit {
     },
     err => {
       this.user_errors = err.error.errors
-      console.log(this.user_errors)
     })
   }
 
@@ -85,7 +84,6 @@ export class EditUserModalComponent implements OnInit {
     } else{
       this.checked = true;
     }
-    console.log(val);
   }
 
 }

@@ -27,10 +27,16 @@ export class RecoverPasswordComponent implements OnInit {
 
   resetPassword(){
     this.api_resetPass.resetPassword(this.resetPassForm.value['email']).subscribe(res => {
-      this.toastr.success("Sucesso! Foi enviado um email de recuperação de palavra-passe para o email abaixo!"); 
+      this.toastr.success("Foi enviado um email de recuperação de palavra-passe para o email inserido!", "Sucesso!", {
+        closeButton: true,
+        disableTimeOut: true
+      }); 
     },
     err => {
-      this.toastr.error("Erro, tente novamente."); 
+      this.toastr.error("Não foi possível enviar o email de recuperação de palavra-passe. Por favor tente novamente.", "Erro!", {
+        closeButton: true,
+        disableTimeOut: true
+      })
     });
   }
 

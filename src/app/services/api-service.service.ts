@@ -19,6 +19,12 @@ export class ApiServiceService {
       return res;
     }))
   }
+  
+  getActiveService(){
+    return this.http.get<any>(`${environment.api}/services/1/activeServices`, { withCredentials: true }).pipe(map((res:any) =>{
+      return res;
+    }))
+  }
 
   getServiceById(id){
     return this.http.get<any>(`${environment.api}/services/` + id, { withCredentials: true }).pipe(map((res:any) =>{

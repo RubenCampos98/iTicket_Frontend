@@ -24,6 +24,7 @@ export class WaitingListTableComponent implements OnInit {
 
   allWaitingListData
   sessionData
+  waitingListSearchBar
 
   page = 1
   pageSize = 5
@@ -65,7 +66,6 @@ export class WaitingListTableComponent implements OnInit {
     if(this.sessionData?.admin == false){
       this.warningModal.open()
     }else{
-      console.log(id, name, user_id, start_time, end_time, service_id, status);
       this.editWaitingList.open(id, name, status, start_time, end_time, service_id, user_id);
     }
   }

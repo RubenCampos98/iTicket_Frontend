@@ -20,6 +20,7 @@ export class TicketTableComponent implements OnInit {
 
   allTicketData
   sessionData
+  ticketSearchBar
 
   page = 1
   pageSize = 5
@@ -52,7 +53,6 @@ export class TicketTableComponent implements OnInit {
     if(this.sessionData?.admin == false){
       this.warningModal.open()
     }else{
-      console.log(id, ',',  number, ',', waiting_list_id, ',', duration, ',', priority, ',', status, ',', notes);
       this.editTicket.open(id, number, waiting_list_id, duration, priority, status, notes);
     }
   }

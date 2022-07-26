@@ -45,15 +45,20 @@ export class LoginComponent implements OnInit {
           this.user = user;
           this.userSubject?.next(this.user);
           resolve(this.user!);
-          this.toastr.success("Bem vindo!")
+          this.toastr.success("Bem vindo!", "iTicket",{
+            closeButton: true,
+            disableTimeOut: true
+          })
           this.router.navigate(['home']);
         },
         error: err => {
           this.user = undefined;
           this.userSubject?.next(this.user);
           reject(err);
-          console.log(err.error.message);
-          this.toastr.error("Email ou password inválidos. Tente novamente.")
+          this.toastr.error("Email ou password inválidos. Tente novamente.", "Erro!", {
+            closeButton: true,
+            disableTimeOut: true
+          })
         }
       });
     });
